@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">100dp</dimen>
+    <dimen name="margin_role_button">20dp</dimen>
+    <dimen name="margin_back_button">20dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_250">250dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+</resources>

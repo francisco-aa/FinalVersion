@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/darkblue2">
+
+    <TextView
+        android:id="@+id/TitleRoleChoiceBack"
+        style="@style/TitleTextStyle"
+        android:layout_width="227dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/title_connexion_page"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/TitleRoleChoice"
+        style="@style/TitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_connexion_page"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/default_margin">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/iconRoleChoice"
+        android:layout_width="208dp"
+        android:layout_height="248dp"
+        android:src="@drawable/ic_rolechoice"
+        app:layout_constraintEnd_toEndOf="@+id/TitleRoleChoice"
+        app:layout_constraintStart_toStartOf="@+id/TitleRoleChoice"
+        app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/whoAmI"
+        style="@style/TextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/role_choice"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
+        app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
+        app:layout_constraintTop_toBottomOf="@+id/iconRoleChoice">
+    </TextView>
+
+    <Button
+        android:id="@+id/buttonTeacher"
+        style="@style/TextStyle"
+        android:layout_width="221dp"
+        android:layout_height="34dp"
+        android:layout_marginVertical="@dimen/margin_role_button"
+        android:background="@color/lightblue"
+        android:text="@string/button_teacher"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
+        app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
+        app:layout_constraintTop_toBottomOf="@+id/whoAmI">
+    </Button>
+
+    <Button
+        android:id="@+id/buttonStudent"
+        style="@style/TextStyle"
+        android:layout_width="221dp"
+        android:layout_height="34dp"
+        android:layout_marginVertical="@dimen/margin_role_button"
+        android:background="@color/lightblue"
+        android:text="@string/button_student"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/buttonTeacher"
+        app:layout_constraintStart_toStartOf="@+id/buttonTeacher"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTeacher"
+        >
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

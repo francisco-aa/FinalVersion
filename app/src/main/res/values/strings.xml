@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Zapette</string>
+    <!-- page de connexion -->
+    <string name="title_connexion_page">CONNEXION</string>
+    <string name="role_choice">Je suis :</string>
+    <string name="button_teacher">Enseignant</string>
+    <string name="button_student">Etudiant</string>
+
+    <!-- page de connexion Enseignant -->
+    <string name="mail">Adresse mail : </string>
+    <string name="password">Mot de passe : </string>
+    <string name="hyperlink_miss_password">mot de passe oublié</string>
+    <string name="button_create_account">Créer un compte</string>
+    <string name="button_connexion">Connexion</string>
+
+    <!-- créer un compte -->
+    <string name="name_surname">Nom/Prénom : </string>
+    <string name="confirm_password">Confirmer mot de passe : </string>
+
+
+    <!-- page Questionnaire-->
+    <string name="title_teacher_page">ESPACE ENSEIGNANT</string>
+    <string name="button_my_quiz">Mes questionnaires</string>
+    <string name="button_create_quiz">Créer un questionnaire</string>
+
+    <!-- page Nouveau Questionnaire-->
+    <string name="title_new_quiz_page"> Nouveau Questionnaire</string>
+    <string name="quick_mode">Mode rapide</string>
+    <string name="title_quiz">Titre questionnaire : </string>
+    <string name="title_question">Question : </string>
+    <string name="upload_image">Importer image</string>
+    <string name="answer">Réponse : </string>
+    <string name="good_answer">Bonne réponse</string>
+    <string name="confirm_quiz">Valider questionnaire</string>
+
+    <!-- page Modifier Questionnaire-->
+    <string name="title_modify_quiz_page">Modifier Questionnaire</string>
+
+    <!-- page Mes questionnaire enseignant-->
+    <string name="title_my_quiz_page">Mes questionnaires</string>
+    <string name="button_modify_quiz">Modifier questionnaire</string>
+    <string name="button_begin_quiz">Lancer questionnaire</string>
+
+    <!-- page Nom questionnaire-->
+    <string name="title_name_quiz_page">Nom questionnaire</string>
+    <string name="question_name_quiz_page">Question x</string>  <!-- A revoir-->
+    <string name="answerA_text_name_quiz_page">A)</string>
+    <string name="answerB_text_name_quiz_page">B)</string>
+    <string name="answerC_text_name_quiz_page">C)</string>
+    <string name="answerD_text_name_quiz_page">D)</string>
+    <string name="button_close_quiz">Fermer questionnaire</string>
+    <string name="button_next_question">Question suivante >></string>
+    <string name="button_quit_quiz">Quitter questionnaire</string>
+    <string name="button_show_QRCode">Afficher QR Code</string>
+    <string name="string_quiz_code">Code questionnaire</string>
+
+    <!-- page Nom questionnaire etudiant -->
+    <string name="answerA_button_name_quiz_page">A</string>
+    <string name="answerB_button_name_quiz_page">B</string>
+    <string name="answerC_button_name_quiz_page">C</string>
+    <string name="answerD_button_name_quiz_page">D</string>
+    <string name="text_need_help">Besoin d\'aide</string>
+    <string name="button_confirme_answer">Valider réponse</string>
+
+    <!-- page Mes questionnaire etudiant-->
+    <string name="button_start_quiz">Démarrer questionnaire</string>
+
+    <!-- page remercier Questionnaire-->
+    <string name="title_thanks_quiz_page">Merci d\'avoir participé au Questionnaire!</string>
+    <string name="button_save_quiz_thanks_quiz_page">Sauvegarder questionnaire</string>
+    <string name="button_quit_thanks_quiz_page">Quitter</string>
+
+
+</resources>
