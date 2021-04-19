@@ -52,7 +52,7 @@ class EtudiantRepondre : AppCompatActivity() {
             for ( button in buttonList ) {
                 button.setTextColor(Color.BLACK)
             }
-            a.setTextColor(Color.parseColor("#FF3700B3"))
+            a.setTextColor(Color.parseColor("#FFBB86FC"))
             buttonClique= "A"
         }
 
