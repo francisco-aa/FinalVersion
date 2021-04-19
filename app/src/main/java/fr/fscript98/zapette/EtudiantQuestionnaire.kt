@@ -48,6 +48,16 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
         //mettre a jour la liste de plant
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener{
+            ref_questionnaire.child("question").child("A").setValue(0)
+            ref_questionnaire.child("question").child("B").setValue(0)
+            ref_questionnaire.child("question").child("C").setValue(0)
+            ref_questionnaire.child("question").child("D").setValue(0)
+            ref_questionnaire.child("question").child("E").setValue(0)
+            ref_questionnaire.child("question").child("F").setValue(0)
+            ref_questionnaire.child("question").child("G").setValue(0)
+            ref_questionnaire.child("question").child("H").setValue(0)
+            ref_questionnaire.child("question").child("I").setValue(0)
+            ref_questionnaire.child("question").child("motdepasse").setValue(45)
             ref_questionnaire.child("question2").child("A").setValue(0)
             ref_questionnaire.child("question2").child("B").setValue(0)
             ref_questionnaire.child("question2").child("C").setValue(0)
@@ -57,8 +67,17 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
             ref_questionnaire.child("question2").child("G").setValue(0)
             ref_questionnaire.child("question2").child("H").setValue(0)
             ref_questionnaire.child("question2").child("I").setValue(0)
-            ref_questionnaire.child("question2").child("motdepasse").setValue(45)
-
+            ref_questionnaire.child("question2").child("motdepasse").setValue(12345)
+            ref_questionnaire.child("question3").child("A").setValue(0)
+            ref_questionnaire.child("question3").child("B").setValue(0)
+            ref_questionnaire.child("question3").child("C").setValue(0)
+            ref_questionnaire.child("question3").child("D").setValue(0)
+            ref_questionnaire.child("question3").child("E").setValue(0)
+            ref_questionnaire.child("question3").child("F").setValue(0)
+            ref_questionnaire.child("question3").child("G").setValue(0)
+            ref_questionnaire.child("question3").child("H").setValue(0)
+            ref_questionnaire.child("question3").child("I").setValue(0)
+            ref_questionnaire.child("question3").child("motdepasse").setValue(0)
 
 
 
