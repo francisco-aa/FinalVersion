@@ -2,16 +2,10 @@ package fr.fscript98.zapette
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.collection.LLRBNode
+import androidx.appcompat.app.AppCompatActivity
 
 class EtudiantRepondre : AppCompatActivity() {
 
@@ -132,5 +126,6 @@ class EtudiantRepondre : AppCompatActivity() {
         }*/
             }
 }
+
 
 
