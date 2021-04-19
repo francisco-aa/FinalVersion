@@ -21,7 +21,7 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
         val ref_questionnaire = database.getReference("questionnaire")
         val intent = Intent(this, MainActivity::class.java)
         val intent2 = Intent(this, EtudiantRepondre::class.java)
-        var codeUtilisateur = "12345"
+
         var buttonsList = arrayListOf<VoteButtonModel>()
         val editText = findViewById<EditText>(R.id.zone_saisie_code)
         val codesaisi = editText.text.toString()
@@ -36,7 +36,7 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
         val buttonRejoindre = findViewById<Button>(R.id.button_rejoindre)
         buttonRejoindre.setOnClickListener {
             val codesaisi = editText.text.toString()
-                //TODO: Si codesaisi vide, redémarrer l'activity avec message d'erreur vide
+            //TODO: Si codesaisi vide, redémarrer l'activity avec message d'erreur vide
             ref_questionnaire.get().addOnSuccessListener {
                 for (ds in it.children){
                     var codeBDD= ds.getValue(VoteButtonModel::class.java)
