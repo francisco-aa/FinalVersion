@@ -27,7 +27,17 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
         val codesaisi = editText.text.toString()
 
         //Récupérer le code saisi par l'utilisateur
-
+        ref_questionnaire.get().addOnSuccessListener {
+            for (ds in it.children){
+                var codeBDD= ds.getValue(VoteButtonModel::class.java)
+                if (codeBDD!=null){
+                    buttonsList.add(codeBDD)
+                    //Toast.makeText(applicationContext, codeBDD.motdepasse.toString(), LENGTH_SHORT).show()
+                }
+            }
+        }.addOnFailureListener{
+            Toast.makeText(applicationContext, "Ya pa de le code", LENGTH_SHORT).show()
+        }
         //mettre a jour la liste de plant
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener{
@@ -37,20 +47,10 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
         buttonRejoindre.setOnClickListener {
             val codesaisi = editText.text.toString()
             //TODO: Si codesaisi vide, redémarrer l'activity avec message d'erreur vide
-            ref_questionnaire.get().addOnSuccessListener {
-                for (ds in it.children){
-                    var codeBDD= ds.getValue(VoteButtonModel::class.java)
-                    if (codeBDD!=null){
-                        buttonsList.add(codeBDD)
-                        //Toast.makeText(applicationContext, codeBDD.motdepasse.toString(), LENGTH_SHORT).show()
-                    }
-                }
-            }.addOnFailureListener{
-                Toast.makeText(applicationContext, "Ya pa de le code", LENGTH_SHORT).show()
-            }
+
             for (tu in buttonsList) {
                 val codesaisi = editText.text.toString()
-                Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
+                //Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
                 if (codesaisi == tu.motdepasse.toString()) {
 
                     startActivity(intent2)
