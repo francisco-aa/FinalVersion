@@ -18,7 +18,7 @@ class ButtonRepository {
 
 
 
-   /* var getdata = object : ValueEventListener {
+    var getdata = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot){
             for (ds in snapshot.children){
                 val code= ds.getValue(VoteButtonModel::class.java)
@@ -32,8 +32,7 @@ class ButtonRepository {
             TODO("Not yet implemented")
         }
 
-    }*/
-
+    }
 
 
 
