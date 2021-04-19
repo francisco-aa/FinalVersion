@@ -2,10 +2,20 @@ package fr.fscript98.zapette
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.collection.LLRBNode
+import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.buttonsListBdd
+import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.mdp
 
 class EtudiantRepondre : AppCompatActivity() {
 
@@ -36,6 +46,8 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(h)
         buttonList.add(i)
         // intent
+        val database = FirebaseDatabase.getInstance()
+        val ref_questionnaire = database.getReference("questionnaire")
 
         buttonBack.setOnClickListener{
             val intentButtonBack = Intent(this, EtudiantQuestionnaire::class.java)
@@ -109,6 +121,22 @@ class EtudiantRepondre : AppCompatActivity() {
             i.setTextColor(Color.MAGENTA)
             buttonClique= "I"
         }
+        buttonVal.setOnClickListener{
+            Toast.makeText(applicationContext,mdp, LENGTH_SHORT).show()
+            database.getReference("questionnaire").get().addOnSuccessListener {
+                for (child in it.children){
+                    var mdpBdd=child.getValue(VoteButtonModel::class.java)
+                        if (mdpBdd != null) {
+                            if (mdp==mdpBdd.motdepasse.toString()) {
+                                var chemin=child.child(mdp.toString())
+                                ref_questionnaire.child("question").child(buttonClique).setValue((mdpBdd.motdepasse+1))
+                                val intentButtonBack2 = Intent(this, MainActivity::class.java)
+                                startActivity(intentButtonBack2)
+                            }
+                        }
+                }
+            }
+        }
 
 
 
@@ -126,6 +154,5 @@ class EtudiantRepondre : AppCompatActivity() {
         }*/
             }
 }
-
 
 
