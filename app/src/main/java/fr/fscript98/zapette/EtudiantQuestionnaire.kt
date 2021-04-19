@@ -53,7 +53,7 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
             }
             for (tu in buttonsList) {
                 val codesaisi = editText.text.toString()
-                Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
+                //Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
                 if (codesaisi == tu.motdepasse.toString()) {
 
                     startActivity(intent2)
