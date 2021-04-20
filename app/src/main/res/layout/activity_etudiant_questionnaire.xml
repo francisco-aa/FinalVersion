@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
     android:statusBarColor="@color/black"
-    tools:context=".EtudiantQuestionnaire">
+    tools:context=".EtudiantQuestionnaire"
+    >
 
 
     <ImageView
@@ -55,7 +56,7 @@
 
     <Button
         android:id="@+id/button_rejoindre"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
         android:fontFamily="@font/kanit"
@@ -63,6 +64,7 @@
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/background_button"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zone_saisie_code" />
@@ -73,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:text=""
+
         android:inputType="number"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -84,13 +86,14 @@
 
     <Button
         android:id="@+id/button_scan"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="130dp"
         android:fontFamily="@font/kanit"
         android:text="Scanner QR Code"
         android:textAllCaps="false"
-
+        android:orientation="vertical"
+        android:background="@drawable/background_button"
 
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

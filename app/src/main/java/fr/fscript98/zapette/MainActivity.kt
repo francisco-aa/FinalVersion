@@ -19,11 +19,13 @@ class MainActivity : AppCompatActivity() {
 
             val intentButtonTeacher = Intent(this , TeacherBoard::class.java)
             startActivity(intentButtonTeacher)
+            finish()
         }
         val buttonStudent = findViewById<Button>(R.id.buttonStudent)
         buttonStudent.setOnClickListener {
             val intent = Intent(this , EtudiantQuestionnaire::class.java)
             startActivity(intent)
+            finish()
 
 
             //charger le ButtonRepository
