@@ -9,15 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import kotlin.random.Random
 import com.google.zxing.BarcodeFormat
-import com.google.zxing.MultiFormatWriter
 import com.google.zxing.qrcode.QRCodeWriter
-
 import com.journeyapps.barcodescanner.BarcodeEncoder
-
-
-
-
-
 
 
 class CreateQuiz : AppCompatActivity() {
@@ -34,7 +27,6 @@ class CreateQuiz : AppCompatActivity() {
         val myRandomInt = Random.nextInt(10000, 100000)
         val textView = findViewById<TextView>(R.id.textView2)
         val qrCode = QRCodeWriter()
-        //val qrCode = MultiFormatWriter()
 
         val bitMtx = qrCode.encode(
             "$myRandomInt",
@@ -48,7 +40,6 @@ class CreateQuiz : AppCompatActivity() {
         val bitmap = barcodeEncoder.createBitmap(bitMtx)
         buttonCode.setOnClickListener {
             textView.text=("$myRandomInt")
-            //MatrixToImageWriter.(bitMtx, "PNG", imageCode)
             imageCode.setImageBitmap(bitmap)
         }
 

@@ -116,13 +116,6 @@ class EtudiantRepondre : AppCompatActivity() {
             buttonClique= "I"
         }
 
-
-
-
-
-
-
-
                 //creer une liste qui va stocker les buttons
 
 /*
