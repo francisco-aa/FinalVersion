@@ -22,7 +22,7 @@
     <Button
         android:id="@+id/btnGenerate"
         android:layout_width="135dp"
-        android:layout_height="50dp"
+        android:layout_height="55dp"
         android:text="Clôturer votes"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
