@@ -18,6 +18,7 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
         var mdp=""
         var buttonsListBdd = arrayListOf<VoteButtonModel>()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_questionnaire)
@@ -78,8 +79,6 @@ class EtudiantQuestionnaire() : AppCompatActivity() {
             ref_questionnaire.child("question3").child("H").setValue(0)
             ref_questionnaire.child("question3").child("I").setValue(0)
             ref_questionnaire.child("question3").child("motdepasse").setValue(0)
-
-
 
             startActivity(intent)
         }

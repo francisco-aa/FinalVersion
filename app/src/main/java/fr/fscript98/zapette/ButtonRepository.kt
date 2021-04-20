@@ -33,12 +33,8 @@ class ButtonRepository {
         }
 
     }
-
-
-
-
     //update un objet button dans la bdd
-    /*fun updateButton(button:VoteButtonModel){
-        databaseRef.child(button.id).setValue(button.nbVotes++)
-    }*/
+    fun updateQuestion(button:VoteButtonModel){
+        databaseRef.child(button.motdepasse.toString()).setValue(button)
+    }
 }
