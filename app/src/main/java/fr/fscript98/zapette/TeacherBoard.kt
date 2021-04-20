@@ -1,12 +1,10 @@
 package fr.fscript98.zapette
 
 import android.content.Intent
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 
 class TeacherBoard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
