@@ -23,7 +23,7 @@ class EtudiantRepondre : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_repondre)
         // view
-        var buttonClique = "null"
+        var buttonClique = "aucun"
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)
         val c = findViewById<Button>(R.id.buttonC)
@@ -53,108 +53,172 @@ class EtudiantRepondre : AppCompatActivity() {
             val intentButtonBack = Intent(this , EtudiantQuestionnaire::class.java)
             startActivity(intentButtonBack)
         }
+
         // changer la couleur de l'écriture pour voir la sélection
         a.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique=="A") {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                    buttonClique="aucun"
+                }
+            }else{
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                a.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "A"
             }
-            a.setTextColor(Color.parseColor("#FFBB86FC"))
-            buttonClique = "A"
-        }
 
-        b.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            b.setOnClickListener {
+                if (buttonClique=="B") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    b.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "B"
+                }
             }
-            b.setTextColor(Color.MAGENTA)
-            buttonClique = "B"
-        }
-        c.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            c.setOnClickListener {
+                if (buttonClique=="C") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    c.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "C"
+                }
             }
-            c.setTextColor(Color.MAGENTA)
-            buttonClique = "C"
-        }
 
-        d.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            d.setOnClickListener {
+                if (buttonClique=="D") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    d.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "D"
+                }
             }
-            d.setTextColor(Color.MAGENTA)
-            buttonClique = "D"
-        }
-        e.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            e.setOnClickListener {
+                if (buttonClique=="E") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    e.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "E"
+                }
             }
-            e.setTextColor(Color.MAGENTA)
-            buttonClique = "E"
-        }
 
-        f.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            f.setOnClickListener {
+                if (buttonClique=="F") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    f.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "F"
+                }
             }
-            f.setTextColor(Color.MAGENTA)
-            buttonClique = "F"
-        }
-        g.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            g.setOnClickListener {
+                if (buttonClique=="G") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    g.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "G"
+                }
             }
-            g.setTextColor(Color.MAGENTA)
-            buttonClique = "G"
-        }
 
-        h.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            h.setOnClickListener {
+                if (buttonClique=="H") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    h.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "H"
+                }
             }
-            h.setTextColor(Color.MAGENTA)
-            buttonClique = "H"
-        }
-        i.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            i.setOnClickListener {
+                if (buttonClique=="I") {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                        buttonClique="aucun"
+                    }
+                }else {
+                    for (button in buttonList) {
+                        button.setTextColor(Color.BLACK)
+                    }
+                    i.setTextColor(Color.parseColor("#FFBB86FC"))
+                    buttonClique = "I"
+                }
             }
-            i.setTextColor(Color.MAGENTA)
-            buttonClique = "I"
-        }
 
-        buttonVal.setOnClickListener {
-            if (buttonClique != "null") {
-                database.getReference("questionnaire").get().addOnSuccessListener {
-                    for (child in it.children) {
+            buttonVal.setOnClickListener {
+                if (buttonClique != "aucun") {
+                    database.getReference("questionnaire").get().addOnSuccessListener {
+                        for (child in it.children) {
 
-                        var mdpBdd = child.getValue(VoteButtonModel::class.java)
-                        if (mdpBdd != null) {
-                            if (mdp == mdpBdd.motdepasse.toString()) {
-                                //Toast.makeText(applicationContext,child.child(buttonClique).value,LENGTH_SHORT).show()
-                                val numb = child.child(buttonClique).value.toString().toInt()
-                                ref_questionnaire.child(child.ref.key.toString())
-                                    .child(buttonClique).setValue(numb + 1)
-                                val intentButtonBack2 = Intent(this , MainActivity::class.java)
-                                startActivity(intentButtonBack2)
+                            var mdpBdd = child.getValue(VoteButtonModel::class.java)
+                            if (mdpBdd != null) {
+                                if (mdp == mdpBdd.motdepasse.toString()) {
+                                    //Toast.makeText(applicationContext,child.child(buttonClique).value,LENGTH_SHORT).show()
+                                    val numb = child.child(buttonClique).value.toString().toInt()
+                                    ref_questionnaire.child(child.ref.key.toString())
+                                        .child(buttonClique).setValue(numb + 1)
+                                    val intentButtonBack2 = Intent(this , MainActivity::class.java)
+                                    startActivity(intentButtonBack2)
+                                }
                             }
                         }
                     }
+                } else {
+                    Toast.makeText(
+                        applicationContext ,
+                        "Selectionne une réponse" ,
+                        LENGTH_SHORT
+                    ).show()
                 }
-            } else {
-                Toast.makeText(
-                    applicationContext ,
-                    "Selectionne une réponse la con de ta mere JULIEN" ,
-                    LENGTH_SHORT
-                ).show()
             }
-        }
-        //creer une liste qui va stocker les buttons
+            //creer une liste qui va stocker les buttons
 
 /*
         val buttonA = findViewById<Button>(R.id.buttonA)
         buttonBack.setOnClickListener{
             repo.updateButton(buttonList[R.id.buttonA])
         }*/
+        }
     }
 }
 
