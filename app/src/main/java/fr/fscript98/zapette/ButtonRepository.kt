@@ -12,7 +12,7 @@ class ButtonRepository {
     //se connecter à la reference "buttons"
     var databaseRef = FirebaseDatabase.getInstance().reference
 
-    val getcode = arrayListOf<QuestionnaireModel>()
+
     //créer une liste qui va contenir les buttons
     val buttonsList = arrayListOf<VoteButtonModel>()
 

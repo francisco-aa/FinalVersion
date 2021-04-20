@@ -10,8 +10,12 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.makeText
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.collection.LLRBNode
+import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.buttonsListBdd
+import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.mdp
 
 class EtudiantRepondre : AppCompatActivity() {
 
@@ -19,7 +23,7 @@ class EtudiantRepondre : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_repondre)
         // view
-        var buttonClique="aucun"
+        var buttonClique = "null"
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)
         val c = findViewById<Button>(R.id.buttonC)
@@ -31,7 +35,7 @@ class EtudiantRepondre : AppCompatActivity() {
         val i = findViewById<Button>(R.id.buttonI)
         val buttonBack = findViewById<ImageView>(R.id.button_back3)
         val buttonList = arrayListOf<Button>()
-        val buttonVal= findViewById<Button>(R.id.buttonValider)
+        val buttonVal = findViewById<Button>(R.id.buttonValider)
         buttonList.add(a)
         buttonList.add(b)
         buttonList.add(c)
@@ -42,88 +46,116 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(h)
         buttonList.add(i)
         // intent
+        val database = FirebaseDatabase.getInstance()
+        val ref_questionnaire = database.getReference("questionnaire")
 
-        buttonBack.setOnClickListener{
-            val intentButtonBack = Intent(this, EtudiantQuestionnaire::class.java)
+        buttonBack.setOnClickListener {
+            val intentButtonBack = Intent(this , EtudiantQuestionnaire::class.java)
             startActivity(intentButtonBack)
         }
         // changer la couleur de l'écriture pour voir la sélection
-        a.setOnClickListener{
-            for ( button in buttonList ) {
+        a.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             a.setTextColor(Color.parseColor("#FFBB86FC"))
-            buttonClique= "A"
+            buttonClique = "A"
         }
 
-        b.setOnClickListener{
-            for ( button in buttonList ) {
+        b.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             b.setTextColor(Color.MAGENTA)
-            buttonClique= "B"
+            buttonClique = "B"
         }
-        c.setOnClickListener{
-            for ( button in buttonList ) {
+        c.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             c.setTextColor(Color.MAGENTA)
-            buttonClique= "C"
+            buttonClique = "C"
         }
 
-        d.setOnClickListener{
-            for ( button in buttonList ) {
+        d.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             d.setTextColor(Color.MAGENTA)
-            buttonClique= "D"
+            buttonClique = "D"
         }
-        e.setOnClickListener{
-            for ( button in buttonList ) {
+        e.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             e.setTextColor(Color.MAGENTA)
-            buttonClique= "E"
+            buttonClique = "E"
         }
 
-        f.setOnClickListener{
-            for ( button in buttonList ) {
+        f.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             f.setTextColor(Color.MAGENTA)
-            buttonClique= "F"
+            buttonClique = "F"
         }
-        g.setOnClickListener{
-            for ( button in buttonList ) {
+        g.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             g.setTextColor(Color.MAGENTA)
-            buttonClique= "G"
+            buttonClique = "G"
         }
 
-        h.setOnClickListener{
-            for ( button in buttonList ) {
+        h.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             h.setTextColor(Color.MAGENTA)
-            buttonClique= "H"
+            buttonClique = "H"
         }
-        i.setOnClickListener{
-            for ( button in buttonList ) {
+        i.setOnClickListener {
+            for (button in buttonList) {
                 button.setTextColor(Color.BLACK)
             }
             i.setTextColor(Color.MAGENTA)
-            buttonClique= "I"
+            buttonClique = "I"
         }
 
-                //creer une liste qui va stocker les buttons
+        buttonVal.setOnClickListener {
+            if (buttonClique != "null") {
+                database.getReference("questionnaire").get().addOnSuccessListener {
+                    for (child in it.children) {
+
+                        var mdpBdd = child.getValue(VoteButtonModel::class.java)
+                        if (mdpBdd != null) {
+                            if (mdp == mdpBdd.motdepasse.toString()) {
+                                //Toast.makeText(applicationContext,child.child(buttonClique).value,LENGTH_SHORT).show()
+                                val numb = child.child(buttonClique).value.toString().toInt()
+                                ref_questionnaire.child(child.ref.key.toString())
+                                    .child(buttonClique).setValue(numb + 1)
+                                val intentButtonBack2 = Intent(this , MainActivity::class.java)
+                                startActivity(intentButtonBack2)
+                            }
+                        }
+                    }
+                }
+            } else {
+                Toast.makeText(
+                    applicationContext ,
+                    "Selectionne une réponse la con de ta mere JULIEN" ,
+                    LENGTH_SHORT
+                ).show()
+            }
+        }
+        //creer une liste qui va stocker les buttons
 
 /*
         val buttonA = findViewById<Button>(R.id.buttonA)
         buttonBack.setOnClickListener{
             repo.updateButton(buttonList[R.id.buttonA])
         }*/
-            }
+    }
 }
 
 

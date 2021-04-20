@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "686847102154",
+    "firebase_url": "https://zapette-ut3-default-rtdb.firebaseio.com",
+    "project_id": "zapette-ut3",
+    "storage_bucket": "zapette-ut3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686847102154:android:27684564402be43e117833",
+        "android_client_info": {
+          "package_name": "fr.fscript98.zapette"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686847102154-44delf74odlqvbpt1qpl3010di8995ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYiVEhHbNkydzJa6EShszP6kOQFwpMUDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686847102154-44delf74odlqvbpt1qpl3010di8995ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
