@@ -109,6 +109,9 @@ class EtudiantRepondre : AppCompatActivity() {
             i.setTextColor(Color.MAGENTA)
             buttonClique= "I"
         }
+       // val sharePreferences= getSharedPreferences( "fr.fscript98.zapette",context.MODE_PRIVATE)
+        //shared
+        //)
 
 
 
