@@ -1,27 +1,31 @@
 package fr.fscript98.zapette
 
 import BddRepository
+
+import BddRepository.Singleton.question
 import BddRepository.Singleton.questionListBdd
+import BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 
 
+
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import fr.fscript98.zapette.ResultatQuestionnaire.Singleton.imageCode
+
 import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
 
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
-    object Singleton{
-         lateinit var imageCode: ImageView
-    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val repo1= BddRepository()
         repo1.updateData {
             setContentView(R.layout.activity_resultat_questionnaire)
@@ -37,12 +41,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val textViewTotal = findViewById<TextView>(R.id.nbTotal)
 
 
-            val buttonBack = findViewById<ImageView>(R.id.button_backQuestionnaireEnseignant)
-            buttonBack.setOnClickListener {
-                val intentButtonBack = Intent(this , TeacherBoard::class.java)
-                startActivity(intentButtonBack)
-            }
-
             val textView = findViewById<TextView>(R.id.textView2)
             val qrCode = QRCodeWriter()
 
@@ -52,7 +50,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
                 200 ,
                 200
             )
-            imageCode = findViewById<ImageView>(R.id.imageQrCode)
+
+            val imageCode = findViewById<ImageView>(R.id.imageQrCode)
             val barcodeEncoder = BarcodeEncoder()
             val bitmap = barcodeEncoder.createBitmap(bitMtx)
             imageCode.setImageBitmap(bitmap)
@@ -70,16 +69,16 @@ class ResultatQuestionnaire : AppCompatActivity() {
                 if (myRandomInt == codeBDD.motdepasse) {
 
 
-                    var nbA = codeBDD.A
-                    var nbB = codeBDD.B
-                    var nbC = codeBDD.C
-                    var nbD = codeBDD.D
-                    var nbE = codeBDD.E
-                    var nbF = codeBDD.F
-                    var nbG = codeBDD.G
-                    var nbH = codeBDD.H
-                    var nbI = codeBDD.I
-                    var nbTotal = nbA + nbB + nbC + nbD + nbE + nbF + nbG + nbH + nbI
+                    val nbA = codeBDD.A
+                    val nbB = codeBDD.B
+                    val nbC = codeBDD.C
+                    val nbD = codeBDD.D
+                    val nbE = codeBDD.E
+                    val nbF = codeBDD.F
+                    val nbG = codeBDD.G
+                    val nbH = codeBDD.H
+                    val nbI = codeBDD.I
+                    val nbTotal = nbA + nbB + nbC + nbD + nbE + nbF + nbG + nbH + nbI
                     if (nbA!=0) {
                         textViewA.text = ("$nbA")
                     }
@@ -106,8 +105,16 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     textViewTotal.text = ("$nbTotal")
                 }
             }
+            val terminer =findViewById<Button>(R.id.Terminer)
+            val intentTerminer=Intent(this,MainActivity::class.java)
+            terminer.setOnClickListener{
+                ref_questionnaire.child(question).removeValue()
+                startActivity(intentTerminer)
+                finish()
+        }
 
         }
+
     }
 }
 

@@ -47,7 +47,7 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(i)
         // intent
         val database = FirebaseDatabase.getInstance()
-        val ref_questionnaire = database.getReference("questionnaire")
+        val refQuestionnaire = database.getReference("questionnaire")
 
         buttonBack.setOnClickListener {
             val intentButtonBack = Intent(this , EtudiantQuestionnaire::class.java)
@@ -180,7 +180,7 @@ class EtudiantRepondre : AppCompatActivity() {
                 database.getReference("questionnaire").get().addOnSuccessListener {
                     // On récup les enfant du chemin questionnaire
                     for (child in it.children) {
-                        var questionModel = child.getValue(QuestionModel::class.java)
+                        val questionModel = child.getValue(QuestionModel::class.java)
                         if (questionModel != null) {
                             // On compare avec le mot de passe de la page EtudiantQuestinnaire
                             if (motDePasseBdd == questionModel.motdepasse.toString()) {
@@ -191,12 +191,12 @@ class EtudiantRepondre : AppCompatActivity() {
                                     Toast.makeText(applicationContext , "Tu as déjà participé" , LENGTH_SHORT).show()
                                 }
                                 else {
-                                    var numb = child.child(buttonClique).value.toString().toInt()
-                                    ref_questionnaire.child(child.ref.key.toString())
+                                    val numb = child.child(buttonClique).value.toString().toInt()
+                                    refQuestionnaire.child(child.ref.key.toString())
                                         .child(buttonClique).setValue(numb + 1)
 
                                     val valider = Intent(this , MainActivity::class.java)
-
+                                    Toast.makeText(applicationContext , "Merci d'avoir voté" , LENGTH_SHORT).show()
                                     startActivity(valider)
                                     finish()
                                     //On met l'id a jour, en lui donnant le motdepasse
@@ -218,15 +218,21 @@ class EtudiantRepondre : AppCompatActivity() {
         val qrCode = QRCodeWriter()
 
         val bitMtx = qrCode.encode(
-            "${motDePasseBdd}" ,
+            motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
             200 ,
             200
         )
-        ResultatQuestionnaire.Singleton.imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
+        val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
         val barcodeEncoder = BarcodeEncoder()
         val bitmap = barcodeEncoder.createBitmap(bitMtx)
-        ResultatQuestionnaire.Singleton.imageCode.setImageBitmap(bitmap)
+        imageCode.setImageBitmap(bitmap)
+
+        val back = Intent(this , MainActivity::class.java)
+        buttonBack.setOnClickListener{
+            startActivity(back)
+            finish()
+        }
         //creer une liste qui va stocker les buttons
 
 /*

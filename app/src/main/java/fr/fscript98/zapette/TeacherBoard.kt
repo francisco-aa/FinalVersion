@@ -1,11 +1,13 @@
-package fr.fscript98.zapette
+ package fr.fscript98.zapette
 
 import BddRepository.Singleton.chemin
+import BddRepository.Singleton.question
 import BddRepository.Singleton.questionListBdd
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
+
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
@@ -19,7 +21,7 @@ class TeacherBoard : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_teacher_board)
-        var databaseRef = FirebaseDatabase.getInstance().getReference("questionnaire")
+        val databaseRef = FirebaseDatabase.getInstance().getReference("questionnaire")
 
         /*val buttonBack = findViewById<ImageButton>(R.id.buttonBack)
         buttonBack.setOnClickListener{
@@ -30,8 +32,8 @@ class TeacherBoard : AppCompatActivity() {
         val buttonRunQuiz = findViewById<Button>(R.id.buttonRunQuiz)
         buttonRunQuiz.setOnClickListener{
 
-            var question = "question"
-            chemin= questionListBdd.size.toString()
+            question="question"
+            chemin= (questionListBdd.size+1).toString()
             question += chemin
 
             databaseRef.child(question).child("A").setValue(0)
@@ -47,8 +49,16 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("motdepasse").setValue(myRandomInt)
             val intentButtonRunQuiz = Intent(this, ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
+            finish()
 
 
+
+        }
+        val buttonBack= findViewById<ImageView>(R.id.button_backEspaceEnsaignant)
+        val intantBack= Intent(this,MainActivity::class.java)
+        buttonBack.setOnClickListener{
+            startActivity(intantBack)
+            finish()
         }
     }
 }
