@@ -11,7 +11,7 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.buttonsListBdd
+import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.questionListBdd
 
 import com.google.zxing.integration.android.IntentIntegrator
 import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.id
@@ -21,8 +21,8 @@ import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.motDePasseBdd
 open class EtudiantQuestionnaire() : AppCompatActivity() {
     object Singleton {
         var motDePasseBdd = ""
-        var buttonsListBdd = arrayListOf<VoteButtonModel>()
-        var id=""
+        var questionListBdd = arrayListOf<QuestionModel>()
+        var id = ""
     }
 
 
@@ -39,16 +39,16 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
 
 
         val editText = findViewById<EditText>(R.id.zone_saisie_code)
-        var codeSaisi =""
+        var codeSaisi = ""
 
 
         //Récupérer le code saisi par l'utilisateur
         refQuestionnaire.get().addOnSuccessListener {
-            buttonsListBdd.clear()
+            questionListBdd.clear()
             for (ds in it.children) {
-                var codeBDD = ds.getValue(VoteButtonModel::class.java)
+                var codeBDD = ds.getValue(QuestionModel::class.java)
                 if (codeBDD != null) {
-                    buttonsListBdd.add(codeBDD)
+                    questionListBdd.add(codeBDD)
                     //Toast.makeText(applicationContext, codeBDD.motdepasse.toString(), LENGTH_SHORT).show()
                 }
             }
@@ -58,16 +58,16 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
         //mettre a jour la liste de plant
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener {
-            refQuestionnaire.child("question").child("A").setValue(0)
-            refQuestionnaire.child("question").child("B").setValue(0)
-            refQuestionnaire.child("question").child("C").setValue(0)
-            refQuestionnaire.child("question").child("D").setValue(0)
-            refQuestionnaire.child("question").child("E").setValue(0)
-            refQuestionnaire.child("question").child("F").setValue(0)
-            refQuestionnaire.child("question").child("G").setValue(0)
-            refQuestionnaire.child("question").child("H").setValue(0)
-            refQuestionnaire.child("question").child("I").setValue(0)
-            refQuestionnaire.child("question").child("motdepasse").setValue(45)
+            refQuestionnaire.child("question1").child("A").setValue(0)
+            refQuestionnaire.child("question1").child("B").setValue(0)
+            refQuestionnaire.child("question1").child("C").setValue(0)
+            refQuestionnaire.child("question1").child("D").setValue(0)
+            refQuestionnaire.child("question1").child("E").setValue(0)
+            refQuestionnaire.child("question1").child("F").setValue(0)
+            refQuestionnaire.child("question1").child("G").setValue(0)
+            refQuestionnaire.child("question1").child("H").setValue(0)
+            refQuestionnaire.child("question1").child("I").setValue(0)
+            refQuestionnaire.child("question1").child("motdepasse").setValue(45)
             refQuestionnaire.child("question2").child("A").setValue(0)
             refQuestionnaire.child("question2").child("B").setValue(0)
             refQuestionnaire.child("question2").child("C").setValue(0)
@@ -96,24 +96,23 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
         }
         val buttonRejoindre = findViewById<Button>(R.id.button_rejoindre)
         buttonRejoindre.setOnClickListener {
-            Toast.makeText(applicationContext , buttonsListBdd.size.toString() , LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext , questionListBdd.size.toString() , LENGTH_SHORT).show()
             codeSaisi = editText.text.toString()
             //TODO: Si codesaisi vide, redémarrer l'activity avec message d'erreur vide
-            if (codeSaisi==""){
+            if (codeSaisi == "") {
                 //Toast.makeText(applicationContext , "Veuillez entrer un code" , LENGTH_SHORT).show()
             }
-            for (questionModel in buttonsListBdd) {
+            for (questionModel in questionListBdd) {
 
                 //Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
                 if (codeSaisi == questionModel.motdepasse.toString()) {
-                    if (id !=questionModel.motdepasse.toString()) {
+                    if (id != questionModel.motdepasse.toString()) {
                         motDePasseBdd = questionModel.motdepasse.toString()
                         startActivity(intent2)
-                    }else {
+                    } else {
                         Toast.makeText(applicationContext , "Tu as déjà participé" , LENGTH_SHORT)
                             .show()
                     }
-                } else {
                 }
             }
         }
@@ -131,31 +130,38 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
         }
 
     }
-        override fun onActivityResult(requestCode: Int , resultCode: Int , data: Intent?) {
+
+    override fun onActivityResult(requestCode: Int , resultCode: Int , data: Intent?) {
 
 
+        super.onActivityResult(requestCode , resultCode , data)
 
-            super.onActivityResult(requestCode , resultCode , data)
-
-            if (resultCode == Activity.RESULT_OK) {
-                val result = IntentIntegrator.parseActivityResult(requestCode , resultCode , data)
-                if (result != null) {
-                    if (result.contents == null) {
-                        Toast.makeText(this , "Cancelled" , Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(
-                            this ,
-                            "Le code est : ${result.contents}" ,
-                            Toast.LENGTH_LONG
-                        ).show()
-                        val intent2 = Intent(this , EtudiantRepondre::class.java)
-                        startActivity(intent2)
-                        finish()
-                    }
+        if (resultCode == Activity.RESULT_OK) {
+            val result = IntentIntegrator.parseActivityResult(requestCode , resultCode , data)
+            if (result != null) {
+                if (result.contents == null) {
+                    Toast.makeText(this , "Cancelled" , Toast.LENGTH_LONG).show()
                 } else {
-                    super.onActivityResult(requestCode , resultCode , data)
+                    val intent2 = Intent(this , EtudiantRepondre::class.java)
+                    for (questionModel in questionListBdd) {
+                        if (questionModel.motdepasse == result.contents.toInt()) {
+                            motDePasseBdd = questionModel.motdepasse.toString()
+                            if (id!=questionModel.motdepasse.toString()){
+                                startActivity(intent2)
+                                finish()
+                            }
+                            else{
+                                Toast.makeText(applicationContext,"Tu as déjà participé",
+                                    LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 }
+            } else {
+                super.onActivityResult(requestCode , resultCode , data)
             }
         }
-
+    }
 }
+
+

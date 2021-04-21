@@ -2,19 +2,13 @@ package fr.fscript98.zapette
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toast.makeText
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.collection.LLRBNode
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.buttonsListBdd
 import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.id
 import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.motDePasseBdd
 
@@ -58,26 +52,26 @@ class EtudiantRepondre : AppCompatActivity() {
 
         // changer la couleur de l'écriture pour voir la sélection
         a.setOnClickListener {
+            // si le boutton cliqué et déjà A alors on remet le texte a noir et la valeur buttonClique a "aucun"
             if (buttonClique == "A") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                a.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+
             } else {
+                //si on clique sur A , on change la couler de A et on remet les autres en Noir
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
                 }
                 a.setTextColor(Color.parseColor("#FFBB86FC"))
+
                 buttonClique = "A"
             }
         }
 
         b.setOnClickListener {
             if (buttonClique == "B") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                b.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -88,10 +82,8 @@ class EtudiantRepondre : AppCompatActivity() {
         }
         c.setOnClickListener {
             if (buttonClique == "C") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                c.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -103,10 +95,8 @@ class EtudiantRepondre : AppCompatActivity() {
 
         d.setOnClickListener {
             if (buttonClique == "D") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                d.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -117,10 +107,8 @@ class EtudiantRepondre : AppCompatActivity() {
         }
         e.setOnClickListener {
             if (buttonClique == "E") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                e.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -132,10 +120,8 @@ class EtudiantRepondre : AppCompatActivity() {
 
         f.setOnClickListener {
             if (buttonClique == "F") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                f.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -146,10 +132,8 @@ class EtudiantRepondre : AppCompatActivity() {
         }
         g.setOnClickListener {
             if (buttonClique == "G") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                f.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -161,10 +145,8 @@ class EtudiantRepondre : AppCompatActivity() {
 
         h.setOnClickListener {
             if (buttonClique == "H") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                h.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -175,10 +157,8 @@ class EtudiantRepondre : AppCompatActivity() {
         }
         i.setOnClickListener {
             if (buttonClique == "I") {
-                for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
-                    buttonClique = "aucun"
-                }
+                i.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
             } else {
                 for (button in buttonList) {
                     button.setTextColor(Color.BLACK)
@@ -195,7 +175,7 @@ class EtudiantRepondre : AppCompatActivity() {
                 database.getReference("questionnaire").get().addOnSuccessListener {
                     // On récup les enfant du chemin questionnaire
                     for (child in it.children) {
-                        var questionModel = child.getValue(VoteButtonModel::class.java)
+                        var questionModel = child.getValue(QuestionModel::class.java)
                         if (questionModel != null) {
                             // On compare avec le mot de passe de la page EtudiantQuestinnaire
                             if (motDePasseBdd == questionModel.motdepasse.toString()) {

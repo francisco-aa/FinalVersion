@@ -6,7 +6,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class ButtonRepository {
+class BddRepository {
 
 
     //se connecter à la reference "buttons"
@@ -14,14 +14,14 @@ class ButtonRepository {
 
 
     //créer une liste qui va contenir les buttons
-    val buttonsList = arrayListOf<VoteButtonModel>()
+    val buttonsList = arrayListOf<QuestionModel>()
 
 
 
     var getdata = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot){
             for (ds in snapshot.children){
-                val code= ds.getValue(VoteButtonModel::class.java)
+                val code= ds.getValue(QuestionModel::class.java)
                 if(code!=null){
                     buttonsList.add(code)
                 }
