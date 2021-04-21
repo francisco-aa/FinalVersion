@@ -36,12 +36,12 @@ class CreateQuiz : AppCompatActivity() {
             100
         )
         val imageCode = findViewById<ImageView>(R.id.imageQrCode)
-        val buttonCode = findViewById<Button>(R.id.btnGenerate)
+
         val barcodeEncoder = BarcodeEncoder()
         val bitmap = barcodeEncoder.createBitmap(bitMtx)
-        buttonCode.setOnClickListener {
-            textView.text = ("$myRandomInt")
-            imageCode.setImageBitmap(bitmap)
-        }
+
+        textView.text = ("$myRandomInt")
+        imageCode.setImageBitmap(bitmap)
+
     }
 }
