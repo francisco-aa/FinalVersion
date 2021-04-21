@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="fr.fscript98.zapette">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zapette">
-        <activity android:name=".EtudiantRepondre"></activity>
+        <activity android:name=".ResultatQuestionnaire"></activity>
+        <activity android:name=".EtudiantRepondre" />
         <activity android:name=".EtudiantQuestionnaire" />
-        <activity android:name=".CreateQuiz" />
         <activity android:name=".TeacherBoard" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -25,12 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Capture"
+        <activity
+            android:name=".Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             tools:ignore="Instantiatable" />
-
     </application>
 
 </manifest>

@@ -11,6 +11,10 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.google.firebase.database.FirebaseDatabase
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.qrcode.QRCodeWriter
+import com.journeyapps.barcodescanner.BarcodeEncoder
+
 
 
 class EtudiantRepondre : AppCompatActivity() {
@@ -210,6 +214,19 @@ class EtudiantRepondre : AppCompatActivity() {
                 ).show()
             }
         }
+
+        val qrCode = QRCodeWriter()
+
+        val bitMtx = qrCode.encode(
+            "${motDePasseBdd}" ,
+            BarcodeFormat.QR_CODE ,
+            200 ,
+            200
+        )
+        ResultatQuestionnaire.Singleton.imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
+        val barcodeEncoder = BarcodeEncoder()
+        val bitmap = barcodeEncoder.createBitmap(bitMtx)
+        ResultatQuestionnaire.Singleton.imageCode.setImageBitmap(bitmap)
         //creer une liste qui va stocker les buttons
 
 /*

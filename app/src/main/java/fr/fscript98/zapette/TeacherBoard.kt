@@ -21,11 +21,11 @@ class TeacherBoard : AppCompatActivity() {
         setContentView(R.layout.activity_teacher_board)
         var databaseRef = FirebaseDatabase.getInstance().getReference("questionnaire")
 
-        val buttonBack = findViewById<ImageButton>(R.id.buttonBack)
+        /*val buttonBack = findViewById<ImageButton>(R.id.buttonBack)
         buttonBack.setOnClickListener{
             val intentButtonBack = Intent(this, MainActivity::class.java)
             startActivity(intentButtonBack)
-        }
+        }*/
 
         val buttonRunQuiz = findViewById<Button>(R.id.buttonRunQuiz)
         buttonRunQuiz.setOnClickListener{
@@ -45,8 +45,10 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("I").setValue(0)
             myRandomInt = Random.nextInt(10000 , 100000)
             databaseRef.child(question).child("motdepasse").setValue(myRandomInt)
-            val intentButtonRunQuiz = Intent(this, CreateQuiz::class.java)
+            val intentButtonRunQuiz = Intent(this, ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
+
+
         }
     }
 }

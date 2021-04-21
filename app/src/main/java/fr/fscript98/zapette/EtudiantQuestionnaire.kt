@@ -40,54 +40,8 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
         var codeSaisi = ""
 
 
-        //Récupérer le code saisi par l'utilisateur
-        /*refQuestionnaire.get().addOnSuccessListener {
-            questionListBdd.clear()
-            for (ds in it.children) {
-                //Toast.makeText(applicationContext, ds.key.toString(), LENGTH_SHORT).show()
-                var codeBDD = ds.getValue(QuestionModel::class.java)
-                if (codeBDD != null) {
-                    questionListBdd.add(codeBDD)
-                    //Toast.makeText(applicationContext, codeBDD.motdepasse.toString(), LENGTH_SHORT).show()
-                }
-            }
-        }.addOnFailureListener {
-            Toast.makeText(applicationContext , "Ya pa de le code" , LENGTH_SHORT).show()
-        }*/
-        //mettre a jour la liste de plant
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener {
-            /*refQuestionnaire.child("question1").child("A").setValue(0)
-            refQuestionnaire.child("question1").child("B").setValue(0)
-            refQuestionnaire.child("question1").child("C").setValue(0)
-            refQuestionnaire.child("question1").child("D").setValue(0)
-            refQuestionnaire.child("question1").child("E").setValue(0)
-            refQuestionnaire.child("question1").child("F").setValue(0)
-            refQuestionnaire.child("question1").child("G").setValue(0)
-            refQuestionnaire.child("question1").child("H").setValue(0)
-            refQuestionnaire.child("question1").child("I").setValue(0)
-            refQuestionnaire.child("question1").child("motdepasse").setValue(45)
-            refQuestionnaire.child("question2").child("A").setValue(0)
-            refQuestionnaire.child("question2").child("B").setValue(0)
-            refQuestionnaire.child("question2").child("C").setValue(0)
-            refQuestionnaire.child("question2").child("D").setValue(0)
-            refQuestionnaire.child("question2").child("E").setValue(0)
-            refQuestionnaire.child("question2").child("F").setValue(0)
-            refQuestionnaire.child("question2").child("G").setValue(0)
-            refQuestionnaire.child("question2").child("H").setValue(0)
-            refQuestionnaire.child("question2").child("I").setValue(0)
-            refQuestionnaire.child("question2").child("motdepasse").setValue(12345)
-            refQuestionnaire.child("question3").child("A").setValue(0)
-            refQuestionnaire.child("question3").child("B").setValue(0)
-            refQuestionnaire.child("question3").child("C").setValue(0)
-            refQuestionnaire.child("question3").child("D").setValue(0)
-            refQuestionnaire.child("question3").child("E").setValue(0)
-            refQuestionnaire.child("question3").child("F").setValue(0)
-            refQuestionnaire.child("question3").child("G").setValue(0)
-            refQuestionnaire.child("question3").child("H").setValue(0)
-            refQuestionnaire.child("question3").child("I").setValue(0)
-            refQuestionnaire.child("question3").child("motdepasse").setValue(0)
-            */
 
             startActivity(intent)
             finish()
