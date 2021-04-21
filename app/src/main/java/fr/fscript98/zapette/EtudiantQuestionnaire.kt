@@ -1,5 +1,8 @@
 package fr.fscript98.zapette
 
+import BddRepository.Singleton.id
+import BddRepository.Singleton.motDePasseBdd
+import BddRepository.Singleton.questionListBdd
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -11,19 +14,14 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.questionListBdd
+
 
 import com.google.zxing.integration.android.IntentIntegrator
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.id
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.motDePasseBdd
+
 
 
 open class EtudiantQuestionnaire() : AppCompatActivity() {
-    object Singleton {
-        var motDePasseBdd = ""
-        var questionListBdd = arrayListOf<QuestionModel>()
-        var id = ""
-    }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +41,7 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
 
 
         //Récupérer le code saisi par l'utilisateur
-        refQuestionnaire.get().addOnSuccessListener {
+        /*refQuestionnaire.get().addOnSuccessListener {
             questionListBdd.clear()
             for (ds in it.children) {
                 //Toast.makeText(applicationContext, ds.key.toString(), LENGTH_SHORT).show()
@@ -55,7 +53,7 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
             }
         }.addOnFailureListener {
             Toast.makeText(applicationContext , "Ya pa de le code" , LENGTH_SHORT).show()
-        }
+        }*/
         //mettre a jour la liste de plant
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener {

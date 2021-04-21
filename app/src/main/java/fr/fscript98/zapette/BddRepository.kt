@@ -29,13 +29,14 @@ class BddRepository{
     var databaseRef = FirebaseDatabase.getInstance().getReference("questionnaire")
 
     //update un objet button dans la bdd
-    fun updateQuestion(){
+    fun updateData(callback: ()-> Unit){
         val database = FirebaseDatabase.getInstance()
         val ref_questionnaire = database.getReference("questionnaire")
 
         //Récupérer le code saisi par l'utilisateur
         ref_questionnaire.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                questionListBdd.clear()
                 for (ds in snapshot.children) {
                     var codeBDD = ds.getValue(QuestionModel::class.java)
                     if (codeBDD != null) {
@@ -43,23 +44,12 @@ class BddRepository{
                         //Toast.makeText(, codeBDD.motdepasse.toString(), LENGTH_SHORT).show()
                     }
                 }
+                callback()
             }
             override fun onCancelled(error: DatabaseError) {
             }
         })
-        var question = "question"
-        chemin= questionListBdd.size.toString()
-        databaseRef.child(chemin).child("A").setValue(0)
-        databaseRef.child(chemin).child("B").setValue(0)
-        databaseRef.child(chemin).child("C").setValue(0)
-        databaseRef.child(chemin).child("D").setValue(0)
-        databaseRef.child(chemin).child("E").setValue(0)
-        databaseRef.child(chemin).child("F").setValue(0)
-        databaseRef.child(chemin).child("G").setValue(0)
-        databaseRef.child(chemin).child("H").setValue(0)
-        databaseRef.child(chemin).child("I").setValue(0)
-        var mdp = Random.nextInt(10000 , 100000)
-        databaseRef.child(chemin).child("motdepasse").setValue(mdp)
+
     }
 
 }

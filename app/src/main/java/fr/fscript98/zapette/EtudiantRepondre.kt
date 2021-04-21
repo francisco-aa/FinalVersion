@@ -1,5 +1,7 @@
 package fr.fscript98.zapette
 
+import BddRepository.Singleton.id
+import BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.google.firebase.database.FirebaseDatabase
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.id
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.motDePasseBdd
+
 
 class EtudiantRepondre : AppCompatActivity() {
 

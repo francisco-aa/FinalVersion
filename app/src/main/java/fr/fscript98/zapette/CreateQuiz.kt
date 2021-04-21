@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
 import kotlin.random.Random
 
 class CreateQuiz : AppCompatActivity() {
@@ -24,7 +25,7 @@ class CreateQuiz : AppCompatActivity() {
         }
 
 
-        val myRandomInt = Random.nextInt(10000 , 100000)
+
         val textView = findViewById<TextView>(R.id.textView2)
         val qrCode = QRCodeWriter()
 
