@@ -46,6 +46,7 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
         refQuestionnaire.get().addOnSuccessListener {
             questionListBdd.clear()
             for (ds in it.children) {
+                //Toast.makeText(applicationContext, ds.key.toString(), LENGTH_SHORT).show()
                 var codeBDD = ds.getValue(QuestionModel::class.java)
                 if (codeBDD != null) {
                     questionListBdd.add(codeBDD)
@@ -58,7 +59,7 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
         //mettre a jour la liste de plant
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener {
-            refQuestionnaire.child("question1").child("A").setValue(0)
+            /*refQuestionnaire.child("question1").child("A").setValue(0)
             refQuestionnaire.child("question1").child("B").setValue(0)
             refQuestionnaire.child("question1").child("C").setValue(0)
             refQuestionnaire.child("question1").child("D").setValue(0)
@@ -88,8 +89,7 @@ open class EtudiantQuestionnaire() : AppCompatActivity() {
             refQuestionnaire.child("question3").child("H").setValue(0)
             refQuestionnaire.child("question3").child("I").setValue(0)
             refQuestionnaire.child("question3").child("motdepasse").setValue(0)
-
-
+            */
 
             startActivity(intent)
             finish()
