@@ -1,21 +1,21 @@
 package fr.fscript98.zapette
 
+import BddRepository.Singleton.id
+import BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import android.widget.Toast.makeText
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.collection.LLRBNode
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.buttonsListBdd
-import fr.fscript98.zapette.EtudiantQuestionnaire.Singleton.mdp
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.qrcode.QRCodeWriter
+import com.journeyapps.barcodescanner.BarcodeEncoder
+
+
 
 class EtudiantRepondre : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class EtudiantRepondre : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_repondre)
         // view
-        var buttonClique = "null"
+        var buttonClique = "aucun"
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)
         val c = findViewById<Button>(R.id.buttonC)
@@ -35,7 +35,7 @@ class EtudiantRepondre : AppCompatActivity() {
         val i = findViewById<Button>(R.id.buttonI)
         val buttonBack = findViewById<ImageView>(R.id.button_back3)
         val buttonList = arrayListOf<Button>()
-        val buttonVal = findViewById<Button>(R.id.buttonValider)
+        val buttonValide = findViewById<Button>(R.id.buttonValider)
         buttonList.add(a)
         buttonList.add(b)
         buttonList.add(c)
@@ -47,95 +47,161 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(i)
         // intent
         val database = FirebaseDatabase.getInstance()
-        val ref_questionnaire = database.getReference("questionnaire")
+        val refQuestionnaire = database.getReference("questionnaire")
 
         buttonBack.setOnClickListener {
             val intentButtonBack = Intent(this , EtudiantQuestionnaire::class.java)
             startActivity(intentButtonBack)
+            finish()
         }
+
         // changer la couleur de l'écriture pour voir la sélection
         a.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            // si le boutton cliqué et déjà A alors on remet le texte a noir et la valeur buttonClique a "aucun"
+            if (buttonClique == "A") {
+                a.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+
+            } else {
+                //si on clique sur A , on change la couler de A et on remet les autres en Noir
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                a.setTextColor(Color.parseColor("#FFBB86FC"))
+
+                buttonClique = "A"
             }
-            a.setTextColor(Color.parseColor("#FFBB86FC"))
-            buttonClique = "A"
         }
 
         b.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "B") {
+                b.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                b.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "B"
             }
-            b.setTextColor(Color.MAGENTA)
-            buttonClique = "B"
         }
         c.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "C") {
+                c.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                c.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "C"
             }
-            c.setTextColor(Color.MAGENTA)
-            buttonClique = "C"
         }
 
         d.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "D") {
+                d.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                d.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "D"
             }
-            d.setTextColor(Color.MAGENTA)
-            buttonClique = "D"
         }
         e.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "E") {
+                e.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                e.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "E"
             }
-            e.setTextColor(Color.MAGENTA)
-            buttonClique = "E"
         }
 
         f.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "F") {
+                f.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                f.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "F"
             }
-            f.setTextColor(Color.MAGENTA)
-            buttonClique = "F"
         }
         g.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "G") {
+                f.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                g.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "G"
             }
-            g.setTextColor(Color.MAGENTA)
-            buttonClique = "G"
         }
 
         h.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "H") {
+                h.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                h.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "H"
             }
-            h.setTextColor(Color.MAGENTA)
-            buttonClique = "H"
         }
         i.setOnClickListener {
-            for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+            if (buttonClique == "I") {
+                i.setTextColor(Color.BLACK)
+                buttonClique = "aucun"
+            } else {
+                for (button in buttonList) {
+                    button.setTextColor(Color.BLACK)
+                }
+                i.setTextColor(Color.parseColor("#FFBB86FC"))
+                buttonClique = "I"
             }
-            i.setTextColor(Color.MAGENTA)
-            buttonClique = "I"
         }
 
-        buttonVal.setOnClickListener {
-            if (buttonClique != "null") {
+        buttonValide.setOnClickListener {
+            if (buttonClique != "aucun") {
+                // On va chercher a faire correspondre le motsDePasseBdd enregistrer a la page EtudiantQuestionnaire avec
+                    // les mots de passes de la bdd
                 database.getReference("questionnaire").get().addOnSuccessListener {
+                    // On récup les enfant du chemin questionnaire
                     for (child in it.children) {
-
-                        var mdpBdd = child.getValue(VoteButtonModel::class.java)
-                        if (mdpBdd != null) {
-                            if (mdp == mdpBdd.motdepasse.toString()) {
+                        val questionModel = child.getValue(QuestionModel::class.java)
+                        if (questionModel != null) {
+                            // On compare avec le mot de passe de la page EtudiantQuestinnaire
+                            if (motDePasseBdd == questionModel.motdepasse.toString()) {
                                 //Toast.makeText(applicationContext,child.child(buttonClique).value,LENGTH_SHORT).show()
-                                val numb = child.child(buttonClique).value.toString().toInt()
-                                ref_questionnaire.child(child.ref.key.toString())
-                                    .child(buttonClique).setValue(numb + 1)
-                                val intentButtonBack2 = Intent(this , MainActivity::class.java)
-                                startActivity(intentButtonBack2)
+                                    // id correspond a la valeur du motDePasse pour la question a laquelle tu as participé
+
+                                if (id==questionModel.motdepasse.toString()){
+                                    Toast.makeText(applicationContext , "Tu as déjà participé" , LENGTH_SHORT).show()
+                                }
+                                else {
+                                    val numb = child.child(buttonClique).value.toString().toInt()
+                                    refQuestionnaire.child(child.ref.key.toString())
+                                        .child(buttonClique).setValue(numb + 1)
+
+                                    val valider = Intent(this , MainActivity::class.java)
+                                    Toast.makeText(applicationContext , "Merci d'avoir voté" , LENGTH_SHORT).show()
+                                    startActivity(valider)
+                                    finish()
+                                    //On met l'id a jour, en lui donnant le motdepasse
+                                    id = questionModel.motdepasse.toString()
+                                }
                             }
                         }
                     }
@@ -143,10 +209,29 @@ class EtudiantRepondre : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     applicationContext ,
-                    "Selectionne une réponse la con de ta mere JULIEN" ,
+                    "Selectionne une réponse" ,
                     LENGTH_SHORT
                 ).show()
             }
+        }
+
+        val qrCode = QRCodeWriter()
+
+        val bitMtx = qrCode.encode(
+            motDePasseBdd ,
+            BarcodeFormat.QR_CODE ,
+            200 ,
+            200
+        )
+        val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
+        val barcodeEncoder = BarcodeEncoder()
+        val bitmap = barcodeEncoder.createBitmap(bitMtx)
+        imageCode.setImageBitmap(bitmap)
+
+        val back = Intent(this , MainActivity::class.java)
+        buttonBack.setOnClickListener{
+            startActivity(back)
+            finish()
         }
         //creer une liste qui va stocker les buttons
 
@@ -157,5 +242,6 @@ class EtudiantRepondre : AppCompatActivity() {
         }*/
     }
 }
+
 
 
