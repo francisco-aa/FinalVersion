@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Zapette</string>
     <!-- page de connexion -->
-    <string name="title_connexion_page">CONNEXION</string>
+    <string name="title_connexion_page">ACCUEIL</string>
     <string name="role_choice">Je suis :</string>
     <string name="button_teacher">Enseignant</string>
     <string name="button_student">Etudiant</string>

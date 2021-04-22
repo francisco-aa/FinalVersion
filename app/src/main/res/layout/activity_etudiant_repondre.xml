@@ -45,6 +45,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="A"
+        android:textStyle="bold"
         android:background="@drawable/background_button"
         app:layout_constraintEnd_toStartOf="@+id/buttonB"
         app:layout_constraintTop_toTopOf="@+id/buttonB"
