@@ -1,6 +1,6 @@
 package fr.fscript98.zapette
 
-class VoteButtonModel(
+class QuestionModel(
     var A:Int=0,
     var B:Int=0,
     var C:Int=0,
