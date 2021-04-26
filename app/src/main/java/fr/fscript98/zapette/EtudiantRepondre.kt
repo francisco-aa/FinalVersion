@@ -46,7 +46,7 @@ class EtudiantRepondre : AppCompatActivity() {
             for ( button in buttonList ) {
                 button.setTextColor(Color.BLACK)
             }
-            a.setTextColor(Color.MAGENTA)
+            a.setTextColor(Color.parseColor("#FFBB86FC"))
             buttonClique= "A"
         }
 
@@ -109,9 +109,6 @@ class EtudiantRepondre : AppCompatActivity() {
             i.setTextColor(Color.MAGENTA)
             buttonClique= "I"
         }
-       // val sharePreferences= getSharedPreferences( "fr.fscript98.zapette",context.MODE_PRIVATE)
-        //shared
-        //)
 
 
 
