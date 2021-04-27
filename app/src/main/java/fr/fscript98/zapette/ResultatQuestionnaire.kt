@@ -1,26 +1,32 @@
 package fr.fscript98.zapette
 
 import BddRepository
+
 import BddRepository.Singleton.question
 import BddRepository.Singleton.questionListBdd
 import BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
-import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import fr.fscript98.zapette.ResultatQuestionnaire.Singleton.questionModel
 import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
 
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
 
+    object Singleton{
+        lateinit var questionModel : QuestionModel
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val repo1 = BddRepository()
@@ -40,7 +46,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
             val textView = findViewById<TextView>(R.id.textView2)
             val qrCode = QRCodeWriter()
-            val qrCodePage = Intent(this , QrCodeEnseignant::class.java)
+
             val bitMtx = qrCode.encode(
                 "$myRandomInt" ,
                 BarcodeFormat.QR_CODE ,
@@ -52,11 +58,11 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val barcodeEncoder = BarcodeEncoder()
             val bitmap = barcodeEncoder.createBitmap(bitMtx)
             imageCode.setImageBitmap(bitmap)
-            imageCode.setOnClickListener {
-                startActivity(qrCodePage)
-            }
+
+
 
             textView.text = ("$myRandomInt")
+
 
 
             //Récupérer les nombres de votes par reponse
@@ -88,6 +94,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     if (nbD != 0) {
                         textViewD.text = ("$nbD")
                     }
+                    if (nbE!=0){
+                        textViewE.text = ("$nbE")}
+                    if(nbF!=0) {
                     if (nbE != 0) {
                         textViewE.text = ("$nbE")
                     }
@@ -104,20 +113,21 @@ class ResultatQuestionnaire : AppCompatActivity() {
                         textViewI.text = ("$nbI")
                     }
                     textViewTotal.text = ("$nbTotal")
+                    questionModel = codeBDD
+
                 }
             }
             val terminer = findViewById<Button>(R.id.Terminer)
-            val intentTerminer = Intent(this , MainActivity::class.java)
-            terminer.setOnClickListener {
+            val intentTerminer = Intent(this,ResultatQuestionnaireFinal::class.java)
+            terminer.setOnClickListener{
                 ref_questionnaire.child(question).removeValue()
                 startActivity(intentTerminer)
                 finish()
             }
+
         }
+
     }
 }
-
-
-
 
 

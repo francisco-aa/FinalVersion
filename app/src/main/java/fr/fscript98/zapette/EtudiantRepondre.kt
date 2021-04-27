@@ -176,7 +176,7 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonValide.setOnClickListener {
             if (buttonClique != "aucun") {
                 // On va chercher a faire correspondre le motsDePasseBdd enregistrer a la page EtudiantQuestionnaire avec
-                    // les mots de passes de la bdd
+                // les mots de passes de la bdd
                 database.getReference("questionnaire").get().addOnSuccessListener {
                     // On récup les enfant du chemin questionnaire
                     for (child in it.children) {
@@ -185,7 +185,7 @@ class EtudiantRepondre : AppCompatActivity() {
                             // On compare avec le mot de passe de la page EtudiantQuestinnaire
                             if (motDePasseBdd == questionModel.motdepasse.toString()) {
                                 //Toast.makeText(applicationContext,child.child(buttonClique).value,LENGTH_SHORT).show()
-                                    // id correspond a la valeur du motDePasse pour la question a laquelle tu as participé
+                                // id correspond a la valeur du motDePasse pour la question a laquelle tu as participé
 
                                 if (id==questionModel.motdepasse.toString()){
                                     Toast.makeText(applicationContext , "Tu as déjà participé" , LENGTH_SHORT).show()
