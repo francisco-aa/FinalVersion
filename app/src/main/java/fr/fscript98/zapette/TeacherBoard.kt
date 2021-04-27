@@ -14,6 +14,7 @@ import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
 import kotlin.random.Random
 
 class TeacherBoard : AppCompatActivity() {
+    //private var BackPressedTime=0L
     object Singleton{
         var myRandomInt =1
     }
@@ -61,4 +62,12 @@ class TeacherBoard : AppCompatActivity() {
             finish()
         }
     }
+    /*override fun onBackPressed() {
+    if (BackPressedTime+2000 > System.currentTimeMillis()) {
+        super.onBackPressed()
+    }else {
+        Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+    }
+    BackPressedTime = System.currentTimeMillis()
+}*/
 }

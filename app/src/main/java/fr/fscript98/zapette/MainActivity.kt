@@ -2,12 +2,14 @@ package fr.fscript98.zapette
 
 import BddRepository
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+    //private var BackPressedTime = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
+        //private var BackPressedTimer = 0L
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val repo = BddRepository()
@@ -38,5 +40,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    /*override fun onBackPressed() {
+    if (BackPressedTime+2000 > System.currentTimeMillis()) {
+        super.onBackPressed()
+    }else {
+        Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+    }
+    BackPressedTime = System.currentTimeMillis()
+}*/
 
 }

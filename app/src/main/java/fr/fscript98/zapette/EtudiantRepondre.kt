@@ -18,7 +18,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 
 
 class EtudiantRepondre : AppCompatActivity() {
-
+    //private var BackPressedTime = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_repondre)
@@ -248,6 +248,16 @@ class EtudiantRepondre : AppCompatActivity() {
             repo.updateButton(buttonList[R.id.buttonA])
         }*/
     }
+    /*override fun onBackPressed() {
+        if (BackPressedTime+2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        }else {
+            Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+        }
+        BackPressedTime = System.currentTimeMillis()
+    }*/
+
+
 }
 
 
