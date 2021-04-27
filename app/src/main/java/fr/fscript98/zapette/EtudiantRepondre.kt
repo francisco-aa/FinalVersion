@@ -1,8 +1,9 @@
 package fr.fscript98.zapette
 
-import BddRepository.Singleton.id
+
 import BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -14,10 +15,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
-
+import fr.fscript98.zapette.EtudiantRepondre.Singleton.bitMap
 
 
 class EtudiantRepondre : AppCompatActivity() {
+
+    object Singleton {
+        lateinit var bitMap : Bitmap
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +77,7 @@ class EtudiantRepondre : AppCompatActivity() {
                             oldButtonClique = buttonClique
                             hasVoted = true
                             //On met l'id a jour, en lui donnant le motdepasse
-                            id = questionModel.motdepasse.toString()
+
                         }
                     }
                 }
@@ -95,6 +100,7 @@ class EtudiantRepondre : AppCompatActivity() {
             }
             a.setTextColor(Color.parseColor("#FFBB86FC"))
             //buttonClique = "A"
+
 
         }
 
@@ -140,7 +146,7 @@ class EtudiantRepondre : AppCompatActivity() {
         f.setOnClickListener {
             if (oldButtonClique != "F") fonction("F")
             for (button in buttonList) {
-                    button.setTextColor(Color.BLACK)
+                button.setTextColor(Color.BLACK)
             }
             f.setTextColor(Color.parseColor("#FFBB86FC"))
         }
@@ -169,25 +175,26 @@ class EtudiantRepondre : AppCompatActivity() {
             i.setTextColor(Color.parseColor("#FFBB86FC"))
         }
 
-
-
         val qrCode = QRCodeWriter()
-        val intent2= Intent(this, qrCode::class.java)
-
+        val qrCodePage= Intent(this, QrCode::class.java)
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
             100,
             100
         )
+
         val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
         val barcodeEncoder = BarcodeEncoder()
-        val bitMap = barcodeEncoder.createBitmap(bitMtx)
+        bitMap = barcodeEncoder.createBitmap(bitMtx)
+        val back = Intent(this , MainActivity::class.java)
         imageCode.setImageBitmap(bitMap)
         imageCode.setOnClickListener{
-            startActivity(intent2)
+            startActivity(qrCodePage)
 
         }
     }
 }
+
+
 

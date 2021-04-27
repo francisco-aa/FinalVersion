@@ -1,6 +1,6 @@
 package fr.fscript98.zapette
 
-import BddRepository.Singleton.motDePasseBdd
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
