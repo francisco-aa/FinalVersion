@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
     android:statusBarColor="@color/black"
-    tools:context=".EtudiantRepondre">
+    tools:context=".EtudiantRepondre"
+    >
 
     <ImageView
         android:id="@+id/button_back3"
@@ -17,6 +18,8 @@
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <TextView
         android:id="@+id/repondre_au_questionnaire"
@@ -171,11 +174,11 @@
 
     <ImageView
         android:id="@+id/imageQrCodeEleve"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/buttonValider"
-        android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonValider"
         app:layout_constraintTop_toTopOf="@+id/buttonValider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

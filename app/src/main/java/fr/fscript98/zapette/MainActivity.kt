@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val repo = BddRepository()
 
-        //mettre a jour la liste de plant
         repo.updateData {
 
             val buttonTeacher = findViewById<Button>(R.id.buttonTeacher)
@@ -20,20 +19,16 @@ class MainActivity : AppCompatActivity() {
 
                 val intentButtonTeacher = Intent(this , TeacherBoard::class.java)
                 startActivity(intentButtonTeacher)
-                finish()
+
             }
             val buttonStudent = findViewById<Button>(R.id.buttonStudent)
             buttonStudent.setOnClickListener {
                 val intent = Intent(this , EtudiantQuestionnaire::class.java)
                 startActivity(intent)
-                finish()
 
 
-                //charger le ButtonRepository
 
 
-                //update la liste de buttons
-                //repo.updateData()
 
             }
         }

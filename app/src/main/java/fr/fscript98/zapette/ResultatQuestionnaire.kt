@@ -42,8 +42,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
 
             val textView = findViewById<TextView>(R.id.textView2)
-            val qrCode = QRCodeWriter()
 
+            val qrCode = QRCodeWriter()
+            val qrCodePage= Intent(this, QrCodeEnseignant::class.java)
             val bitMtx = qrCode.encode(
                 "$myRandomInt" ,
                 BarcodeFormat.QR_CODE ,
@@ -52,10 +53,13 @@ class ResultatQuestionnaire : AppCompatActivity() {
             )
 
             val imageCode = findViewById<ImageView>(R.id.imageQrCode)
+
             val barcodeEncoder = BarcodeEncoder()
             val bitmap = barcodeEncoder.createBitmap(bitMtx)
             imageCode.setImageBitmap(bitmap)
-
+            imageCode.setOnClickListener{
+                startActivity(qrCodePage)
+            }
 
 
             textView.text = ("$myRandomInt")

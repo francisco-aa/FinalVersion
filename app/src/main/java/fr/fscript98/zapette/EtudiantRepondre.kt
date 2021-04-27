@@ -200,7 +200,7 @@ class EtudiantRepondre : AppCompatActivity() {
                                     startActivity(valider)
                                     finish()
                                     //On met l'id a jour, en lui donnant le motdepasse
-                                    id = questionModel.motdepasse.toString()
+                                    //id = questionModel.motdepasse.toString()
                                 }
                             }
                         }
@@ -216,23 +216,25 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         val qrCode = QRCodeWriter()
-
+        val intent2= Intent(this,QrCode::class.java)
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
-            200 ,
-            200
+            100,
+            100
         )
+
         val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
         val barcodeEncoder = BarcodeEncoder()
-        val bitmap = barcodeEncoder.createBitmap(bitMtx)
-        imageCode.setImageBitmap(bitmap)
-
+        val bitMap = barcodeEncoder.createBitmap(bitMtx)
         val back = Intent(this , MainActivity::class.java)
-        buttonBack.setOnClickListener{
-            startActivity(back)
-            finish()
+        imageCode.setImageBitmap(bitMap)
+        imageCode.setOnClickListener{
+            startActivity(intent2)
+
         }
+
+
         //creer une liste qui va stocker les buttons
 
 /*
