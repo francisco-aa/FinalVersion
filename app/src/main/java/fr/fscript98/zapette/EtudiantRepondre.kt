@@ -216,7 +216,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         val qrCode = QRCodeWriter()
-
+        val intent2= Intent(this, QrCode::class.java)
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
