@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
@@ -16,7 +18,6 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 
 
 class EtudiantRepondre : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -172,6 +173,7 @@ class EtudiantRepondre : AppCompatActivity() {
 
         val qrCode = QRCodeWriter()
         val intent2= Intent(this, qrCode::class.java)
+
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
