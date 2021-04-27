@@ -11,7 +11,7 @@ import fr.fscript98.zapette.QuestionModel
 
 class BddRepository{
 
-    
+
     object Singleton {
         var motDePasseBdd = ""
         var questionListBdd = arrayListOf<QuestionModel>()

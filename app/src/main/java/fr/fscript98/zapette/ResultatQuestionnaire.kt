@@ -1,29 +1,29 @@
 package fr.fscript98.zapette
 
 import BddRepository
-
 import BddRepository.Singleton.question
 import BddRepository.Singleton.questionListBdd
 import BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
-
-
-
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
-
 import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
 
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
+    private var BackPressedTime = 0L
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         val repo1= BddRepository()
@@ -42,7 +42,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
 
             val textView = findViewById<TextView>(R.id.textView2)
-
             val qrCode = QRCodeWriter()
             val qrCodePage= Intent(this, QrCodeEnseignant::class.java)
             val bitMtx = qrCode.encode(
@@ -53,14 +52,12 @@ class ResultatQuestionnaire : AppCompatActivity() {
             )
 
             val imageCode = findViewById<ImageView>(R.id.imageQrCode)
-
             val barcodeEncoder = BarcodeEncoder()
             val bitmap = barcodeEncoder.createBitmap(bitMtx)
             imageCode.setImageBitmap(bitmap)
             imageCode.setOnClickListener{
                 startActivity(qrCodePage)
             }
-
 
             textView.text = ("$myRandomInt")
 
@@ -117,8 +114,15 @@ class ResultatQuestionnaire : AppCompatActivity() {
                 finish()
         }
 
-        }
+    }
 
+    override fun onBackPressed() {
+            if (BackPressedTime+2000 > System.currentTimeMillis()) {
+                super.onBackPressed()
+            }else {
+                Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+            }
+            BackPressedTime = System.currentTimeMillis()
     }
 }
 

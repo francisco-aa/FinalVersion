@@ -1,5 +1,7 @@
 package fr.fscript98.zapette
 
+
+
 import BddRepository.Singleton.id
 import BddRepository.Singleton.motDePasseBdd
 import BddRepository.Singleton.questionListBdd
@@ -13,16 +15,16 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
-
-
-
 import com.google.zxing.integration.android.IntentIntegrator
 
 
 
 open class EtudiantQuestionnaire : AppCompatActivity() {
+    //private var BackPressedTime = 0L
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         //bloquer en portrait
         this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -32,7 +34,7 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
 
 
         val editText = findViewById<EditText>(R.id.zone_saisie_code)
-        var codeSaisi=""
+        var codeSaisi = ""
 
 
         val backbutton = findViewById<ImageView>(R.id.button_back)
@@ -46,7 +48,7 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
             //Toast.makeText(applicationContext , questionListBdd.size.toString() , LENGTH_SHORT).show()
             codeSaisi = editText.text.toString()
             //TODO: Si codesaisi vide, redémarrer l'activity avec message d'erreur vide
-            if (codeSaisi !="" ) {
+            if (codeSaisi != "") {
                 Toast.makeText(applicationContext , "Veuillez entrer un code" , LENGTH_SHORT).show()
             }
             for (questionModel in questionListBdd) {
@@ -66,16 +68,15 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
         }
 
 
-        val buttonScan = findViewById<Button>(R.id.button_scan)
-        buttonScan.setOnClickListener() {
+        val scanner = IntentIntegrator(this)
+        scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
+        scanner.setBeepEnabled(false)
+        scanner.setOrientationLocked(false)
 
-            val scanner = IntentIntegrator(this)
-            scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
-            scanner.setBeepEnabled(false)
-            scanner.setOrientationLocked(false)
-            scanner.setCaptureActivity(Capture::class.java)
-            scanner.initiateScan()
-        }
+
+        scanner.setCaptureActivity(Capture::class.java)
+        scanner.initiateScan()
+
 
     }
 
@@ -109,7 +110,16 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                 super.onActivityResult(requestCode , resultCode , data)
             }
         }
+
     }
+   /* override fun onBackPressed() {
+        if (BackPressedTime+2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        }else {
+            Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+        }
+        BackPressedTime = System.currentTimeMillis()
+    }*/
 }
 
 

@@ -69,6 +69,9 @@
     <string name="title_thanks_quiz_page">Merci d\'avoir participé au Questionnaire!</string>
     <string name="button_save_quiz_thanks_quiz_page">Sauvegarder questionnaire</string>
     <string name="button_quit_thanks_quiz_page">Quitter</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

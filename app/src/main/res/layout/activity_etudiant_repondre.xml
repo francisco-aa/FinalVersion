@@ -172,7 +172,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonH" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageQrCodeEleve"
         android:layout_width="100dp"
         android:layout_height="100dp"

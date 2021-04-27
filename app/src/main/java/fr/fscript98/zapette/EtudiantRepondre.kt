@@ -4,12 +4,12 @@ import BddRepository.Singleton.id
 import BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
@@ -18,7 +18,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 
 
 class EtudiantRepondre : AppCompatActivity() {
-
+    //private var BackPressedTime = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_repondre)
@@ -216,7 +216,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         val qrCode = QRCodeWriter()
-        val intent2= Intent(this,QrCode::class.java)
+
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
@@ -243,6 +243,16 @@ class EtudiantRepondre : AppCompatActivity() {
             repo.updateButton(buttonList[R.id.buttonA])
         }*/
     }
+    /*override fun onBackPressed() {
+        if (BackPressedTime+2000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+        }else {
+            Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+        }
+        BackPressedTime = System.currentTimeMillis()
+    }*/
+
+
 }
 
 
