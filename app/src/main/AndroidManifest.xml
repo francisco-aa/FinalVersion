@@ -14,15 +14,26 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zapette">
-        <activity android:name=".ResultatQuestionnaire"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EtudiantRepondre"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EtudiantQuestionnaire"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TeacherBoard"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".FullScreenActivity"></activity>
+        <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/Theme.Zapette.Fullscreen" />
+        <activity
+            android:name=".ResultatQuestionnaire"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EtudiantRepondre"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EtudiantQuestionnaire"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TeacherBoard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
