@@ -5,11 +5,8 @@ import BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
@@ -23,19 +20,18 @@ class EtudiantRepondre : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(fr.fscript98.zapette.R.layout.activity_etudiant_repondre)
+        setContentView(R.layout.activity_etudiant_repondre)
         // view
-        var buttonClique = "aucun"
-        val a = findViewById<Button>(fr.fscript98.zapette.R.id.buttonA)
-        val b = findViewById<Button>(fr.fscript98.zapette.R.id.buttonB)
-        val c = findViewById<Button>(fr.fscript98.zapette.R.id.buttonC)
-        val d = findViewById<Button>(fr.fscript98.zapette.R.id.buttonD)
-        val e = findViewById<Button>(fr.fscript98.zapette.R.id.buttonE)
-        val f = findViewById<Button>(fr.fscript98.zapette.R.id.buttonF)
-        val g = findViewById<Button>(fr.fscript98.zapette.R.id.buttonG)
-        val h = findViewById<Button>(fr.fscript98.zapette.R.id.buttonH)
-        val i = findViewById<Button>(fr.fscript98.zapette.R.id.buttonI)
-        val buttonBack = findViewById<ImageView>(fr.fscript98.zapette.R.id.button_back3)
+        val a = findViewById<Button>(R.id.buttonA)
+        val b = findViewById<Button>(R.id.buttonB)
+        val c = findViewById<Button>(R.id.buttonC)
+        val d = findViewById<Button>(R.id.buttonD)
+        val e = findViewById<Button>(R.id.buttonE)
+        val f = findViewById<Button>(R.id.buttonF)
+        val g = findViewById<Button>(R.id.buttonG)
+        val h = findViewById<Button>(R.id.buttonH)
+        val i = findViewById<Button>(R.id.buttonI)
+        val buttonBack = findViewById<ImageView>(R.id.button_back3)
         val buttonList = arrayListOf<Button>()
         buttonList.add(a)
         buttonList.add(b)
@@ -50,7 +46,7 @@ class EtudiantRepondre : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val refQuestionnaire = database.getReference("questionnaire")
         var oldButtonClique = "null"
-        var hasVoted : Boolean = false
+        var hasVoted = false
 
         fun fonction(buttonClique: String) {
             database.getReference("questionnaire").get().addOnSuccessListener {
@@ -174,33 +170,22 @@ class EtudiantRepondre : AppCompatActivity() {
 
 
 
-        val QrCode = QRCodeWriter()
-        val intent2= Intent(this, QrCode::class.java)
-        val bitMtx = QrCode.encode(
+        val qrCode = QRCodeWriter()
+        val intent2= Intent(this, qrCode::class.java)
+        val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
             100,
             100
         )
-        val imageCode = findViewById<ImageView>(fr.fscript98.zapette.R.id.imageQrCodeEleve)
+        val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
         val barcodeEncoder = BarcodeEncoder()
         val bitMap = barcodeEncoder.createBitmap(bitMtx)
-        val back = Intent(this , MainActivity::class.java)
         imageCode.setImageBitmap(bitMap)
         imageCode.setOnClickListener{
             startActivity(intent2)
 
         }
-
-
-        //creer une liste qui va stocker les buttons
-
-/*
-        val buttonA = findViewById<Button>(R.id.buttonA)
-        buttonBack.setOnClickListener{
-            repo.updateButton(buttonList[R.id.buttonA])
-        }*/
     }
-
 }
 
