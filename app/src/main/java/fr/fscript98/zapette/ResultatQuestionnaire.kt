@@ -22,8 +22,8 @@ import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
 
 class ResultatQuestionnaire : AppCompatActivity() {
 
-    object Singleton{
-        lateinit var questionModel : QuestionModel
+    object Singleton {
+        lateinit var questionModel: QuestionModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
             textView.text = ("$myRandomInt")
 
 
-
             //Récupérer les nombres de votes par reponse
 
             for (codeBDD in questionListBdd) {
@@ -94,12 +93,18 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     if (nbD != 0) {
                         textViewD.text = ("$nbD")
                     }
-                    if (nbE!=0){
-                        textViewE.text = ("$nbE")}
-                    if(nbF!=0) {
                     if (nbE != 0) {
                         textViewE.text = ("$nbE")
                     }
+                    if (nbF != 0) {
+                        textViewF.text = ("$nbF")
+                    }
+
+
+                    if (nbE != 0) {
+                        textViewE.text = ("$nbE")
+                    }
+
                     if (nbF != 0) {
                         textViewF.text = ("$nbF")
                     }
@@ -117,15 +122,15 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                 }
             }
-            val terminer = findViewById<Button>(R.id.Terminer)
-            val intentTerminer = Intent(this,ResultatQuestionnaireFinal::class.java)
-            terminer.setOnClickListener{
-                ref_questionnaire.child(question).removeValue()
-                startActivity(intentTerminer)
-                finish()
-            }
-
         }
+        val terminer = findViewById<Button>(R.id.Terminer)
+        val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
+        terminer.setOnClickListener {
+            ref_questionnaire.child(question).removeValue()
+            startActivity(intentTerminer)
+            finish()
+        }
+
 
     }
 }
