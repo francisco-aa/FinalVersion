@@ -15,7 +15,7 @@ class BddRepository{
     object Singleton {
         var motDePasseBdd = ""
         var questionListBdd = arrayListOf<QuestionModel>()
-        var id = ""
+
         var chemin=""
 
         val database = FirebaseDatabase.getInstance()

@@ -45,26 +45,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
 
             val textView = findViewById<TextView>(R.id.textView2)
-            val qrCode = QRCodeWriter()
-
-            val bitMtx = qrCode.encode(
-                "$myRandomInt" ,
-                BarcodeFormat.QR_CODE ,
-                200 ,
-                200
-            )
-
-            val imageCode = findViewById<ImageView>(R.id.imageQrCode)
-            val barcodeEncoder = BarcodeEncoder()
-            val bitmap = barcodeEncoder.createBitmap(bitMtx)
-            imageCode.setImageBitmap(bitmap)
 
 
-
-            textView.text = ("$myRandomInt")
-
-
-            //Récupérer les nombres de votes par reponse
 
             for (codeBDD in questionListBdd) {
 
@@ -122,13 +104,32 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                 }
             }
-        }
-        val terminer = findViewById<Button>(R.id.Terminer)
-        val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
-        terminer.setOnClickListener {
-            ref_questionnaire.child(question).removeValue()
-            startActivity(intentTerminer)
-            finish()
+            val qrCode = QRCodeWriter()
+            val intent= Intent(this, QrCodeEnseignant::class.java)
+            val bitMtx = qrCode.encode(
+                "$myRandomInt" ,
+                BarcodeFormat.QR_CODE ,
+                100 ,
+                100
+            )
+
+            val imageCode = findViewById<ImageView>(R.id.imageQrCode)
+            val barcodeEncoder = BarcodeEncoder()
+            val bitmap = barcodeEncoder.createBitmap(bitMtx)
+            imageCode.setImageBitmap(bitmap)
+            imageCode.setOnClickListener{
+                startActivity(intent)
+            }
+            textView.text = ("$myRandomInt")
+            //Récupérer les nombres de votes par reponse
+
+            val terminer = findViewById<Button>(R.id.Terminer)
+            val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
+            terminer.setOnClickListener {
+                ref_questionnaire.child(question).removeValue()
+                startActivity(intentTerminer)
+                finish()
+            }
         }
 
 
