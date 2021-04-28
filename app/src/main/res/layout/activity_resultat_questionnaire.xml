@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
@@ -18,282 +18,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-        android:layout_marginTop="@dimen/default_margin">
-    </TextView>
-
-
-    <TextView
-        android:id="@+id/reponseA"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="A : "
-        app:layout_constraintEnd_toStartOf="@+id/reponseB"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/questionnaire"
-        app:layout_constraintTop_toBottomOf="@+id/questionnaire">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseA"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/reponseA"
-        app:layout_constraintEnd_toStartOf="@+id/reponseB"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseA"
-        app:layout_constraintTop_toBottomOf="@+id/questionnaire">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseB"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="B : "
-        app:layout_constraintEnd_toEndOf="@+id/questionnaire"
-        app:layout_constraintStart_toStartOf="@+id/questionnaire"
-        app:layout_constraintTop_toBottomOf="@+id/questionnaire">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseB"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/reponseB"
-        app:layout_constraintEnd_toStartOf="@+id/reponseC"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseB"
-        app:layout_constraintTop_toBottomOf="@+id/questionnaire">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseC"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="C : "
-        app:layout_constraintEnd_toEndOf="@+id/questionnaire"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseB"
-        app:layout_constraintTop_toBottomOf="@+id/questionnaire">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseC"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/reponseC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseC"
-        app:layout_constraintTop_toBottomOf="@+id/questionnaire">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseD"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="D : "
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/reponseE"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/reponseA"
-        app:layout_constraintTop_toBottomOf="@+id/reponseA">
-
-    </TextView>
-
-
-    <TextView
-        android:id="@+id/nbreponseD"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/reponseD"
-        app:layout_constraintEnd_toStartOf="@+id/reponseE"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseD"
-        app:layout_constraintTop_toBottomOf="@+id/nbreponseA">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseE"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="E : "
-        app:layout_constraintEnd_toEndOf="@+id/questionnaire"
-        app:layout_constraintStart_toStartOf="@+id/questionnaire"
-        app:layout_constraintTop_toBottomOf="@+id/reponseB">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseE"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/reponseE"
-        app:layout_constraintEnd_toStartOf="@+id/reponseF"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseE"
-        app:layout_constraintTop_toBottomOf="@+id/nbreponseB">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseF"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="F : "
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/questionnaire"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseE"
-        app:layout_constraintTop_toBottomOf="@+id/reponseC">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseF"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reponseF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseF"
-        app:layout_constraintTop_toBottomOf="@+id/nbreponseC">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseG"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="G : "
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/reponseH"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/questionnaire"
-        app:layout_constraintTop_toBottomOf="@+id/reponseD">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseG"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reponseG"
-        app:layout_constraintEnd_toStartOf="@+id/reponseH"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseG"
-        app:layout_constraintTop_toBottomOf="@+id/nbreponseD">
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseH"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="H : "
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/questionnaire"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="@+id/questionnaire"
-        app:layout_constraintTop_toBottomOf="@+id/reponseE">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseH"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reponseH"
-        app:layout_constraintEnd_toStartOf="@+id/reponseI"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseH"
-        app:layout_constraintTop_toBottomOf="@+id/nbreponseE">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/reponseI"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I : "
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="@+id/questionnaire"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseH"
-        app:layout_constraintTop_toBottomOf="@+id/reponseF">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/nbreponseI"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reponseI"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/reponseI"
-        app:layout_constraintTop_toBottomOf="@+id/nbreponseF">
-
-    </TextView>
+        android:layout_marginTop="@dimen/default_margin"/>
 
     <TextView
         android:id="@+id/total"
         style="@style/TextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Total : "
         app:layout_constraintBottom_toTopOf="@+id/Terminer"
-
-        app:layout_constraintEnd_toEndOf="@+id/reponseG"
-        app:layout_constraintStart_toStartOf="@+id/reponseG"
-        app:layout_constraintTop_toBottomOf="@+id/reponseH">
+        app:layout_constraintEnd_toEndOf="@+id/Terminer"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/Terminer"
+        app:layout_constraintTop_toBottomOf="@+id/E"
+        android:layout_marginRight="20dp">
 
     </TextView>
 
@@ -304,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/total"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Terminer"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/total"
         app:layout_constraintTop_toTopOf="@+id/total">
@@ -315,12 +53,13 @@
         android:id="@+id/Terminer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Terminer"
+        android:layout_marginTop="100dp"
         android:background="@drawable/background_button"
+        android:text="Terminer"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/barChart"
+        app:layout_constraintStart_toStartOf="@+id/barChart"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.706">
 
@@ -329,13 +68,13 @@
 
     <ImageView
         android:id="@+id/imageQrCode"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Terminer"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/Terminer">
+    </ImageView>
 
     <TextView
         android:id="@+id/textView2"
@@ -346,7 +85,117 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="375dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/questionnaire"
+        />
+
+    <TextView
+        android:id="@+id/A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:text="A"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="@+id/barChart"
+        app:layout_constraintTop_toBottomOf="@+id/barChart" />
+
+    <TextView
+        android:id="@+id/B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:layout_marginLeft="32dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/A"
+        app:layout_constraintStart_toEndOf="@+id/A" />
+
+    <TextView
+        android:id="@+id/C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/B"
+        app:layout_constraintStart_toEndOf="@+id/B" />
+
+    <TextView
+        android:id="@+id/D"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/C"
+        app:layout_constraintStart_toEndOf="@+id/C" />
+
+    <TextView
+        android:id="@+id/E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/D"
+        app:layout_constraintStart_toEndOf="@+id/D" />
+
+    <TextView
+        android:id="@+id/F"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="F"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/E"
+        app:layout_constraintStart_toEndOf="@+id/E" />
+
+    <TextView
+        android:id="@+id/G"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/F"
+        app:layout_constraintStart_toEndOf="@+id/F" />
+
+    <TextView
+        android:id="@+id/H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="H"
+        android:layout_marginLeft="28dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/G"
+        app:layout_constraintStart_toEndOf="@+id/G" />
+
+    <TextView
+        android:id="@+id/I"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/H"
+        app:layout_constraintStart_toEndOf="@+id/H" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,17 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.core.content.ContextCompat
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.model.GradientColor
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
@@ -21,16 +32,10 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultat_questionnaire_final)
 
-        val txtViewA = findViewById<TextView>(R.id.nbreponseAFin)
-        val txtViewB = findViewById<TextView>(R.id.nbreponseBFin)
-        val txtViewC = findViewById<TextView>(R.id.nbreponseCFin)
-        val txtViewD = findViewById<TextView>(R.id.nbreponseDFin)
-        val txtViewE = findViewById<TextView>(R.id.nbreponseEFin)
-        val txtViewF = findViewById<TextView>(R.id.nbreponseFFin)
-        val txtViewG = findViewById<TextView>(R.id.nbreponseGFin)
-        val txtViewH = findViewById<TextView>(R.id.nbreponseHFin)
-        val txtViewI = findViewById<TextView>(R.id.nbreponseIFin)
         val txtViewTotal = findViewById<TextView>(R.id.nbTotalFin)
+
+        var barChart = findViewById<BarChart>(R.id.barChart)
+        var table = ArrayList<BarEntry>()
 
         if (myRandomInt == questionModel.motdepasse) {
             val nbResA = questionModel.A
@@ -44,36 +49,92 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
             val nbResI = questionModel.I
             val nbResTotal = nbResA + nbResB + nbResC + nbResD + nbResE + nbResF + nbResG + nbResH + nbResI
 
-            if (nbResA!=0) {
-                txtViewA.text = ("$nbResA")
-            }
-            if (nbResB!=0) {
-                txtViewB.text = ("$nbResB")
-            }
-            if (nbResC!=0) {
-                txtViewC.text = ("$nbResC")
-            }
-            if(nbResD!=0){
-                txtViewD.text = ("$nbResD")
-            }
-            if (nbResE!=0){
-                txtViewE.text = ("$nbResE")
-            }
-            if(nbResF!=0) {
-                txtViewF.text = ("$nbResF")
-            }
-            if (nbResG!=0){
-                txtViewG.text = ("$nbResG")
-            }
-            if (nbResH!=0){
-                txtViewH.text = ("$nbResH")
-            }
-            if (nbResI!=0) {
-                txtViewI.text = ("$nbResI")
-            }
+            table.add(BarEntry(1f,nbResA.toFloat()))
+            table.add(BarEntry(3f,nbResB.toFloat()))
+            table.add(BarEntry(5f,nbResC.toFloat()))
+            table.add(BarEntry(7f,nbResD.toFloat()))
+            table.add(BarEntry(9f,nbResE.toFloat()))
+            table.add(BarEntry(11f,nbResF.toFloat()))
+            table.add(BarEntry(13f,nbResG.toFloat()))
+            table.add(BarEntry(15f,nbResH.toFloat()))
+            table.add(BarEntry(17f,nbResI.toFloat()))
+
+            var barDataSet = BarDataSet(table,"")
+
+            var barData = BarData(barDataSet)
+
+            barChart.setFitBars(true)
+            barChart.data = barData
+            //barChart.animateY(1000)
+            barChart.setDrawBarShadow(false)
+            barChart.setDrawValueAboveBar(true)
+            barChart.description.isEnabled=false
+
+            barChart.setPinchZoom(false)
+            barChart.isDoubleTapToZoomEnabled = false
+            barChart.setScaleEnabled(false)
+
+            barChart.setDrawGridBackground(false)
+            barChart.isClickable=false
+
+            //X Axis
+            var labels = mutableListOf<String>()
+
+            val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
+            val xAxis = barChart.xAxis
+            xAxis.setLabelCount(table.size,true)
+            xAxis.valueFormatter = xAxisFormatter
+            xAxis.labelCount = table.size
+
+            xAxis.position = XAxis.XAxisPosition.BOTTOM
+            xAxis.setDrawGridLines(false)
+            xAxis.granularity = 2f
+            xAxis.textColor = ContextCompat.getColor(this,R.color.white)
+            xAxis.axisLineColor = ContextCompat.getColor(this,R.color.white)
+
+
+            //Y Axis
+            val leftAxis = barChart.axisLeft
+            leftAxis.setLabelCount(0, true)
+            leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
+            leftAxis.setDrawLabels(false)
+            leftAxis.axisLineColor = ContextCompat.getColor(this,R.color.white)
+            leftAxis.spaceTop = 0f
+            leftAxis.axisMinimum = 0f
+            leftAxis.textColor = ContextCompat.getColor(this, R.color.white)
+            //leftAxis.setDrawAxisLine(false)
+            leftAxis.zeroLineColor = ContextCompat.getColor(this, R.color.white)
+
+            val rightAxis = barChart.axisRight
+            rightAxis.axisLineColor = ContextCompat.getColor(this,R.color.white)
+            rightAxis.setDrawGridLines(false)
+            rightAxis.setDrawLabels(false)
+            rightAxis.setLabelCount(0, false)
+            rightAxis.spaceTop = 15f
+            rightAxis.axisMinimum = 0f
+
+
+            val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
+            val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
+
+            val gradientColors: MutableList<GradientColor> = ArrayList()
+            gradientColors.add(GradientColor(startColor1,enColor1))
+
+            barDataSet.gradientColors = gradientColors
+
+            val dataSets = ArrayList<IBarDataSet>()
+            dataSets.add(barDataSet)
+
+            val data = BarData(dataSets)
+            data.setValueTextColor(ContextCompat.getColor(this,R.color.white))
+            data.barWidth = 1.5f
+            barChart.data = data
+
+            barChart.legend.isEnabled=false
+
             txtViewTotal.text = ("$nbResTotal")
 
-            }
+        }
 
         val quitter = findViewById<Button>(R.id.btn_quit)
         val intentQuitter = Intent(this , TeacherBoard::class.java)
