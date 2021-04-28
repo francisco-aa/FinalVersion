@@ -26,7 +26,7 @@ class EtudiantRepondre : AppCompatActivity() {
 
     object Singleton {
         lateinit var bitMap : Bitmap
-        lateinit var derniereRep : String
+        var derniereRep =""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
