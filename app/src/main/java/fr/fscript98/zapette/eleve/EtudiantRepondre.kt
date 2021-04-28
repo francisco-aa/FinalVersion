@@ -92,7 +92,7 @@ class EtudiantRepondre : AppCompatActivity() {
 
             }
         }
-        while (questionModel.questionTerminee == "false") {
+
             buttonBack.setOnClickListener {
                 val intentButtonBack = Intent(this , EtudiantQuestionnaire::class.java)
                 startActivity(intentButtonBack)
@@ -205,7 +205,7 @@ class EtudiantRepondre : AppCompatActivity() {
                 startActivity(qrCodePage)
             }
         }
-    }
+
 }
 
 
