@@ -58,7 +58,7 @@ class TeacherBoard : AppCompatActivity() {
 
 
         }
-        val buttonBack= findViewById<ImageView>(R.id.button_backEspaceEnsaignant)
+        val buttonBack= findViewById<ImageView>(R.id.button_backEspaceEnseignant)
         val intantBack= Intent(this, MainActivity::class.java)
         buttonBack.setOnClickListener{
             startActivity(intantBack)

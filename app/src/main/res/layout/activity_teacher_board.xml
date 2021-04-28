@@ -7,12 +7,26 @@
     android:background="@color/darkblue2">
 
     <ImageView
-        android:id="@+id/button_backEspaceEnsaignant"
+        android:id="@+id/button_backEspaceEnseignant"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/TeacherBlack"
+        style="@style/TitleTextStyle"
+        android:layout_width="374dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="@dimen/default_margin"
+        app:layout_constraintHorizontal_bias="0.6"
+        android:textColor="@color/black"
+        android:text="@string/title_teacher_page"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 

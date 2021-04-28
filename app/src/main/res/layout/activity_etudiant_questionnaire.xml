@@ -21,21 +21,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/rejoindre_un_questionnaire_black"
+        style="@style/TitleTextStyle"
+        android:layout_width="@dimen/margin_titre_ver"
+        android:layout_height="@dimen/margin_titre_hor"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="REJOINDRE UN QUESTIONNAIRE"
+        app:layout_constraintHorizontal_bias="0.63"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/rejoindre_un_questionnaire"
+        style="@style/TitleTextStyle"
         android:layout_width="@dimen/margin_titre_ver"
         android:layout_height="@dimen/margin_titre_hor"
         android:layout_marginTop="@dimen/default_margin"
         android:fontFamily="@font/kanit"
-        android:text="Rejoindre un questionnaire"
+        android:text="REJOINDRE UN QUESTIONNAIRE"
+        app:layout_constraintHorizontal_bias="0.52"
         android:textAlignment="center"
-
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/saisir_code"
