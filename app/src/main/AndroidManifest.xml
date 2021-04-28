@@ -14,15 +14,24 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zapette">
-        <activity android:name=".ResultatQuestionnaire"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EtudiantRepondre"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EtudiantQuestionnaire"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".TeacherBoard"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".eleve.EtudiantResultats"></activity>
+        <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
+        <activity android:name=".eleve.QrCode" />
+        <activity android:name=".enseignant.QrCodeEnseignant" />
+        <activity
+            android:name=".enseignant.ResultatQuestionnaire"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".eleve.EtudiantRepondre"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".eleve.EtudiantQuestionnaire"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".enseignant.TeacherBoard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Capture"
+            android:name=".autre.Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"

@@ -1,21 +1,19 @@
-
-import BddRepository.Singleton.questionListBdd
-import BddRepository.Singleton.ref_questionnaire
+package fr.fscript98.zapette.autre
+import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
 
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-import fr.fscript98.zapette.QuestionModel
-
 class BddRepository{
 
-    
+
     object Singleton {
         var motDePasseBdd = ""
         var questionListBdd = arrayListOf<QuestionModel>()
-        var id = ""
+
         var chemin=""
 
         val database = FirebaseDatabase.getInstance()

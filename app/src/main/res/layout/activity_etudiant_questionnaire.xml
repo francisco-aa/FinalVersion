@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
     android:statusBarColor="@color/black"
-    tools:context=".EtudiantQuestionnaire"
+    tools:context=".eleve.EtudiantQuestionnaire"
     >
 
 
@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/rejoindre_un_questionnaire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/margin_titre_ver"
+        android:layout_height="@dimen/margin_titre_hor"
         android:layout_marginTop="@dimen/default_margin"
         android:fontFamily="@font/kanit"
         android:text="Rejoindre un questionnaire"

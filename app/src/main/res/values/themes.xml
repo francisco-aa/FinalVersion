@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. --><style name="Theme.Zapette" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Base application theme. -->
+    <style name="Theme.Zapette" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -15,23 +16,34 @@
     </style>
     <!--Créer le composant titre app-->
     <style name="TitleAppTextStyle">
-        <item name = "android:textColor">@color/white</item>
-        <item name = "android:textSize">60sp</item>
-        <item name = "android:fontFamily">@font/airstrikehalf</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:fontFamily">@font/airstrikehalf</item>
     </style>
 
     <!--Créer le composant titre app-->
     <style name="TitleTextStyle">
-        <item name = "android:textColor">@color/white</item>
-        <item name = "android:textSize">40sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:fontFamily">@font/kanit</item>
     </style>
 
     <!--Créer le composant titre app-->
     <style name="TextStyle">
-    <item name = "android:textColor">@color/white</item>
-    <item name = "android:textSize">20sp</item>
-    <item name="android:fontFamily">@font/kanit</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/kanit</item>
+    </style>
+
+    <style name="Theme.Zapette.Fullscreen" parent="Theme.Zapette">
+        <item name="android:actionBarStyle">@style/Widget.Theme.Zapette.ActionBar.Fullscreen</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.Zapette.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 
 </resources>
