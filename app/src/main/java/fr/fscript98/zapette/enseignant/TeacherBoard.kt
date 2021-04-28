@@ -50,7 +50,7 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("I").setValue(0)
             myRandomInt = Random.nextInt(10000 , 100000)
             databaseRef.child(question).child("motdepasse").setValue(myRandomInt)
-            databaseRef.child(question).child("questionTerminee").setValue(false)
+            databaseRef.child(question).child("questionTerminee").setValue("false")
             val intentButtonRunQuiz = Intent(this, ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
             finish()

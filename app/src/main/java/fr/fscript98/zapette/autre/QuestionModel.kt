@@ -1,7 +1,7 @@
 package fr.fscript98.zapette.autre
 
 class QuestionModel(
-    var questionTerminee: Boolean = false ,
+    var questionTerminee: String = "false" ,
     var A: Int = 0 ,
     var B: Int = 0 ,
     var C: Int = 0 ,
