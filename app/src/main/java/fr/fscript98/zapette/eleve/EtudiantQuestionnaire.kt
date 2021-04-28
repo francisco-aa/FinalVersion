@@ -1,22 +1,22 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.eleve
 
 
 
 
-import BddRepository.Singleton.motDePasseBdd
-import BddRepository.Singleton.questionListBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
-
+import fr.fscript98.zapette.MainActivity
+import fr.fscript98.zapette.R
+import fr.fscript98.zapette.autre.Capture
 
 
 open class EtudiantQuestionnaire : AppCompatActivity() {

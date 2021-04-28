@@ -1,15 +1,13 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.enseignant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import BddRepository.Singleton.chemin
-import BddRepository.Singleton.question
-import BddRepository.Singleton.questionListBdd
 import android.content.Intent
 import android.widget.Button
 import android.widget.TextView
-import fr.fscript98.zapette.ResultatQuestionnaire.Singleton.questionModel
-import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
+import fr.fscript98.zapette.R
+import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 
 class ResultatQuestionnaireFinal : AppCompatActivity() {
 
@@ -72,7 +70,7 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
             }
 
         val quitter = findViewById<Button>(R.id.btn_quit)
-        val intentQuitter = Intent(this,TeacherBoard::class.java)
+        val intentQuitter = Intent(this, TeacherBoard::class.java)
         quitter.setOnClickListener{
             startActivity(intentQuitter)
             finish()

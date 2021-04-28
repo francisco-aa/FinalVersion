@@ -1,21 +1,22 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.eleve
 
 
-import BddRepository.Singleton.motDePasseBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import fr.fscript98.zapette.EtudiantRepondre.Singleton.bitMap
+import fr.fscript98.zapette.MainActivity
+import fr.fscript98.zapette.autre.QuestionModel
+import fr.fscript98.zapette.R
+import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
 
 
 class EtudiantRepondre : AppCompatActivity() {

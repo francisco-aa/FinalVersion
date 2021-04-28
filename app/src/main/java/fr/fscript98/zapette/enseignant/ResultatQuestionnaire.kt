@@ -1,35 +1,34 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.enseignant
 
-import BddRepository
+import fr.fscript98.zapette.autre.BddRepository
 
-import BddRepository.Singleton.question
-import BddRepository.Singleton.questionListBdd
-import BddRepository.Singleton.ref_questionnaire
+import fr.fscript98.zapette.autre.BddRepository.Singleton.question
+import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import fr.fscript98.zapette.ResultatQuestionnaire.Singleton.questionModel
-import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
-
+import fr.fscript98.zapette.R
+import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
+import fr.fscript98.zapette.autre.QuestionModel
+import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModelList
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
 
     object Singleton {
         lateinit var questionModel: QuestionModel
+        var questionModelList = arrayListOf<QuestionModel>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
         val repo1 = BddRepository()
         repo1.updateData {
             setContentView(R.layout.activity_resultat_questionnaire)
@@ -43,8 +42,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val textViewH = findViewById<TextView>(R.id.nbreponseH)
             val textViewI = findViewById<TextView>(R.id.nbreponseI)
             val textViewTotal = findViewById<TextView>(R.id.nbTotal)
-
-
             val textView = findViewById<TextView>(R.id.textView2)
 
 

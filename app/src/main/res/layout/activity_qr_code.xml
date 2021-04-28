@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
-    tools:context=".QrCode">
+    tools:context=".eleve.QrCode">
 
     <ImageView
         android:id="@+id/imageQrCodeEleve2"

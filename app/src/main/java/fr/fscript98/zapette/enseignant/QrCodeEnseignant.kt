@@ -1,6 +1,6 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.enseignant
 
-import BddRepository.Singleton.motDePasseBdd
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,27 +8,29 @@ import android.widget.ImageView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
+import fr.fscript98.zapette.R
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 
-class QrCode : AppCompatActivity() {
+class QrCodeEnseignant : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_qr_code)
-        val etudiant= Intent(this,EtudiantRepondre::class.java)
-        val imageCode2 = findViewById<ImageView>(R.id.imageQrCodeEleve2)
+        setContentView(R.layout.activity_qr_code_enseignant)
+        val intent= Intent(this, ResultatQuestionnaire::class.java)
+        val imageCode3 = findViewById<ImageView>(R.id.imageQrCodeEnseignant)
         val qrCode = QRCodeWriter()
         val barcodeEncoder = BarcodeEncoder()
         val bitMtx = qrCode.encode(
-            "$motDePasseBdd",
-            BarcodeFormat.QR_CODE,
+            "$myRandomInt" ,
+            BarcodeFormat.QR_CODE ,
             2000,
             2000
 
         )
         val bitMap2 = barcodeEncoder.createBitmap(bitMtx)
-        imageCode2.setImageBitmap(bitMap2)
+        imageCode3.setImageBitmap(bitMap2)
 
-        imageCode2.setOnClickListener{
-            startActivity(etudiant)
+        imageCode3.setOnClickListener{
+            startActivity(intent)
             finish()
         }
     }

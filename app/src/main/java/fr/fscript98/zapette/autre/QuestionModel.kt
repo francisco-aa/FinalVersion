@@ -1,4 +1,4 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.autre
 
 class QuestionModel(
     var A:Int=0,

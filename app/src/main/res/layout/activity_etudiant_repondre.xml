@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
     android:statusBarColor="@color/black"
-    tools:context=".EtudiantRepondre">
+    tools:context=".eleve.EtudiantRepondre">
 
     <ImageView
         android:id="@+id/button_back3"
