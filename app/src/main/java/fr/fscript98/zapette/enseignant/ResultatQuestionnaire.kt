@@ -124,7 +124,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val terminer = findViewById<Button>(R.id.Terminer)
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
-                ref_questionnaire.child(question).removeValue()
+
                 startActivity(intentTerminer)
                 finish()
             }

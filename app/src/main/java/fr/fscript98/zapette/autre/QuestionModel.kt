@@ -10,5 +10,6 @@ class QuestionModel(
     var G:Int=0,
     var H:Int=0,
     var I:Int=0,
-    var motdepasse: Int = 12345
+    var motdepasse: Int = 12345,
+    var questionTerminee: Boolean = false
 )
