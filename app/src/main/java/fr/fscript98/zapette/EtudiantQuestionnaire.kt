@@ -111,5 +111,3 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
         }
     }
 }
-
-

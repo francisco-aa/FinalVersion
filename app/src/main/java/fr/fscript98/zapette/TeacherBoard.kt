@@ -1,4 +1,4 @@
- package fr.fscript98.zapette
+package fr.fscript98.zapette
 
 import BddRepository.Singleton.chemin
 import BddRepository.Singleton.question
@@ -15,7 +15,7 @@ import kotlin.random.Random
 
 class TeacherBoard : AppCompatActivity() {
     object Singleton{
-    var myRandomInt =1
+        var myRandomInt =1
     }
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -50,8 +50,6 @@ class TeacherBoard : AppCompatActivity() {
             val intentButtonRunQuiz = Intent(this, ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
             finish()
-
-
 
         }
         val buttonBack= findViewById<ImageView>(R.id.button_backEspaceEnsaignant)
