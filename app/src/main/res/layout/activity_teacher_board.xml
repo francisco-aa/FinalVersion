@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darkblue2">
@@ -21,13 +20,13 @@
         android:id="@+id/Teacher"
         style="@style/TitleTextStyle"
         android:layout_width="374dp"
-        android:layout_height="124dp"
+        android:layout_height="110dp"
         android:layout_marginTop="@dimen/default_margin"
         android:text="@string/title_teacher_page"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/buttonRunQuiz"
@@ -40,18 +39,5 @@
         app:layout_constraintEnd_toEndOf="@+id/Teacher"
         app:layout_constraintStart_toStartOf="@+id/Teacher"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
-        android:id="@+id/MesResultats"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_button"
-        android:text="Mes Résutats"
-        android:textAllCaps="false"
-
-        android:layout_marginTop="@dimen/default_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRunQuiz" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

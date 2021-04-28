@@ -10,7 +10,7 @@
     <TextView
         android:id="@+id/TitleRoleChoiceBack"
         style="@style/TitleTextStyle"
-        android:layout_width="227dp"
+        android:layout_width="@dimen/margin_titre_ver"
         android:layout_height="65dp"
         android:layout_marginTop="100dp"
         android:text="@string/title_connexion_page"

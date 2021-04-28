@@ -6,4 +6,6 @@
     <dimen name="margin_50">50dp</dimen>
     <dimen name="margin_250">250dp</dimen>
     <dimen name="margin_60">60dp</dimen>
+    <dimen name="margin_titre_ver">374dp</dimen>
+    <dimen name="margin_titre_hor">110dp</dimen>
 </resources>

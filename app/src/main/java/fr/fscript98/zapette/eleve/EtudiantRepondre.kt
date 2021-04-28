@@ -8,6 +8,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
@@ -17,12 +19,14 @@ import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
+import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.derniereRep
 
 
 class EtudiantRepondre : AppCompatActivity() {
 
     object Singleton {
         lateinit var bitMap : Bitmap
+        lateinit var derniereRep : String
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,11 +81,11 @@ class EtudiantRepondre : AppCompatActivity() {
 
                             oldButtonClique = buttonClique
                             hasVoted = true
-                            //On met l'id a jour, en lui donnant le motdepasse
-
+                            derniereRep = buttonClique
                         }
                     }
                 }
+                Toast.makeText(this, derniereRep, LENGTH_SHORT).show()
             }
         }
 
@@ -188,11 +192,9 @@ class EtudiantRepondre : AppCompatActivity() {
         val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)
         val barcodeEncoder = BarcodeEncoder()
         bitMap = barcodeEncoder.createBitmap(bitMtx)
-        val back = Intent(this , MainActivity::class.java)
         imageCode.setImageBitmap(bitMap)
         imageCode.setOnClickListener{
             startActivity(qrCodePage)
-
         }
     }
 }

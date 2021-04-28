@@ -42,39 +42,38 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
             val nbResG = questionModel.G
             val nbResH = questionModel.H
             val nbResI = questionModel.I
-            val nbResTotal =
-                nbResA + nbResB + nbResC + nbResD + nbResE + nbResF + nbResG + nbResH + nbResI
+            val nbResTotal = nbResA + nbResB + nbResC + nbResD + nbResE + nbResF + nbResG + nbResH + nbResI
 
-            if (nbResA != 0) {
+            if (nbResA!=0) {
                 txtViewA.text = ("$nbResA")
             }
-            if (nbResB != 0) {
+            if (nbResB!=0) {
                 txtViewB.text = ("$nbResB")
             }
-            if (nbResC != 0) {
+            if (nbResC!=0) {
                 txtViewC.text = ("$nbResC")
             }
-            if (nbResD != 0) {
+            if(nbResD!=0){
                 txtViewD.text = ("$nbResD")
             }
-            if (nbResE != 0) {
+            if (nbResE!=0){
                 txtViewE.text = ("$nbResE")
             }
-            if (nbResF != 0) {
+            if(nbResF!=0) {
                 txtViewF.text = ("$nbResF")
             }
-            if (nbResG != 0) {
+            if (nbResG!=0){
                 txtViewG.text = ("$nbResG")
             }
-            if (nbResH != 0) {
+            if (nbResH!=0){
                 txtViewH.text = ("$nbResH")
             }
-            if (nbResI != 0) {
+            if (nbResI!=0) {
                 txtViewI.text = ("$nbResI")
             }
             txtViewTotal.text = ("$nbResTotal")
 
-        }
+            }
 
         val quitter = findViewById<Button>(R.id.btn_quit)
         val intentQuitter = Intent(this , TeacherBoard::class.java)
