@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.TextView
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository
+import fr.fscript98.zapette.autre.BddRepository.Singleton.question
+import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 
@@ -73,7 +75,7 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
         val quitter = findViewById<Button>(R.id.btn_quit)
         val intentQuitter = Intent(this, TeacherBoard::class.java)
         quitter.setOnClickListener{
-            BddRepository.Singleton.ref_questionnaire.child(BddRepository.Singleton.question).removeValue()
+           ref_questionnaire.child(question).removeValue()
             startActivity(intentQuitter)
             finish()
         }
