@@ -1,8 +1,8 @@
-package fr.fscript98.zapette
+package fr.fscript98.zapette.enseignant
 
-import BddRepository.Singleton.chemin
-import BddRepository.Singleton.question
-import BddRepository.Singleton.questionListBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.chemin
+import fr.fscript98.zapette.autre.BddRepository.Singleton.question
+import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -10,7 +10,9 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
-import fr.fscript98.zapette.TeacherBoard.Singleton.myRandomInt
+import fr.fscript98.zapette.MainActivity
+import fr.fscript98.zapette.R
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import kotlin.random.Random
 
 class TeacherBoard : AppCompatActivity() {
@@ -56,7 +58,7 @@ class TeacherBoard : AppCompatActivity() {
 
         }
         val buttonBack= findViewById<ImageView>(R.id.button_backEspaceEnsaignant)
-        val intantBack= Intent(this,MainActivity::class.java)
+        val intantBack= Intent(this, MainActivity::class.java)
         buttonBack.setOnClickListener{
             startActivity(intantBack)
             finish()

@@ -19,8 +19,8 @@
     <TextView
         android:id="@+id/Teacher"
         style="@style/TitleTextStyle"
-        android:layout_width="@dimen/margin_titre_ver"
-        android:layout_height="@dimen/margin_titre_hor"
+        android:layout_width="374dp"
+        android:layout_height="110dp"
         android:layout_marginTop="@dimen/default_margin"
         android:text="@string/title_teacher_page"
         android:textAlignment="center"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/darkblue2"
     android:statusBarColor="@color/black"
-    tools:context=".EtudiantRepondre">
+    tools:context=".eleve.EtudiantRepondre">
 
     <ImageView
         android:id="@+id/button_back3"
@@ -17,6 +17,8 @@
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <TextView
         android:id="@+id/repondre_au_questionnaire"
@@ -56,11 +58,11 @@
         android:id="@+id/buttonB"
         style="@style/TextStyle"
         android:textColor="@color/black"
-
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/background_button"
         android:text="B"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/repondre_au_questionnaire"
         app:layout_constraintTop_toBottomOf="@+id/repondre_au_questionnaire"
@@ -73,6 +75,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="C"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/buttonB"
         app:layout_constraintStart_toEndOf="@+id/buttonB"
@@ -85,6 +88,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="D"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonA"
         app:layout_constraintStart_toStartOf="@+id/buttonA"
@@ -98,6 +102,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="E"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonB"
         app:layout_constraintStart_toStartOf="@+id/buttonB"
@@ -111,6 +116,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="F"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonC"
         app:layout_constraintStart_toStartOf="@+id/buttonC"
@@ -124,6 +130,7 @@
         android:layout_height="60dp"
         android:background="@drawable/background_button"
         android:text="G"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonD"
         app:layout_constraintStart_toStartOf="@+id/buttonD"
@@ -137,6 +144,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="H"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonE"
         app:layout_constraintStart_toStartOf="@+id/buttonE"
@@ -150,32 +158,21 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:text="I"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonF"
         app:layout_constraintStart_toStartOf="@+id/buttonF"
         app:layout_constraintTop_toBottomOf="@+id/buttonF"
         android:layout_marginTop="@dimen/margin_60"/>
 
-    <Button
-        android:id="@+id/buttonValider"
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Valider"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
+
+    <ImageView
+        android:id="@+id/imageQrCodeEleve"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonH" />
-
-    <ImageButton
-        android:id="@+id/imageQrCodeEleve"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonValider"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonValider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
