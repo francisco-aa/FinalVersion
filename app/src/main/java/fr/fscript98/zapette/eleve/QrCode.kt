@@ -21,8 +21,8 @@ class QrCode : AppCompatActivity() {
         val bitMtx = qrCode.encode(
             "$motDePasseBdd",
             BarcodeFormat.QR_CODE,
-            1000,
-            1000
+            5000,
+            5000
 
         )
         val bitMap2 = barcodeEncoder.createBitmap(bitMtx)
