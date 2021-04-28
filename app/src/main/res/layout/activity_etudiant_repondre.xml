@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/repondre_au_questionnaire"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/margin_titre_ver"
+        android:layout_height="@dimen/margin_titre_hor"
 
         android:layout_marginTop="85dp"
         android:fontFamily="@font/kanit"
