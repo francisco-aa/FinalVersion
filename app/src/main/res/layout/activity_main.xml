@@ -20,7 +20,9 @@
 
         app:layout_constraintHorizontal_bias="0.674"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
 
     <TextView
         android:id="@+id/TitleRoleChoice"
@@ -32,7 +34,9 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
 
     <ImageView
         android:id="@+id/iconRoleChoice"
@@ -41,7 +45,9 @@
         android:src="@drawable/ic_rolechoice"
         app:layout_constraintEnd_toEndOf="@+id/TitleRoleChoice"
         app:layout_constraintStart_toStartOf="@+id/TitleRoleChoice"
-        app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice">
+
+    </ImageView>
 
     <TextView
         android:id="@+id/whoAmI"
@@ -52,7 +58,9 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
         app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
-        app:layout_constraintTop_toBottomOf="@+id/iconRoleChoice"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/iconRoleChoice">
+
+    </TextView>
 
     <Button
         android:id="@+id/buttonTeacher"
@@ -66,7 +74,9 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
         app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
-        app:layout_constraintTop_toBottomOf="@+id/whoAmI"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/whoAmI">
+
+    </Button>
 
     <Button
         android:id="@+id/buttonStudent"
@@ -81,6 +91,8 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/buttonTeacher"
         app:layout_constraintStart_toStartOf="@+id/buttonTeacher"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTeacher"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/buttonTeacher">
+
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

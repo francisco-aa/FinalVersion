@@ -97,9 +97,9 @@ class EtudiantRepondre : AppCompatActivity() {
             if (oldButtonClique != "A") fonction("A")
             //si on clique sur A , on change la couler de A et on remet les autres en Noir
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            a.setTextColor(Color.parseColor("#FFBB86FC"))
+            a.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             //buttonClique = "A"
 
 
@@ -109,9 +109,9 @@ class EtudiantRepondre : AppCompatActivity() {
             if (oldButtonClique != "B") fonction("B")
 
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            b.setTextColor(Color.parseColor("#FFBB86FC"))
+            b.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             //buttonClique = "B"
 
         }
@@ -120,9 +120,9 @@ class EtudiantRepondre : AppCompatActivity() {
             if (oldButtonClique != "C") fonction("C")
 
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            c.setTextColor(Color.parseColor("#FFBB86FC"))
+            c.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             //buttonClique = "C"
         }
 
@@ -130,50 +130,50 @@ class EtudiantRepondre : AppCompatActivity() {
             if (oldButtonClique != "D") fonction("D")
 
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            d.setTextColor(Color.parseColor("#FFBB86FC"))
+            d.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
 
         e.setOnClickListener {
             if (oldButtonClique != "E") fonction("E")
 
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            e.setTextColor(Color.parseColor("#FFBB86FC"))
+            e.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
 
         f.setOnClickListener {
             if (oldButtonClique != "F") fonction("F")
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            f.setTextColor(Color.parseColor("#FFBB86FC"))
+            f.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
 
         g.setOnClickListener {
             if (oldButtonClique != "G") fonction("G")
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            g.setTextColor(Color.parseColor("#FFBB86FC"))
+            g.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
 
         h.setOnClickListener {
             if (oldButtonClique != "H") fonction("H")
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            h.setTextColor(Color.parseColor("#FFBB86FC"))
+            h.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
 
         i.setOnClickListener {
             if (oldButtonClique != "I") fonction("I")
             for (button in buttonList) {
-                button.setTextColor(Color.BLACK)
+                button.setBackgroundColor(Color.WHITE)
             }
-            i.setTextColor(Color.parseColor("#FFBB86FC"))
+            i.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
 
         val qrCode = QRCodeWriter()
