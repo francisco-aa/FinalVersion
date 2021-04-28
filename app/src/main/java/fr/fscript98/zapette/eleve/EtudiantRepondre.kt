@@ -85,7 +85,7 @@ class EtudiantRepondre : AppCompatActivity() {
                         }
                     }
                 }
-                Toast.makeText(this, derniereRep, LENGTH_SHORT).show()
+
             }
         }
 
@@ -185,8 +185,8 @@ class EtudiantRepondre : AppCompatActivity() {
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
-            100,
-            100
+            2000,
+            2000
         )
 
         val imageCode = findViewById<ImageView>(R.id.imageQrCodeEleve)

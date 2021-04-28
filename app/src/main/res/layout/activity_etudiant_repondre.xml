@@ -42,8 +42,8 @@
     android:id="@+id/cardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="5dp"
     app:layout_constraintEnd_toStartOf="@+id/cardViewB"
     app:layout_constraintTop_toTopOf="@+id/cardViewB"
     android:layout_marginRight="@dimen/margin_60"
@@ -66,7 +66,7 @@
     android:id="@+id/cardViewB"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="@+id/repondre_au_questionnaire"
@@ -89,7 +89,7 @@
     android:id="@+id/cardViewC"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintBottom_toBottomOf="@id/cardViewB"
     app:layout_constraintStart_toEndOf="@+id/cardViewB"
@@ -109,7 +109,7 @@
     android:id="@+id/cardViewD"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="@id/cardView"
     app:layout_constraintStart_toStartOf="@id/cardView"
@@ -130,7 +130,7 @@
     android:id="@+id/cardViewE"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="@+id/cardViewB"
     app:layout_constraintStart_toStartOf="@+id/cardViewB"
@@ -151,7 +151,7 @@
     android:id="@+id/cardViewF"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="@+id/cardViewC"
     app:layout_constraintStart_toStartOf="@+id/cardViewC"
@@ -171,7 +171,7 @@
 <androidx.cardview.widget.CardView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="@+id/cardViewD"
     app:layout_constraintStart_toStartOf="@+id/cardViewD"
@@ -192,7 +192,7 @@
     android:id="@+id/cardViewH"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="@+id/cardViewE"
     app:layout_constraintStart_toStartOf="@+id/cardViewE"
@@ -213,7 +213,7 @@
     android:id="@+id/cardViewI"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     app:layout_constraintEnd_toEndOf="@+id/cardViewF"
     app:layout_constraintStart_toStartOf="@+id/cardViewF"
@@ -231,14 +231,21 @@
         />
 </androidx.cardview.widget.CardView>
 
-
+<androidx.cardview.widget.CardView
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/cardViewH">
     <ImageView
-        android:id="@+id/imageQrCodeEleve"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewH" />
+    android:id="@+id/imageQrCodeEleve"
+        android:layout_gravity="center"
+    android:layout_width="150dp"
+    android:layout_height="150dp"/>
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
