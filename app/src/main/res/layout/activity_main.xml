@@ -8,18 +8,18 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/TitleRoleChoiceBack"
+        android:id="@+id/TitleRoleChoiceNoir"
         style="@style/TitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        app:layout_constraintHorizontal_bias="0.52"
         android:text="@string/title_connexion_page"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </TextView>
 
     <TextView
@@ -32,7 +32,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
 
     <ImageView
         android:id="@+id/iconRoleChoice"
@@ -41,7 +42,8 @@
         android:src="@drawable/ic_rolechoice"
         app:layout_constraintEnd_toEndOf="@+id/TitleRoleChoice"
         app:layout_constraintStart_toStartOf="@+id/TitleRoleChoice"
-        app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice"></ImageView>
+        app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice">
+    </ImageView>
 
     <TextView
         android:id="@+id/whoAmI"
@@ -52,7 +54,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
         app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
-        app:layout_constraintTop_toBottomOf="@+id/iconRoleChoice"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/iconRoleChoice">
+    </TextView>
 
     <Button
         android:id="@+id/buttonTeacher"

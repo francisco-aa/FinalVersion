@@ -10,11 +10,26 @@
     >
 
     <TextView
+        android:id="@+id/resultatsNoir"
+        style="@style/TitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_50"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="RÉSULTATS"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <TextView
         android:id="@+id/resultats"
         style="@style/TitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Résultats"
+        android:text="RÉSULTATS"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,100 +48,109 @@
 
     <TextView
         android:id="@+id/A"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:text="A"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintStart_toStartOf="@+id/barChart"
         app:layout_constraintTop_toBottomOf="@+id/barChart" />
 
     <TextView
         android:id="@+id/B"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="B"
         android:layout_marginLeft="32dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/A"
         app:layout_constraintStart_toEndOf="@+id/A" />
 
     <TextView
         android:id="@+id/C"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="C"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/B"
         app:layout_constraintStart_toEndOf="@+id/B" />
 
     <TextView
         android:id="@+id/D"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="D"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/C"
         app:layout_constraintStart_toEndOf="@+id/C" />
 
     <TextView
         android:id="@+id/E"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="E"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/D"
         app:layout_constraintStart_toEndOf="@+id/D" />
 
     <TextView
         android:id="@+id/F"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="F"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/E"
         app:layout_constraintStart_toEndOf="@+id/E" />
 
     <TextView
         android:id="@+id/G"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="G"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/F"
         app:layout_constraintStart_toEndOf="@+id/F" />
 
     <TextView
         android:id="@+id/H"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="H"
         android:layout_marginLeft="28dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/G"
         app:layout_constraintStart_toEndOf="@+id/G" />
 
     <TextView
         android:id="@+id/I"
+        style="@style/TextStyle"
+        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/H"
         app:layout_constraintStart_toEndOf="@+id/H" />
 
