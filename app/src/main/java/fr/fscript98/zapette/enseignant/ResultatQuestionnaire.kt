@@ -19,7 +19,6 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.model.GradientColor
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -27,7 +26,6 @@ import fr.fscript98.zapette.R
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
-import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModelList
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
@@ -46,9 +44,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val textViewTotal = findViewById<TextView>(R.id.nbTotal)
             val textView = findViewById<TextView>(R.id.textView2)
 
-            var barChart = findViewById<BarChart>(R.id.barChart)
-            var table = ArrayList<BarEntry>()
-
+            val barChart = findViewById<BarChart>(R.id.barChart)
+            val table = ArrayList<BarEntry>()
 
             for (codeBDD in questionListBdd) {
 
@@ -64,7 +61,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val nbI = codeBDD.I
                     val nbTotal = nbA + nbB + nbC + nbD + nbE + nbF + nbG + nbH + nbI
 
-
                     table.add(BarEntry(1f,nbA.toFloat()))
                     table.add(BarEntry(3f,nbB.toFloat()))
                     table.add(BarEntry(5f,nbC.toFloat()))
@@ -75,9 +71,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     table.add(BarEntry(15f,nbH.toFloat()))
                     table.add(BarEntry(17f,nbI.toFloat()))
 
-                    var barDataSet = BarDataSet(table,"")
+                    val barDataSet = BarDataSet(table,"")
 
-                    var barData = BarData(barDataSet)
+                    val barData = BarData(barDataSet)
 
                     barChart.setFitBars(true)
                     barChart.data = barData
@@ -91,10 +87,10 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     barChart.setScaleEnabled(false)
 
                     barChart.setDrawGridBackground(false)
-                    barChart.isClickable=false
+                    barChart.isClickable = false
 
                     //X Axis
-                    var labels = mutableListOf<String>()
+                    val labels = mutableListOf<String>()
 
                     val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
                     val xAxis = barChart.xAxis
@@ -130,6 +126,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     rightAxis.axisMinimum = 0f
 
 
+                    /*
                     val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
                     val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
 
@@ -137,6 +134,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     gradientColors.add(GradientColor(startColor1,enColor1))
 
                     barDataSet.gradientColors = gradientColors
+                     */
 
                     val dataSets = ArrayList<IBarDataSet>()
                     dataSets.add(barDataSet)
@@ -175,7 +173,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val terminer = findViewById<Button>(R.id.Terminer)
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
-                ref_questionnaire.child(question).child("questionTerminee").setValue(true)
+                ref_questionnaire.child(question).child("questionTerminee").setValue("true")
                 startActivity(intentTerminer)
                 finish()
             }

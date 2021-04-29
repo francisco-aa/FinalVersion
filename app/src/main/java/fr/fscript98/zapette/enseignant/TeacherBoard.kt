@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
+import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import kotlin.random.Random
 
@@ -50,13 +51,12 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("I").setValue(0)
             myRandomInt = Random.nextInt(10000 , 100000)
             databaseRef.child(question).child("motdepasse").setValue(myRandomInt)
-            databaseRef.child(question).child("questionTerminee").setValue(false)
+            databaseRef.child(question).child("questionTerminee").setValue("false")
+            BddRepository.Singleton.ref_questionnaire.child(question).child("bonneReponse").setValue("X")
+
             val intentButtonRunQuiz = Intent(this, ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
             finish()
-
-
-
         }
         val buttonBack= findViewById<ImageView>(R.id.button_backEspaceEnseignant)
         val intantBack= Intent(this, MainActivity::class.java)

@@ -3,6 +3,7 @@ package fr.fscript98.zapette.enseignant
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
+import android.graphics.Color
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -22,6 +23,7 @@ import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
+import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModelList
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
@@ -65,7 +67,6 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
 
             barChart.setFitBars(true)
             barChart.data = barData
-            //barChart.animateY(1000)
             barChart.setDrawBarShadow(false)
             barChart.setDrawValueAboveBar(true)
             barChart.description.isEnabled=false
@@ -76,6 +77,7 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
 
             barChart.setDrawGridBackground(false)
             barChart.isClickable=false
+            barChart.animateY(1000)
 
             //X Axis
             var labels = mutableListOf<String>()
@@ -113,7 +115,7 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
             rightAxis.spaceTop = 15f
             rightAxis.axisMinimum = 0f
 
-
+            /*
             val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
             val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
 
@@ -121,6 +123,7 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
             gradientColors.add(GradientColor(startColor1,enColor1))
 
             barDataSet.gradientColors = gradientColors
+             */
 
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(barDataSet)
@@ -133,7 +136,117 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
             barChart.legend.isEnabled=false
 
             txtViewTotal.text = ("$nbResTotal")
+        }
 
+        val aGood = findViewById<TextView>(R.id.Ares)
+        val bGood = findViewById<TextView>(R.id.Bres)
+        val cGood = findViewById<TextView>(R.id.Cres)
+        val dGood = findViewById<TextView>(R.id.Dres)
+        val eGood = findViewById<TextView>(R.id.Eres)
+        val fGood = findViewById<TextView>(R.id.Fres)
+        val gGood = findViewById<TextView>(R.id.Gres)
+        val hGood = findViewById<TextView>(R.id.Hres)
+        val iGood = findViewById<TextView>(R.id.Ires)
+
+        val answersList = arrayListOf<TextView>()
+        answersList.add(aGood)
+        answersList.add(bGood)
+        answersList.add(cGood)
+        answersList.add(dGood)
+        answersList.add(eGood)
+        answersList.add(fGood)
+        answersList.add(gGood)
+        answersList.add(hGood)
+        answersList.add(iGood)
+
+        aGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            aGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            aGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("A")
+        }
+
+        bGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            bGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            bGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("B")
+        }
+
+        cGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            cGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            cGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("C")
+        }
+
+        dGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            dGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            dGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("D")
+        }
+
+        eGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            eGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            eGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("E")
+        }
+
+        fGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            fGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            fGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("F")
+        }
+
+        gGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            gGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            gGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("G")
+        }
+
+        hGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            hGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            hGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("H")
+        }
+
+        iGood.setOnClickListener{
+            for (answer in answersList){
+                answer.setTextColor(Color.WHITE)
+                answer.textSize = 12f
+            }
+            iGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
+            iGood.textSize = 20f
+            ref_questionnaire.child(question).child("bonneReponse").setValue("I")
         }
 
         val quitter = findViewById<Button>(R.id.btn_quit)
