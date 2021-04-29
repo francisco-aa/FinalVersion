@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import fr.fscript98.zapette.MainActivity
@@ -51,11 +52,16 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
 
                 //Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
                 if (codeSaisi == questionModel.motdepasse.toString()) {
-
-                    motDePasseBdd = questionModel.motdepasse.toString()
-                    startActivity(intent2)
-                    finish()
-
+                    if (questionModel.questionTerminee == "true"){
+                        val intentttt = Intent(this, EtudiantResultats::class.java)
+                        startActivity(intentttt)
+                        finish()
+                    }
+                    else{
+                        motDePasseBdd = questionModel.motdepasse.toString()
+                        startActivity(intent2)
+                        finish()
+                    }
                 }
             }
         }

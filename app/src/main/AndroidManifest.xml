@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zapette">
-        <activity android:name=".eleve.EtudiantResultats"/>
+        <activity android:name=".eleve.EtudiantResultats"></activity>
         <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
         <activity android:name=".eleve.QrCode" />
         <activity android:name=".enseignant.QrCodeEnseignant" />

@@ -1,36 +1,39 @@
 package fr.fscript98.zapette.eleve
 
-
-import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
-import fr.fscript98.zapette.MainActivity
-import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.R
+import fr.fscript98.zapette.autre.BddRepository
+import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
+import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
+import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.derniereRep
+import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.questionM
 
 
 class EtudiantRepondre : AppCompatActivity() {
 
     object Singleton {
-        lateinit var bitMap : Bitmap
-        var derniereRep =""
+        lateinit var questionM: QuestionModel
+        lateinit var bitMap: Bitmap
+        var derniereRep = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+        var repo1 = BddRepository()
+
         setContentView(R.layout.activity_etudiant_repondre)
         // view
         val a = findViewById<Button>(R.id.buttonA)
@@ -57,35 +60,53 @@ class EtudiantRepondre : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val refQuestionnaire = database.getReference("questionnaire")
         var oldButtonClique = "null"
-        var hasVoted = false
+
+/*
+        for (question in questionListBdd) {
+            if (question.motdepasse.toString() == motDePasseBdd) {
+                questionM = question
+            }
+        }
+
+ */
+
+        repo1.updateData {
+            for (question in questionListBdd) {
+                if (question.motdepasse.toString() == motDePasseBdd) {
+                    if (question.questionTerminee == "true") {
+                        questionM = question
+                        val intent = Intent(this , EtudiantResultats::class.java)
+                        startActivity(intent)
+                        derniereRep = ""
+                        finish()
+                    }
+                }
+            }
+        }
+
+
+
 
         fun fonction(buttonClique: String) {
             database.getReference("questionnaire").get().addOnSuccessListener {
-                // On récup les enfant du chemin questionnaire
                 for (child in it.children) {
                     val questionModel = child.getValue(QuestionModel::class.java)
                     if (questionModel != null) {
-                        // On compare avec le mot de passe de la page EtudiantQuestinnaire
                         if (motDePasseBdd == questionModel.motdepasse.toString()) {
-                            //Toast.makeText(applicationContext,child.child(buttonClique).value,LENGTH_SHORT).show()
-                            // id correspond a la valeur du motDePasse pour la question a laquelle tu as participé
-                            if (hasVoted) {
-                                val numb1 = child.child(oldButtonClique).value.toString().toInt()
+                            if (derniereRep != "") {
+                                val numb1 = child.child(derniereRep).value.toString().toInt()
                                 refQuestionnaire.child(child.ref.key.toString())
-                                    .child(oldButtonClique).setValue(numb1 - 1)
+                                    .child(derniereRep).setValue(numb1 - 1)
                             }
-
                             val numb = child.child(buttonClique).value.toString().toInt()
                             refQuestionnaire.child(child.ref.key.toString())
                                 .child(buttonClique).setValue(numb + 1)
 
                             oldButtonClique = buttonClique
-                            hasVoted = true
                             derniereRep = buttonClique
                         }
                     }
                 }
-
             }
         }
 
@@ -181,11 +202,11 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         val qrCode = QRCodeWriter()
-        val qrCodePage= Intent(this, QrCode::class.java)
+        val qrCodePage = Intent(this , QrCode::class.java)
         val bitMtx = qrCode.encode(
             motDePasseBdd ,
             BarcodeFormat.QR_CODE ,
-            2000,
+            2000 ,
             2000
         )
 
@@ -193,11 +214,12 @@ class EtudiantRepondre : AppCompatActivity() {
         val barcodeEncoder = BarcodeEncoder()
         bitMap = barcodeEncoder.createBitmap(bitMtx)
         imageCode.setImageBitmap(bitMap)
-        imageCode.setOnClickListener{
+        imageCode.setOnClickListener {
             startActivity(qrCodePage)
         }
     }
 }
+
 
 
 
