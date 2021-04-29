@@ -32,7 +32,7 @@ class EtudiantRepondre : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        val repo1 = BddRepository()
+        var repo1 = BddRepository()
 
         setContentView(R.layout.activity_etudiant_repondre)
         // view
@@ -61,18 +61,31 @@ class EtudiantRepondre : AppCompatActivity() {
         val refQuestionnaire = database.getReference("questionnaire")
         var oldButtonClique = "null"
 
+/*
+        for (question in questionListBdd) {
+            if (question.motdepasse.toString() == motDePasseBdd) {
+                questionM = question
+            }
+        }
+
+ */
+
         repo1.updateData {
             for (question in questionListBdd) {
                 if (question.motdepasse.toString() == motDePasseBdd) {
-                    questionM = question
                     if (question.questionTerminee == "true") {
+                        questionM = question
                         val intent = Intent(this , EtudiantResultats::class.java)
                         startActivity(intent)
+                        derniereRep = ""
                         finish()
                     }
                 }
             }
         }
+
+
+
 
         fun fonction(buttonClique: String) {
             database.getReference("questionnaire").get().addOnSuccessListener {
