@@ -162,90 +162,76 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
         aGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             aGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            aGood.textSize = 20f
             ref_questionnaire.child(question).child("bonneReponse").setValue("A")
         }
 
         bGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             bGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            bGood.textSize = 20f
+
             ref_questionnaire.child(question).child("bonneReponse").setValue("B")
         }
 
         cGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
+
             }
             cGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            cGood.textSize = 20f
             ref_questionnaire.child(question).child("bonneReponse").setValue("C")
         }
 
         dGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             dGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            dGood.textSize = 20f
             ref_questionnaire.child(question).child("bonneReponse").setValue("D")
         }
 
         eGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             eGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            eGood.textSize = 20f
             ref_questionnaire.child(question).child("bonneReponse").setValue("E")
         }
 
         fGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             fGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            fGood.textSize = 20f
             ref_questionnaire.child(question).child("bonneReponse").setValue("F")
         }
 
         gGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             gGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            gGood.textSize = 20f
             ref_questionnaire.child(question).child("bonneReponse").setValue("G")
         }
 
         hGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             hGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            hGood.textSize = 20f
+
             ref_questionnaire.child(question).child("bonneReponse").setValue("H")
         }
 
         iGood.setOnClickListener{
             for (answer in answersList){
                 answer.setTextColor(Color.WHITE)
-                answer.textSize = 12f
             }
             iGood.setTextColor(ContextCompat.getColor(this,R.color.teal_200))
-            iGood.textSize = 20f
+
             ref_questionnaire.child(question).child("bonneReponse").setValue("I")
         }
 
@@ -253,7 +239,7 @@ class ResultatQuestionnaireFinal : AppCompatActivity() {
         val intentQuitter = Intent(this , TeacherBoard::class.java)
         quitter.setOnClickListener {
             ref_questionnaire.child(question).removeValue()
-            startActivity(intentQuitter)
+            startActivity((intentQuitter))
             finish()
         }
 

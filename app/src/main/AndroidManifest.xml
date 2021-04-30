@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="fr.fscript98.zapette">
+    package="fr.fscript98.zapette"
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,8 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Zapette">
-        <activity android:name=".eleve.EtudiantResultats"></activity>
+        android:theme="@style/Theme.Zapette"
+        >
+        <activity android:name=".enseignant.EnseignantMesResultats" />
+        <activity android:name=".eleve.EtudiantResultats"/>
         <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
         <activity android:name=".eleve.QrCode" />
         <activity android:name=".enseignant.QrCodeEnseignant" />

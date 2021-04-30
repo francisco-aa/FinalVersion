@@ -49,10 +49,12 @@
     <TextView
         android:id="@+id/Ares"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="25dp"
         android:text="A"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/barChart"
@@ -61,11 +63,14 @@
     <TextView
         android:id="@+id/Bres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="12dp"
         android:text="B"
-        android:layout_marginLeft="32dp"
+
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Ares"
         app:layout_constraintStart_toEndOf="@+id/Ares" />
@@ -73,11 +78,13 @@
     <TextView
         android:id="@+id/Cres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="12dp"
         android:text="C"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Bres"
         app:layout_constraintStart_toEndOf="@+id/Bres" />
@@ -85,11 +92,13 @@
     <TextView
         android:id="@+id/Dres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="13dp"
         android:text="D"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Cres"
         app:layout_constraintStart_toEndOf="@+id/Cres" />
@@ -97,23 +106,27 @@
     <TextView
         android:id="@+id/Eres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
         android:text="E"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/Dres"
-        app:layout_constraintStart_toEndOf="@+id/Dres" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/Fres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="13dp"
         android:text="F"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Eres"
         app:layout_constraintStart_toEndOf="@+id/Eres" />
@@ -121,11 +134,14 @@
     <TextView
         android:id="@+id/Gres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="12dp"
         android:text="G"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Fres"
         app:layout_constraintStart_toEndOf="@+id/Fres" />
@@ -133,11 +149,13 @@
     <TextView
         android:id="@+id/Hres"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="12dp"
         android:text="H"
-        android:layout_marginLeft="28dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Gres"
         app:layout_constraintStart_toEndOf="@+id/Gres" />
@@ -145,11 +163,13 @@
     <TextView
         android:id="@+id/Ires"
         style="@style/TextStyle"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
         android:text="I"
-        android:layout_marginLeft="30dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/Hres"
         app:layout_constraintStart_toEndOf="@+id/Hres" />
@@ -161,9 +181,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Total : "
-        app:layout_constraintEnd_toEndOf="@+id/resultats"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/resultats"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Eres">
 
     </TextView>
@@ -175,8 +195,8 @@
         android:layout_height="wrap_content"
         android:text=""
         app:layout_constraintBottom_toBottomOf="@+id/totalFin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+
+
         app:layout_constraintStart_toEndOf="@+id/totalFin"
         app:layout_constraintTop_toTopOf="@+id/totalFin">
 
