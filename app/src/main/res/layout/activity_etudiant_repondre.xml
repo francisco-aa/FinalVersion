@@ -27,7 +27,7 @@
 
         android:layout_marginTop="85dp"
         android:fontFamily="@font/kanit"
-        android:text="Répondez à la question suivante:"
+        android:text="Sélectionnez une réponse:"
         android:textAlignment="center"
 
         android:textColor="@color/white"
@@ -38,72 +38,75 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
-<androidx.cardview.widget.CardView
-    android:id="@+id/cardView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="5dp"
-    app:layout_constraintEnd_toStartOf="@+id/cardViewB"
-    app:layout_constraintTop_toTopOf="@+id/cardViewB"
-    android:layout_marginRight="@dimen/margin_60"
-    >
 
-    <Button
-    android:id="@+id/buttonA"
-    style="@style/TextStyle"
-    android:textColor="@color/black"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
-        android:background="@color/white"
-    android:text="A"
-    android:textStyle="bold"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_60"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/rep1_card"
+        app:layout_constraintTop_toTopOf="@+id/rep1_card">
 
-
-    /></androidx.cardview.widget.CardView>
-
-<androidx.cardview.widget.CardView
-    android:id="@+id/cardViewB"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="4dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="@+id/repondre_au_questionnaire"
-    app:layout_constraintTop_toBottomOf="@+id/repondre_au_questionnaire"
-    android:layout_marginTop="70dp">
         <Button
-        android:id="@+id/buttonB"
-        style="@style/TextStyle"
-        android:textColor="@color/black"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@color/white"
-        android:text="B"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/buttonA"
+            style="@style/TextStyle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:text="A"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+
+            />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rep1_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repondre_au_questionnaire">
+
+        <Button
+            android:id="@+id/buttonB"
+            style="@style/TextStyle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:text="B"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.cardview.widget.CardView>
 
-<androidx.cardview.widget.CardView
-    android:id="@+id/cardViewC"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="4dp"
-    app:layout_constraintBottom_toBottomOf="@id/cardViewB"
-    app:layout_constraintStart_toEndOf="@+id/cardViewB"
-    android:layout_marginLeft="@dimen/margin_60">
-    <Button
-    android:id="@+id/buttonC"
-    style="@style/TextStyle"
-    android:background="@color/white"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
-    android:text="C"
-    android:textStyle="bold"
-    android:textColor="@color/black"
-    /></androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_60"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toEndOf="@+id/rep1_card"
+        app:layout_constraintTop_toTopOf="@+id/rep1_card">
+
+        <Button
+            android:id="@+id/buttonC"
+            style="@style/TextStyle"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:text="C"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
 <androidx.cardview.widget.CardView
     android:id="@+id/cardViewD"
@@ -132,9 +135,9 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
-    app:layout_constraintEnd_toEndOf="@+id/cardViewB"
-    app:layout_constraintStart_toStartOf="@+id/cardViewB"
-    app:layout_constraintTop_toBottomOf="@+id/cardViewB"
+    app:layout_constraintEnd_toEndOf="@+id/rep1_card"
+    app:layout_constraintStart_toStartOf="@+id/rep1_card"
+    app:layout_constraintTop_toBottomOf="@+id/rep1_card"
     android:layout_marginTop="@dimen/margin_60">
     <Button
     android:id="@+id/buttonE"
