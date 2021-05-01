@@ -1,8 +1,5 @@
 package fr.fscript98.zapette.eleve
 
-
-
-
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import android.app.Activity
@@ -12,17 +9,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.Capture
+import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.mdp
 
 
 open class EtudiantQuestionnaire : AppCompatActivity() {
 
-
+    object Singleton {
+        lateinit var mdp: String
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -31,57 +30,47 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
         setContentView(R.layout.activity_etudiant_questionnaire)
         val intent = Intent(this , MainActivity::class.java)
         val intent2 = Intent(this , EtudiantRepondre::class.java)
-
-
+        val intent3 = Intent(this , EtudiantResultats::class.java)
         val editText = findViewById<EditText>(R.id.zone_saisie_code)
-        var codeSaisi = ""
+        var codeSaisi: String
 
 
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener {
-
             startActivity(intent)
             finish()
         }
+
         val buttonRejoindre = findViewById<Button>(R.id.button_rejoindre)
         buttonRejoindre.setOnClickListener {
-            //Toast.makeText(applicationContext , questionListBdd.size.toString() , LENGTH_SHORT).show()
             codeSaisi = editText.text.toString()
-            //TODO: Si codesaisi vide, redémarrer l'activity avec message d'erreur vide
             for (questionModel in questionListBdd) {
-
-                //Toast.makeText(applicationContext, codesaisi, LENGTH_SHORT).show()
                 if (codeSaisi == questionModel.motdepasse.toString()) {
-                    if (questionModel.questionTerminee == "true"){
-                        val intentttt = Intent(this, EtudiantResultats::class.java)
-                        startActivity(intentttt)
-                        finish()
-                    }
-                    else{
+                    if (questionModel.questionTerminee == "true") {
+                        mdp = codeSaisi
+                        startActivity(intent3)
+                        //finish
+                    } else {
                         motDePasseBdd = questionModel.motdepasse.toString()
                         startActivity(intent2)
-                        finish()
+                        //finish
                     }
                 }
             }
         }
 
-        val buttonScan=findViewById<Button>(R.id.button_scan)
+        val buttonScan = findViewById<Button>(R.id.button_scan)
         buttonScan.setOnClickListener {
             val scanner = IntentIntegrator(this)
             scanner.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES)
             scanner.setBeepEnabled(false)
             scanner.setOrientationLocked(false)
-
-
             scanner.setCaptureActivity(Capture::class.java)
             scanner.initiateScan()
         }
-
     }
 
     override fun onActivityResult(requestCode: Int , resultCode: Int , data: Intent?) {
-
 
         super.onActivityResult(requestCode , resultCode , data)
 
@@ -96,7 +85,7 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                         if (questionModel.motdepasse == result.contents.toInt()) {
                             motDePasseBdd = questionModel.motdepasse.toString()
                             startActivity(intent2)
-                            finish()
+                            //finish()
 
                         }
                     }
@@ -105,9 +94,7 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                 super.onActivityResult(requestCode , resultCode , data)
             }
         }
-
     }
-
 }
 
 

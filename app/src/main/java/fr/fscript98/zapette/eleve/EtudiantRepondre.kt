@@ -7,35 +7,33 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.derniereRep
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.questionM
-
+import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.shouldRun
 
 class EtudiantRepondre : AppCompatActivity() {
 
     object Singleton {
-        lateinit var questionM: QuestionModel
-        lateinit var bitMap: Bitmap
+        lateinit var questionM: QuestionModel //Contiendra le questionModel
+        lateinit var bitMap: Bitmap //QR code
         var derniereRep = ""
+        var shouldRun = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        var repo1 = BddRepository()
-
         setContentView(R.layout.activity_etudiant_repondre)
-        // view
+
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)
         val c = findViewById<Button>(R.id.buttonC)
@@ -56,37 +54,51 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(g)
         buttonList.add(h)
         buttonList.add(i)
-        // intent
+
         val database = FirebaseDatabase.getInstance()
         val refQuestionnaire = database.getReference("questionnaire")
-        var oldButtonClique = "null"
+        var ref: String
+        val intent = Intent(applicationContext , EtudiantResultats::class.java)
 
-/*
+
         for (question in questionListBdd) {
             if (question.motdepasse.toString() == motDePasseBdd) {
-                questionM = question
-            }
-        }
-
- */
-
-        repo1.updateData {
-            for (question in questionListBdd) {
-                if (question.motdepasse.toString() == motDePasseBdd) {
-                    if (question.questionTerminee == "true") {
-                        questionM = question
-                        val intent = Intent(this , EtudiantResultats::class.java)
-                        startActivity(intent)
-                        derniereRep = ""
-                        finish()
-                    }
+                if (question.questionTerminee == "true") {
+                    questionM = question
+                    derniereRep = ""
                 }
             }
         }
 
+        //Place un listener sur le champs questionTerminee de la question actuelle
+        refQuestionnaire.get().addOnSuccessListener {
+            for (question in it.children) {
+                if (question.child("motdepasse").value.toString() == motDePasseBdd) {
+                    ref = question.key.toString()
 
+                    refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
+                        object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.value.toString() == "true") {
+                                    if (shouldRun) startActivity(intent)
+                                    refQuestionnaire.child(ref).child("questionTerminee")
+                                        .removeEventListener(this)
+                                    finish()
+                                }
+                            }
 
+                            override fun onCancelled(error: DatabaseError) {
 
+                            }
+                        })
+                }
+            }
+        }
+
+        shouldRun = true
+
+        //Incrémente buttonClique (la réponse selectionnée) dans la BDD
+        //décrémente derniereRep (la réponse d'avant) dans la bdd
         fun fonction(buttonClique: String) {
             database.getReference("questionnaire").get().addOnSuccessListener {
                 for (child in it.children) {
@@ -102,7 +114,6 @@ class EtudiantRepondre : AppCompatActivity() {
                             refQuestionnaire.child(child.ref.key.toString())
                                 .child(buttonClique).setValue(numb + 1)
 
-                            oldButtonClique = buttonClique
                             derniereRep = buttonClique
                         }
                     }
@@ -110,49 +121,36 @@ class EtudiantRepondre : AppCompatActivity() {
             }
         }
 
-        buttonBack.setOnClickListener {
-            val intentButtonBack = Intent(this , EtudiantQuestionnaire::class.java)
-            startActivity(intentButtonBack)
-            finish()
-        }
 
-        // changer la couleur de l'écriture pour voir la sélection
         a.setOnClickListener {
-            // si le boutton cliqué et déjà A alors on remet le texte a noir et la valeur buttonClique a "aucun"
-            if (oldButtonClique != "A") fonction("A")
-            //si on clique sur A , on change la couler de A et on remet les autres en Noir
+            if (derniereRep != "A") fonction("A")
+
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
             a.setBackgroundColor(Color.parseColor("#FFBB86FC"))
-            //buttonClique = "A"
-
-
         }
 
         b.setOnClickListener {
-            if (oldButtonClique != "B") fonction("B")
+            if (derniereRep != "B") fonction("B")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
             b.setBackgroundColor(Color.parseColor("#FFBB86FC"))
-            //buttonClique = "B"
-
         }
 
         c.setOnClickListener {
-            if (oldButtonClique != "C") fonction("C")
+            if (derniereRep != "C") fonction("C")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
             c.setBackgroundColor(Color.parseColor("#FFBB86FC"))
-            //buttonClique = "C"
         }
 
         d.setOnClickListener {
-            if (oldButtonClique != "D") fonction("D")
+            if (derniereRep != "D") fonction("D")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -161,7 +159,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         e.setOnClickListener {
-            if (oldButtonClique != "E") fonction("E")
+            if (derniereRep != "E") fonction("E")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -170,7 +168,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         f.setOnClickListener {
-            if (oldButtonClique != "F") fonction("F")
+            if (derniereRep != "F") fonction("F")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -178,7 +176,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         g.setOnClickListener {
-            if (oldButtonClique != "G") fonction("G")
+            if (derniereRep != "G") fonction("G")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -186,7 +184,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         h.setOnClickListener {
-            if (oldButtonClique != "H") fonction("H")
+            if (derniereRep != "H") fonction("H")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -194,12 +192,18 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         i.setOnClickListener {
-            if (oldButtonClique != "I") fonction("I")
+            if (derniereRep != "I") fonction("I")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
             i.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         }
+
+        buttonBack.setOnClickListener {
+            shouldRun = false
+            finish()
+        }
+
 
         val qrCode = QRCodeWriter()
         val qrCodePage = Intent(this , QrCode::class.java)
@@ -218,7 +222,14 @@ class EtudiantRepondre : AppCompatActivity() {
             startActivity(qrCodePage)
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        shouldRun = false //empeche le déclenchement du listener questionTerminne dans le futur
+        finish()
+    }
 }
+
 
 
 
