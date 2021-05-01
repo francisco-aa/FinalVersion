@@ -22,8 +22,8 @@ class QrCodeEnseignant : AppCompatActivity() {
         val bitMtx = qrCode.encode(
             "$myRandomInt" ,
             BarcodeFormat.QR_CODE ,
-            2000,
-            2000
+            5000,
+            5000
 
         )
         val bitMap2 = barcodeEncoder.createBitmap(bitMtx)
