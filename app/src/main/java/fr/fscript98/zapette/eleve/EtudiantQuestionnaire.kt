@@ -14,6 +14,7 @@ import com.google.zxing.integration.android.IntentIntegrator
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.Capture
+import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.fromQuestionnaire
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.mdp
 
 
@@ -21,6 +22,7 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
 
     object Singleton {
         lateinit var mdp: String
+        var fromQuestionnaire = false
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +50,7 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                 if (codeSaisi == questionModel.motdepasse.toString()) {
                     if (questionModel.questionTerminee == "true") {
                         mdp = codeSaisi
+                        fromQuestionnaire = true
                         startActivity(intent3)
                         //finish
                     } else {

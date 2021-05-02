@@ -4,8 +4,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import com.google.zxing.BarcodeFormat
@@ -13,21 +16,24 @@ import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
-import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
-import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.derniereRep
-import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.questionM
+import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.reponseFournie
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.shouldRun
 
 class EtudiantRepondre : AppCompatActivity() {
 
     object Singleton {
-        lateinit var questionM: QuestionModel //Contiendra le questionModel
         lateinit var bitMap: Bitmap //QR code
-        var derniereRep = ""
-        var shouldRun = true
+        var reponseFournie = ""     //Transmis à EtudiantResultat
+        var shouldRun = true        //
     }
+
+    var rep_etudiant = ""           //reponse etudiant LOCALE
+    var ref = ""                    //nom de la question format questionX
+    lateinit var listener: ValueEventListener
+    val database = FirebaseDatabase.getInstance()
+    val refQuestionnaire = database.getReference("questionnaire")
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -55,46 +61,58 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(h)
         buttonList.add(i)
 
-        val database = FirebaseDatabase.getInstance()
-        val refQuestionnaire = database.getReference("questionnaire")
-        var ref: String
+
         val intent = Intent(applicationContext , EtudiantResultats::class.java)
-
-
+/*
         for (question in questionListBdd) {
             if (question.motdepasse.toString() == motDePasseBdd) {
                 if (question.questionTerminee == "true") {
-                    questionM = question
-                    derniereRep = ""
+                    //questionM = question
+                    //derniereRep = ""
                 }
+                questionM = question
+                Toast.makeText(this, questionM.motdepasse, LENGTH_SHORT).show()
+
             }
         }
+*/
+        //Nettoyer le shared preferences
+        deleteDataIfNotExists()
 
-        //Place un listener sur le champs questionTerminee de la question actuelle
+        //Parcours BDD
         refQuestionnaire.get().addOnSuccessListener {
+            val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
             for (question in it.children) {
+
                 if (question.child("motdepasse").value.toString() == motDePasseBdd) {
                     ref = question.key.toString()
+                    if (sharedPreferences.contains(ref))
+                        loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
+                    else
+                        saveData(ref , "") //On a jamais participé à cette question, donc champ vide
 
-                    refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
-                        object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                if (snapshot.value.toString() == "true") {
-                                    if (shouldRun) startActivity(intent)
-                                    refQuestionnaire.child(ref).child("questionTerminee")
-                                        .removeEventListener(this)
-                                    finish()
+                    listener = //Placement d'un listener actif sur la question dans la bdd
+                        refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
+                            object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.value.toString() == "true") {
+                                        if (shouldRun) startActivity(intent) //question terminée, démarrage de l'activité suivante
+                                        refQuestionnaire.child(ref).child("questionTerminee")
+                                            .removeEventListener(this) //Détruit le listener
+                                        finish()
+                                    }
                                 }
-                            }
+                                override fun onCancelled(error: DatabaseError) {
 
-                            override fun onCancelled(error: DatabaseError) {
-
-                            }
-                        })
+                                }
+                            })
                 }
             }
         }
+        //loadData(ref)
+        //Toast.makeText(this, ref, LENGTH_SHORT).show()
 
+        // Toast.makeText(this, rep_etudiant, LENGTH_SHORT).show()
         shouldRun = true
 
         //Incrémente buttonClique (la réponse selectionnée) dans la BDD
@@ -105,16 +123,18 @@ class EtudiantRepondre : AppCompatActivity() {
                     val questionModel = child.getValue(QuestionModel::class.java)
                     if (questionModel != null) {
                         if (motDePasseBdd == questionModel.motdepasse.toString()) {
-                            if (derniereRep != "") {
-                                val numb1 = child.child(derniereRep).value.toString().toInt()
+                            if (rep_etudiant != "") {
+                                val numb1 = child.child(rep_etudiant).value.toString().toInt()
                                 refQuestionnaire.child(child.ref.key.toString())
-                                    .child(derniereRep).setValue(numb1 - 1)
+                                    .child(rep_etudiant).setValue(numb1 - 1)
                             }
                             val numb = child.child(buttonClique).value.toString().toInt()
                             refQuestionnaire.child(child.ref.key.toString())
                                 .child(buttonClique).setValue(numb + 1)
 
-                            derniereRep = buttonClique
+                            saveData(ref , buttonClique)
+                            loadData(ref)
+                            reponseFournie = buttonClique
                         }
                     }
                 }
@@ -123,8 +143,7 @@ class EtudiantRepondre : AppCompatActivity() {
 
 
         a.setOnClickListener {
-            if (derniereRep != "A") fonction("A")
-
+            if (rep_etudiant != "A") fonction("A")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -132,8 +151,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         b.setOnClickListener {
-            if (derniereRep != "B") fonction("B")
-
+            if (rep_etudiant != "B") fonction("B")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -141,7 +159,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         c.setOnClickListener {
-            if (derniereRep != "C") fonction("C")
+            if (rep_etudiant != "C") fonction("C")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -150,7 +168,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         d.setOnClickListener {
-            if (derniereRep != "D") fonction("D")
+            if (rep_etudiant != "D") fonction("D")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -159,7 +177,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         e.setOnClickListener {
-            if (derniereRep != "E") fonction("E")
+            if (rep_etudiant != "E") fonction("E")
 
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -168,7 +186,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         f.setOnClickListener {
-            if (derniereRep != "F") fonction("F")
+            if (rep_etudiant != "F") fonction("F")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -176,7 +194,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         g.setOnClickListener {
-            if (derniereRep != "G") fonction("G")
+            if (rep_etudiant != "G") fonction("G")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -184,7 +202,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         h.setOnClickListener {
-            if (derniereRep != "H") fonction("H")
+            if (rep_etudiant != "H") fonction("H")
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -192,7 +210,8 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         i.setOnClickListener {
-            if (derniereRep != "I") fonction("I")
+            //if (rep_etudiant != "I") fonction("I")
+            showSR()
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -201,6 +220,11 @@ class EtudiantRepondre : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             shouldRun = false
+            killSR()
+            FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
+                .child("questionTerminee")
+                .removeEventListener(listener)
+            //derniereRep = ""
             finish()
         }
 
@@ -226,8 +250,65 @@ class EtudiantRepondre : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         shouldRun = false //empeche le déclenchement du listener questionTerminne dans le futur
+        FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
+            .child("questionTerminee")
+            .removeEventListener(listener)
         finish()
     }
+
+    private fun saveData(ref: String , buttonClique: String) {
+        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(ref , buttonClique)
+        editor.apply()
+    }
+
+    private fun loadData(ref: String) {
+        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
+        rep_etudiant = sharedPreferences.getString(ref , "").toString()
+    }
+
+    private fun deleteDataIfNotExists() {
+        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val allEntries: Map<String , *> = sharedPreferences.all
+        var destroy = true
+
+        refQuestionnaire.get().addOnSuccessListener{
+            for ((key , _) in allEntries) {
+                for (child in it.children){
+                    if (key == child.key.toString())
+                        destroy = false
+                }
+                if (destroy){
+                    editor.remove(key)
+                    editor.apply()
+                }
+                destroy = true
+            }
+        }
+    }
+
+    //fonctions de développement
+    //TODO à Supprimer
+    fun killSR() {
+        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        Toast.makeText(this , "success" , LENGTH_SHORT).show()
+        editor.clear()
+        editor.apply()
+    }
+
+    //TODO à Supprimer
+    fun showSR() {
+        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
+        val allEntries: Map<String , *> = sharedPreferences.all
+        for ((key , value) in allEntries) {
+            Log.d("map values" , key + ": " + value.toString())
+        }
+
+    }
+
 }
 
 

@@ -7,12 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.derniereRep
-import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.questionM
-import java.lang.Thread.sleep
+import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.fromQuestionnaire
+import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.mdp
+import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.reponseFournie
+
 import android.view.animation.AlphaAnimation as AlphaAnimation1
+
 
 class EtudiantResultats : AppCompatActivity() {
 
@@ -20,26 +23,33 @@ class EtudiantResultats : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_etudiant_resultats)
 
-        val rep1 = findViewById<TextView>(R.id.rep1)
+        val rep1 = findViewById<TextView>(R.id.rep1) //Reponse etudiant
         val rep1_card = findViewById<CardView>(R.id.rep1_card)
-        val rep2 = findViewById<TextView>(R.id.rep2)
+        val rep2 = findViewById<TextView>(R.id.rep2) //Reponse correcte
         val rep2_card = findViewById<CardView>(R.id.rep2_card)
-        //val reponse = questionM.bonneReponse
-        val reponse = "A"
 
-
-        //rep1.setBackgroundColor(Color.parseColor("#FFBB86FC"))
         rep2_card.setCardBackgroundColor(Color.GREEN)
-        rep1.setText(derniereRep)
+        rep1_card.setCardBackgroundColor(Color.RED)
+
+        val reponse = "A" //TODO putain
+        val sharedPreferences = getSharedPreferences("shared_prefs", MODE_PRIVATE)
+        val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
+        var reponseEtudiant = reponseFournie
+
+        if (fromQuestionnaire)
+        refQuestionnaire.get().addOnSuccessListener {
+            for (question in it.children){
+                if (mdp == question.child("motdepasse").value.toString()){
+                    reponseEtudiant = sharedPreferences.getString(question.key.toString(), "").toString()
+                    rep1.setText(reponseEtudiant)
+                }
+            }
+        }
+
+        rep1.setText(reponseEtudiant)
         rep2.setText(reponse)
 
-        if (derniereRep == reponse){
-            rep1_card.setCardBackgroundColor(Color.GREEN)
-        }
-        else{
-            rep1_card.setCardBackgroundColor(Color.RED)
-        }
-
+        rep1_card.setCardBackgroundColor(Color.GREEN)
 
         val anim = AlphaAnimation1(0.0f , 1.0f)
         anim.duration = 2000
