@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.enseignant.EnseignantMesResultats
-import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModelList
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
 class QuestionAdapter ( private val context: EnseignantMesResultats,

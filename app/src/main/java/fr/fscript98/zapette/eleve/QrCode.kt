@@ -28,6 +28,7 @@ class QrCode : AppCompatActivity() {
         imageCode2.setImageBitmap(bitMap2)
 
         imageCode2.setOnClickListener{
+
             finish()
         }
     }

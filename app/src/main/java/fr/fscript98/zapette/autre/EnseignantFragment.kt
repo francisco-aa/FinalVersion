@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.enseignant.EnseignantMesResultats
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire
+
 import fr.fscript98.zapette.enseignant.TeacherBoard
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 class EnseignantFragment(
     private val context : EnseignantMesResultats
@@ -21,7 +23,7 @@ class EnseignantFragment(
 
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         verticalRecyclerView.adapter= QuestionAdapter(context,
-            ResultatQuestionnaire.Singleton.questionModelList ,
+            questionModelList ,
             R.layout.item_resultats)
         return view
     }
