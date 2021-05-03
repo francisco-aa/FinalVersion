@@ -3,10 +3,13 @@ package fr.fscript98.zapette
 import fr.fscript98.zapette.autre.BddRepository
 import android.content.Intent
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire
 import fr.fscript98.zapette.enseignant.TeacherBoard
+
 
 class MainActivity : AppCompatActivity() {
     //private var BackPressedTime = 0L
