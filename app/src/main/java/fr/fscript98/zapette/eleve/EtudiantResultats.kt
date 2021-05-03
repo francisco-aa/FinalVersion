@@ -10,9 +10,7 @@ import androidx.cardview.widget.CardView
 import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.fromQuestionnaire
-import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.mdp
-import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.reponseFournie
+import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 
 import android.view.animation.AlphaAnimation as AlphaAnimation1
 
@@ -28,29 +26,27 @@ class EtudiantResultats : AppCompatActivity() {
         val rep2 = findViewById<TextView>(R.id.rep2) //Reponse correcte
         val rep2_card = findViewById<CardView>(R.id.rep2_card)
 
-        rep2_card.setCardBackgroundColor(Color.GREEN)
         rep1_card.setCardBackgroundColor(Color.RED)
+        rep2_card.setCardBackgroundColor(Color.GREEN)
 
         var bonneReponse = ""
         val sharedPreferences = getSharedPreferences("shared_prefs", MODE_PRIVATE)
         val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
-        var reponseEtudiant = reponseFournie
+        var reponseEtudiant = ""
 
-        if (fromQuestionnaire)
         refQuestionnaire.get().addOnSuccessListener {
             for (question in it.children){
-                if (mdp == question.child("motdepasse").value.toString()){
-                    bonneReponse = question.child("bonneReponse").toString()
+                if (motDePasseBdd == question.child("motdepasse").value.toString()){
+                    bonneReponse = question.child("bonneReponse").value.toString()
                     reponseEtudiant = sharedPreferences.getString(question.key.toString(), "").toString()
+                    if (bonneReponse == reponseEtudiant)
+                        rep1_card.setCardBackgroundColor(Color.GREEN)
+
                     rep1.setText(reponseEtudiant)
+                    rep2.setText(bonneReponse)
                 }
             }
         }
-
-        rep1.setText(reponseEtudiant)
-        rep2.setText(bonneReponse)
-
-        rep1_card.setCardBackgroundColor(Color.GREEN)
 
         val anim = AlphaAnimation1(0.0f , 1.0f)
         anim.duration = 2000

@@ -162,6 +162,34 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val hGood = findViewById<TextView>(R.id.H)
                     val iGood = findViewById<TextView>(R.id.I)
 
+                    if (bonnereponse == "A"){
+                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "B"){
+                        bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "C"){
+                        cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "D"){
+                        dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "E"){
+                        eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "F"){
+                        fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "G"){
+                        gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "H"){
+                        hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "I"){
+                        iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+
                     val answersList = arrayListOf<TextView>()
                     answersList.add(aGood)
                     answersList.add(bGood)

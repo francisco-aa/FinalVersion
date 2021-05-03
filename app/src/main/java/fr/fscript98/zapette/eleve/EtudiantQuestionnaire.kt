@@ -15,13 +15,10 @@ import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.Capture
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.fromQuestionnaire
-import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.mdp
-
 
 open class EtudiantQuestionnaire : AppCompatActivity() {
 
     object Singleton {
-        lateinit var mdp: String
         var fromQuestionnaire = false
     }
 
@@ -48,13 +45,12 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
             codeSaisi = editText.text.toString()
             for (questionModel in questionListBdd) {
                 if (codeSaisi == questionModel.motdepasse.toString()) {
+                    motDePasseBdd = questionModel.motdepasse.toString()
                     if (questionModel.questionTerminee == "true") {
-                        mdp = codeSaisi
                         fromQuestionnaire = true
                         startActivity(intent3)
                         //finish
                     } else {
-                        motDePasseBdd = questionModel.motdepasse.toString()
                         startActivity(intent2)
                         //finish
                     }

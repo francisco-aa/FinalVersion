@@ -6,8 +6,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import com.google.zxing.BarcodeFormat
@@ -28,12 +26,11 @@ class EtudiantRepondre : AppCompatActivity() {
         var shouldRun = true        //
     }
 
-    var rep_etudiant = ""           //reponse etudiant LOCALE
+    var rep_etudiant = ""
     var ref = ""                    //nom de la question format questionX
     lateinit var listener: ValueEventListener
     val database = FirebaseDatabase.getInstance()
     val refQuestionnaire = database.getReference("questionnaire")
-    val sharedPreference = SharedPreference(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -62,9 +59,9 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(i)
 
         val intent = Intent(applicationContext , EtudiantResultats::class.java)
-
+        val sharedPreference = SharedPreference(this)
         //Nettoyer le shared preferences
-       sharedPreference.deleteDataIfNotExists()
+        sharedPreference.deleteDataIfNotExists()
 
         //Parcours BDD
         refQuestionnaire.get().addOnSuccessListener {
@@ -72,7 +69,8 @@ class EtudiantRepondre : AppCompatActivity() {
                 if (question.child("motdepasse").value.toString() == motDePasseBdd) {
                     ref = question.key.toString()
                     if (sharedPreference.isIn(ref))
-                        sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
+                        rep_etudiant =
+                            sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
                     else
                         sharedPreference.saveData(ref , "") //On a jamais participé à cette question, donc champ vide
 
@@ -87,6 +85,7 @@ class EtudiantRepondre : AppCompatActivity() {
                                         finish()
                                     }
                                 }
+
                                 override fun onCancelled(error: DatabaseError) {
 
                                 }
@@ -94,10 +93,7 @@ class EtudiantRepondre : AppCompatActivity() {
                 }
             }
         }
-        //loadData(ref)
-        //Toast.makeText(this, ref, LENGTH_SHORT).show()
 
-        // Toast.makeText(this, rep_etudiant, LENGTH_SHORT).show()
         shouldRun = true
 
         //Incrémente buttonClique (la réponse selectionnée) dans la BDD
@@ -118,7 +114,7 @@ class EtudiantRepondre : AppCompatActivity() {
                                 .child(buttonClique).setValue(numb + 1)
 
                             sharedPreference.saveData(ref , buttonClique)
-                            sharedPreference.loadData(ref)
+                            rep_etudiant = sharedPreference.loadData(ref)
                             reponseFournie = buttonClique
                         }
                     }

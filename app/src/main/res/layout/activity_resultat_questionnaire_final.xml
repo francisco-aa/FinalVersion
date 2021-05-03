@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/A"
+                android:id="@+id/Ares"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/barChart" />
 
             <TextView
-                android:id="@+id/B"
+                android:id="@+id/Bres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,11 +76,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/A"
-                app:layout_constraintStart_toEndOf="@+id/A" />
+                app:layout_constraintBottom_toBottomOf="@+id/Ares"
+                app:layout_constraintStart_toEndOf="@+id/Ares" />
 
             <TextView
-                android:id="@+id/C"
+                android:id="@+id/Cres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,11 +89,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/B"
-                app:layout_constraintStart_toEndOf="@+id/B" />
+                app:layout_constraintBottom_toBottomOf="@+id/Bres"
+                app:layout_constraintStart_toEndOf="@+id/Bres" />
 
             <TextView
-                android:id="@+id/D"
+                android:id="@+id/Dres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,11 +102,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/C"
-                app:layout_constraintStart_toEndOf="@+id/C" />
+                app:layout_constraintBottom_toBottomOf="@+id/Cres"
+                app:layout_constraintStart_toEndOf="@+id/Cres" />
 
             <TextView
-                android:id="@+id/E"
+                android:id="@+id/Eres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,11 +115,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/D"
-                app:layout_constraintStart_toEndOf="@+id/D" />
+                app:layout_constraintBottom_toBottomOf="@+id/Dres"
+                app:layout_constraintStart_toEndOf="@+id/Dres" />
 
             <TextView
-                android:id="@+id/F"
+                android:id="@+id/Fres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -127,11 +127,11 @@
                 android:text="F"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/E"
-                app:layout_constraintStart_toEndOf="@+id/E" />
+                app:layout_constraintBottom_toBottomOf="@+id/Eres"
+                app:layout_constraintStart_toEndOf="@+id/Eres" />
 
             <TextView
-                android:id="@+id/G"
+                android:id="@+id/Gres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,11 +140,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/F"
-                app:layout_constraintStart_toEndOf="@+id/F" />
+                app:layout_constraintBottom_toBottomOf="@+id/Fres"
+                app:layout_constraintStart_toEndOf="@+id/Fres" />
 
             <TextView
-                android:id="@+id/H"
+                android:id="@+id/Hres"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,11 +153,11 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/G"
-                app:layout_constraintStart_toEndOf="@+id/G" />
+                app:layout_constraintBottom_toBottomOf="@+id/Gres"
+                app:layout_constraintStart_toEndOf="@+id/Gres" />
 
             <TextView
-                android:id="@+id/I"
+                android:id="@+id/Ires"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,8 +166,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/H"
-                app:layout_constraintStart_toEndOf="@+id/H" />
+                app:layout_constraintBottom_toBottomOf="@+id/Hres"
+                app:layout_constraintStart_toEndOf="@+id/Hres" />
         </LinearLayout>
 
         <LinearLayout
