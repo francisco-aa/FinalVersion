@@ -14,6 +14,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 import fr.fscript98.zapette.autre.QuestionModel
+import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.reponseFournie
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.shouldRun

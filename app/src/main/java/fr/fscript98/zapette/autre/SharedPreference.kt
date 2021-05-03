@@ -1,4 +1,4 @@
-package fr.fscript98.zapette.eleve
+package fr.fscript98.zapette.autre
 
 
 import android.content.Context
@@ -9,7 +9,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class SharedPreference(val context: Context) {
     val spEtudiantName = "shared_prefs"
-    val spEtudiant : SharedPreferences = context.getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
+    val spEtudiant : SharedPreferences = context.getSharedPreferences(spEtudiantName, Context.MODE_PRIVATE)
     val editor : SharedPreferences.Editor = spEtudiant.edit()
     val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
 
