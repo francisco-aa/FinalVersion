@@ -6,6 +6,7 @@ import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -26,6 +27,7 @@ import fr.fscript98.zapette.R
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
+import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
@@ -33,6 +35,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
     object Singleton {
         lateinit var questionModel: QuestionModel
         var questionModelList = arrayListOf<QuestionModel>()
+        var bonnereponse=""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,17 +64,17 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val nbI = codeBDD.I
                     val nbTotal = nbA + nbB + nbC + nbD + nbE + nbF + nbG + nbH + nbI
 
-                    table.add(BarEntry(1f,nbA.toFloat()))
-                    table.add(BarEntry(3f,nbB.toFloat()))
-                    table.add(BarEntry(5f,nbC.toFloat()))
-                    table.add(BarEntry(7f,nbD.toFloat()))
-                    table.add(BarEntry(9f,nbE.toFloat()))
-                    table.add(BarEntry(11f,nbF.toFloat()))
-                    table.add(BarEntry(13f,nbG.toFloat()))
-                    table.add(BarEntry(15f,nbH.toFloat()))
-                    table.add(BarEntry(17f,nbI.toFloat()))
+                    table.add(BarEntry(1f , nbA.toFloat()))
+                    table.add(BarEntry(3f , nbB.toFloat()))
+                    table.add(BarEntry(5f , nbC.toFloat()))
+                    table.add(BarEntry(7f , nbD.toFloat()))
+                    table.add(BarEntry(9f , nbE.toFloat()))
+                    table.add(BarEntry(11f , nbF.toFloat()))
+                    table.add(BarEntry(13f , nbG.toFloat()))
+                    table.add(BarEntry(15f , nbH.toFloat()))
+                    table.add(BarEntry(17f , nbI.toFloat()))
 
-                    val barDataSet = BarDataSet(table,"")
+                    val barDataSet = BarDataSet(table , "")
 
                     val barData = BarData(barDataSet)
 
@@ -80,7 +83,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     //barChart.animateY(1000)
                     barChart.setDrawBarShadow(false)
                     barChart.setDrawValueAboveBar(true)
-                    barChart.description.isEnabled=false
+                    barChart.description.isEnabled = false
 
                     barChart.setPinchZoom(false)
                     barChart.isDoubleTapToZoomEnabled = false
@@ -94,34 +97,34 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                     val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
                     val xAxis = barChart.xAxis
-                    xAxis.setLabelCount(table.size,true)
+                    xAxis.setLabelCount(table.size , true)
                     xAxis.valueFormatter = xAxisFormatter
                     xAxis.labelCount = table.size
 
                     xAxis.position = XAxis.XAxisPosition.BOTTOM
                     xAxis.setDrawGridLines(false)
                     xAxis.granularity = 2f
-                    xAxis.textColor = ContextCompat.getColor(this,R.color.white)
-                    xAxis.axisLineColor = ContextCompat.getColor(this,R.color.white)
+                    xAxis.textColor = ContextCompat.getColor(this , R.color.white)
+                    xAxis.axisLineColor = ContextCompat.getColor(this , R.color.white)
 
 
                     //Y Axis
                     val leftAxis = barChart.axisLeft
-                    leftAxis.setLabelCount(0, true)
+                    leftAxis.setLabelCount(0 , true)
                     leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART)
                     leftAxis.setDrawLabels(false)
-                    leftAxis.axisLineColor = ContextCompat.getColor(this,R.color.white)
+                    leftAxis.axisLineColor = ContextCompat.getColor(this , R.color.white)
                     leftAxis.spaceTop = 0f
                     leftAxis.axisMinimum = 0f
-                    leftAxis.textColor = ContextCompat.getColor(this, R.color.white)
+                    leftAxis.textColor = ContextCompat.getColor(this , R.color.white)
                     //leftAxis.setDrawAxisLine(false)
-                    leftAxis.zeroLineColor = ContextCompat.getColor(this, R.color.white)
+                    leftAxis.zeroLineColor = ContextCompat.getColor(this , R.color.white)
 
                     val rightAxis = barChart.axisRight
-                    rightAxis.axisLineColor = ContextCompat.getColor(this,R.color.white)
+                    rightAxis.axisLineColor = ContextCompat.getColor(this , R.color.white)
                     rightAxis.setDrawGridLines(false)
                     rightAxis.setDrawLabels(false)
-                    rightAxis.setLabelCount(0, false)
+                    rightAxis.setLabelCount(0 , false)
                     rightAxis.spaceTop = 15f
                     rightAxis.axisMinimum = 0f
 
@@ -140,19 +143,111 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     dataSets.add(barDataSet)
 
                     val data = BarData(dataSets)
-                    data.setValueTextColor(ContextCompat.getColor(this,R.color.white))
+                    data.setValueTextColor(ContextCompat.getColor(this , R.color.white))
                     data.barWidth = 1.5f
                     barChart.data = data
 
-                    barChart.legend.isEnabled=false
+                    barChart.legend.isEnabled = false
 
                     textViewTotal.text = ("$nbTotal")
                     questionModel = codeBDD
 
+                    val aGood = findViewById<TextView>(R.id.A)
+                    val bGood = findViewById<TextView>(R.id.B)
+                    val cGood = findViewById<TextView>(R.id.C)
+                    val dGood = findViewById<TextView>(R.id.D)
+                    val eGood = findViewById<TextView>(R.id.E)
+                    val fGood = findViewById<TextView>(R.id.F)
+                    val gGood = findViewById<TextView>(R.id.G)
+                    val hGood = findViewById<TextView>(R.id.H)
+                    val iGood = findViewById<TextView>(R.id.I)
+
+                    val answersList = arrayListOf<TextView>()
+                    answersList.add(aGood)
+                    answersList.add(bGood)
+                    answersList.add(cGood)
+                    answersList.add(dGood)
+                    answersList.add(eGood)
+                    answersList.add(fGood)
+                    answersList.add(gGood)
+                    answersList.add(hGood)
+                    answersList.add(iGood)
+
+                    aGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "A"
+                    }
+
+                    bGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "B"
+                    }
+
+                    cGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "C"
+                    }
+
+                    dGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "D"
+                    }
+
+                    eGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "E"
+                    }
+
+                    fGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "F"
+                    }
+
+                    gGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "G"
+                    }
+
+                    hGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "H"
+                    }
+
+                    iGood.setOnClickListener {
+                        for (answer in answersList) {
+                            answer.setTextColor(Color.WHITE)
+                        }
+                        iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                        bonnereponse = "I"
+                    }
                 }
             }
             val qrCode = QRCodeWriter()
-            val intent= Intent(this, QrCodeEnseignant::class.java)
+            val intent = Intent(this , QrCodeEnseignant::class.java)
             val bitMtx = qrCode.encode(
                 "$myRandomInt" ,
                 BarcodeFormat.QR_CODE ,
@@ -164,7 +259,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val barcodeEncoder = BarcodeEncoder()
             val bitmap = barcodeEncoder.createBitmap(bitMtx)
             imageCode.setImageBitmap(bitmap)
-            imageCode.setOnClickListener{
+            imageCode.setOnClickListener {
                 startActivity(intent)
             }
             textView.text = ("$myRandomInt")
@@ -174,6 +269,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
                 ref_questionnaire.child(question).child("questionTerminee").setValue("true")
+                ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 startActivity(intentTerminer)
                 finish()
             }
