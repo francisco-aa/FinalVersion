@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -34,6 +33,7 @@ class EtudiantRepondre : AppCompatActivity() {
     lateinit var listener: ValueEventListener
     val database = FirebaseDatabase.getInstance()
     val refQuestionnaire = database.getReference("questionnaire")
+    val sharedPreference = SharedPreference(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -61,35 +61,20 @@ class EtudiantRepondre : AppCompatActivity() {
         buttonList.add(h)
         buttonList.add(i)
 
-
         val intent = Intent(applicationContext , EtudiantResultats::class.java)
-/*
-        for (question in questionListBdd) {
-            if (question.motdepasse.toString() == motDePasseBdd) {
-                if (question.questionTerminee == "true") {
-                    //questionM = question
-                    //derniereRep = ""
-                }
-                questionM = question
-                Toast.makeText(this, questionM.motdepasse, LENGTH_SHORT).show()
 
-            }
-        }
-*/
         //Nettoyer le shared preferences
-        deleteDataIfNotExists()
+       sharedPreference.deleteDataIfNotExists()
 
         //Parcours BDD
         refQuestionnaire.get().addOnSuccessListener {
-            val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
             for (question in it.children) {
-
                 if (question.child("motdepasse").value.toString() == motDePasseBdd) {
                     ref = question.key.toString()
-                    if (sharedPreferences.contains(ref))
-                        loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
+                    if (sharedPreference.isIn(ref))
+                        sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
                     else
-                        saveData(ref , "") //On a jamais participé à cette question, donc champ vide
+                        sharedPreference.saveData(ref , "") //On a jamais participé à cette question, donc champ vide
 
                     listener = //Placement d'un listener actif sur la question dans la bdd
                         refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
@@ -132,8 +117,8 @@ class EtudiantRepondre : AppCompatActivity() {
                             refQuestionnaire.child(child.ref.key.toString())
                                 .child(buttonClique).setValue(numb + 1)
 
-                            saveData(ref , buttonClique)
-                            loadData(ref)
+                            sharedPreference.saveData(ref , buttonClique)
+                            sharedPreference.loadData(ref)
                             reponseFournie = buttonClique
                         }
                     }
@@ -211,7 +196,7 @@ class EtudiantRepondre : AppCompatActivity() {
 
         i.setOnClickListener {
             //if (rep_etudiant != "I") fonction("I")
-            showSR()
+            sharedPreference.showSR()
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
             }
@@ -220,7 +205,7 @@ class EtudiantRepondre : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             shouldRun = false
-            killSR()
+            sharedPreference.killSR()
             FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
                 .child("questionTerminee")
                 .removeEventListener(listener)
@@ -255,60 +240,6 @@ class EtudiantRepondre : AppCompatActivity() {
             .removeEventListener(listener)
         finish()
     }
-
-    private fun saveData(ref: String , buttonClique: String) {
-        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString(ref , buttonClique)
-        editor.apply()
-    }
-
-    private fun loadData(ref: String) {
-        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
-        rep_etudiant = sharedPreferences.getString(ref , "").toString()
-    }
-
-    private fun deleteDataIfNotExists() {
-        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        val allEntries: Map<String , *> = sharedPreferences.all
-        var destroy = true
-
-        refQuestionnaire.get().addOnSuccessListener{
-            for ((key , _) in allEntries) {
-                for (child in it.children){
-                    if (key == child.key.toString())
-                        destroy = false
-                }
-                if (destroy){
-                    editor.remove(key)
-                    editor.apply()
-                }
-                destroy = true
-            }
-        }
-    }
-
-    //fonctions de développement
-    //TODO à Supprimer
-    fun killSR() {
-        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        Toast.makeText(this , "success" , LENGTH_SHORT).show()
-        editor.clear()
-        editor.apply()
-    }
-
-    //TODO à Supprimer
-    fun showSR() {
-        val sharedPreferences = getSharedPreferences("shared_prefs" , MODE_PRIVATE)
-        val allEntries: Map<String , *> = sharedPreferences.all
-        for ((key , value) in allEntries) {
-            Log.d("map values" , key + ": " + value.toString())
-        }
-
-    }
-
 }
 
 

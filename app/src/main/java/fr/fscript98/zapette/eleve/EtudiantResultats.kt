@@ -31,7 +31,7 @@ class EtudiantResultats : AppCompatActivity() {
         rep2_card.setCardBackgroundColor(Color.GREEN)
         rep1_card.setCardBackgroundColor(Color.RED)
 
-        val reponse = "A" //TODO putain
+        var bonneReponse = ""
         val sharedPreferences = getSharedPreferences("shared_prefs", MODE_PRIVATE)
         val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
         var reponseEtudiant = reponseFournie
@@ -40,6 +40,7 @@ class EtudiantResultats : AppCompatActivity() {
         refQuestionnaire.get().addOnSuccessListener {
             for (question in it.children){
                 if (mdp == question.child("motdepasse").value.toString()){
+                    bonneReponse = question.child("bonneReponse").toString()
                     reponseEtudiant = sharedPreferences.getString(question.key.toString(), "").toString()
                     rep1.setText(reponseEtudiant)
                 }
@@ -47,7 +48,7 @@ class EtudiantResultats : AppCompatActivity() {
         }
 
         rep1.setText(reponseEtudiant)
-        rep2.setText(reponse)
+        rep2.setText(bonneReponse)
 
         rep1_card.setCardBackgroundColor(Color.GREEN)
 
