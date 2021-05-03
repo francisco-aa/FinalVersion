@@ -28,15 +28,17 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
 
     object Singleton {
         lateinit var questionModel: QuestionModel
-        var questionModelList = arrayListOf<QuestionModel>()
+
         var bonnereponse=""
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -151,6 +153,12 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                     textViewTotal.text = ("$nbTotal")
                     questionModel = codeBDD
+                    if (questionModelList.contains(questionModel)){
+
+                    }else{
+
+                    }
+
 
                     val aGood = findViewById<TextView>(R.id.A)
                     val bGood = findViewById<TextView>(R.id.B)
@@ -161,7 +169,10 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val gGood = findViewById<TextView>(R.id.G)
                     val hGood = findViewById<TextView>(R.id.H)
                     val iGood = findViewById<TextView>(R.id.I)
-
+                    if (bonnereponse=="A"){
+                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    // faire la suite
                     if (bonnereponse == "A"){
                         aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
                     }
@@ -207,6 +218,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                         }
                         aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
                         bonnereponse = "A"
+                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                     }
 
                     bGood.setOnClickListener {
@@ -215,6 +227,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                         }
                         bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
                         bonnereponse = "B"
+                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                     }
 
                     cGood.setOnClickListener {
@@ -223,6 +236,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                         }
                         cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
                         bonnereponse = "C"
+                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                     }
 
                     dGood.setOnClickListener {
@@ -231,6 +245,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                         }
                         dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
                         bonnereponse = "D"
+                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                     }
 
                     eGood.setOnClickListener {
@@ -297,7 +312,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
                 ref_questionnaire.child(question).child("questionTerminee").setValue("true")
-                ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                bonnereponse=""
+
                 startActivity(intentTerminer)
                 finish()
             }

@@ -4,13 +4,22 @@ package fr.fscript98.zapette.autre
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import fr.fscript98.zapette.enseignant.ResultatQuestionnaire
+import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
 class SharedPreference(val context: Context) {
     val spEtudiantName = "shared_prefs"
+    val sharedEnseignantName = "shared_enseignant"
     val spEtudiant : SharedPreferences = context.getSharedPreferences(spEtudiantName, Context.MODE_PRIVATE)
+    val sharedEnseignant : SharedPreferences = context.getSharedPreferences(sharedEnseignantName, Context.MODE_PRIVATE)
     val editor : SharedPreferences.Editor = spEtudiant.edit()
+    val editorEnseignant : SharedPreferences.Editor=sharedEnseignant.edit()
     val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
 
     fun saveData(key: String , value: String) {
@@ -47,15 +56,33 @@ class SharedPreference(val context: Context) {
     }
 
     fun killSR() {
-        val editor = spEtudiant.edit()
-        editor.clear()
-        editor.apply()
+
+        editorEnseignant.clear()
+        editorEnseignant.apply()
     }
 
     fun showSR() {
-        val allEntries: Map<String , *> = spEtudiant.all
+        val allEntries: Map<String , *> = sharedEnseignant.all
         for ((key , value) in allEntries) {
             Log.d("map values" , key + ": " + value.toString())
         }
     }
+    fun saveDataG(){
+        val gson : Gson = Gson()
+        val json : String = gson.toJson(questionModelList)
+        editorEnseignant.putString("enseignant",json)
+        editorEnseignant.apply()
+    }
+     fun loadDataG(): ArrayList<QuestionModel>? {
+
+        val gson: Gson = Gson()
+        val json: String = sharedEnseignant.getString("enseignant", null).toString()
+        val type = object : TypeToken<ArrayList<QuestionModel>>() {}.type
+         var questionModelList = gson.fromJson<ArrayList<QuestionModel>>(json , type)
+        if (questionModelList == null) {
+            questionModelList = ArrayList<QuestionModel>()
+        }
+         return questionModelList
+    }
+
 }
