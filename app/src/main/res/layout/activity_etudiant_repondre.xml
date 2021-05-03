@@ -26,7 +26,7 @@
         android:id="@+id/repondre_au_questionnaire"
         android:layout_width="@dimen/margin_titre_ver"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/kanit"
         android:text="Sélectionnez une réponse:"
         android:textAlignment="center"
