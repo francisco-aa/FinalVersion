@@ -1,15 +1,9 @@
 package fr.fscript98.zapette.enseignant
-
-
 import android.content.Intent
 import android.os.Bundle
-
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-
-
 import fr.fscript98.zapette.R
-
 import fr.fscript98.zapette.autre.EnseignantFragment
 
 

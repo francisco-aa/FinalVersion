@@ -40,9 +40,9 @@ class TeacherBoard : AppCompatActivity() {
                 Toast.makeText(applicationContext , myRandomInt.toString() , LENGTH_SHORT).show()
                 titreSaisi = "Aucun"
             }
-
+            myRandomInt = Random.nextInt(10000 , 100000)
             question = "question"
-            chemin = (questionListBdd.size + 1).toString()
+            chemin = (myRandomInt).toString()
             question += chemin
 
             databaseRef.child(question).child("A").setValue(0)
@@ -54,7 +54,7 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("G").setValue(0)
             databaseRef.child(question).child("H").setValue(0)
             databaseRef.child(question).child("I").setValue(0)
-            myRandomInt = Random.nextInt(10000 , 100000)
+
             databaseRef.child(question).child("motdepasse").setValue(myRandomInt)
             databaseRef.child(question).child("questionTerminee").setValue("false")
             databaseRef.child(question).child("bonneReponses").setValue("A")
