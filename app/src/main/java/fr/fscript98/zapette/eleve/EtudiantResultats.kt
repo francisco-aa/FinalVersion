@@ -14,7 +14,6 @@ import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 
 import android.view.animation.AlphaAnimation as AlphaAnimation1
 
-
 class EtudiantResultats : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
