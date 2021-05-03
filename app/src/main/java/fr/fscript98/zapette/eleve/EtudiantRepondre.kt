@@ -192,7 +192,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         i.setOnClickListener {
-            //if (rep_etudiant != "I") fonction("I")
+            if (rep_etudiant != "I") fonction("I")
             sharedPreference.showSR()
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -202,7 +202,6 @@ class EtudiantRepondre : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             shouldRun = false
-            sharedPreference.killSR()
             FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
                 .child("questionTerminee")
                 .removeEventListener(listener)
