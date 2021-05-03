@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:text="A"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/barChart"
         app:layout_constraintTop_toBottomOf="@+id/barChart" />
@@ -136,7 +136,7 @@
         android:text="B"
         android:layout_marginLeft="32dp"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/A"
         app:layout_constraintStart_toEndOf="@+id/A" />
 
@@ -147,7 +147,7 @@
         android:text="C"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/B"
         app:layout_constraintStart_toEndOf="@+id/B" />
 
@@ -158,7 +158,7 @@
         android:layout_height="wrap_content"
         android:text="D"
         android:layout_marginLeft="30dp"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/C"
         app:layout_constraintStart_toEndOf="@+id/C" />
@@ -171,14 +171,14 @@
         android:text="E"
         android:layout_marginLeft="30dp"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/D"
         app:layout_constraintStart_toEndOf="@+id/D" />
 
     <TextView
         android:id="@+id/F"
         style="@style/TextStyle"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="F"
@@ -190,7 +190,7 @@
     <TextView
         android:id="@+id/G"
         style="@style/TextStyle"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="G"
@@ -202,7 +202,7 @@
     <TextView
         android:id="@+id/H"
         style="@style/TextStyle"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="H"
@@ -214,7 +214,7 @@
     <TextView
         android:id="@+id/I"
         style="@style/TextStyle"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I"
