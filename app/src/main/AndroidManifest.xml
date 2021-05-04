@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zapette"
         >
-        <activity android:name=".enseignant.EnseignantMesResultats" />
+        <activity android:name=".enseignant.EnseignantMesResultats"
+            android:screenOrientation="portrait"/>
         <activity android:name=".eleve.EtudiantResultats"/>
         <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
         <activity android:name=".eleve.QrCode" />
