@@ -12,6 +12,6 @@ class QuestionModel(
     var G: Int = 0 ,
     var H: Int = 0 ,
     var I: Int = 0 ,
-    val bonneReponse: String="A",
+    var bonneReponse: String="A",
     var motdepasse: Int = 12345
 )

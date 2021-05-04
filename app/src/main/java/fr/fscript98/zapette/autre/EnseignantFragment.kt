@@ -25,6 +25,8 @@ class EnseignantFragment(
         verticalRecyclerView.adapter= QuestionAdapter(context,
             questionModelList ,
             R.layout.item_resultats)
+
+
         return view
     }
 }

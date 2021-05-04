@@ -207,6 +207,8 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
             }else{
                 save="true"
+                questionModelList.clear()
+                questionModelList= sharedPreference.loadDataG()!!
                 questionModelList.add(questionModel)
 
             }
