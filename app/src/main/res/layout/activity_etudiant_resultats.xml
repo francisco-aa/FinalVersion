@@ -8,6 +8,11 @@
     android:statusBarColor="@color/black"
     tools:context=".eleve.EtudiantResultats">
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageView
         android:id="@+id/button_back"
         android:layout_width="35dp"
