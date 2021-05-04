@@ -55,11 +55,13 @@ class EnseignantMesResultats() : AppCompatActivity() {
 
             finish()
         }
-        val barChart = findViewById<BarChart>(R.id.barChartResultats)
-        val table = ArrayList<BarEntry>()
+
         val afficher = findViewById<Button>(R.id.afficher)
         afficher.setOnClickListener{
-            Toast.makeText(applicationContext, questionModelList[position].A.toString(), LENGTH_SHORT).show()
+
+            val barChart = findViewById<BarChart>(R.id.barChartResultats)
+            val table = ArrayList<BarEntry>()
+
 
             table.add(BarEntry(1f , questionModelList[position].A.toFloat()))
             table.add(BarEntry(3f , questionModelList[position].B.toFloat()))
@@ -71,13 +73,12 @@ class EnseignantMesResultats() : AppCompatActivity() {
             table.add(BarEntry(15f , questionModelList[position].H.toFloat()))
             table.add(BarEntry(17f ,questionModelList[position].I.toFloat()))
 
-            val barDataSet = BarDataSet(table , "")
+            var barDataSet = BarDataSet(table , "")
 
-            val barData = BarData(barDataSet)
+            var barData = BarData(barDataSet)
 
             barChart.setFitBars(true)
             barChart.data = barData
-            //barChart.animateY(1000)
             barChart.setDrawBarShadow(false)
             barChart.setDrawValueAboveBar(true)
             barChart.description.isEnabled = false
@@ -88,9 +89,10 @@ class EnseignantMesResultats() : AppCompatActivity() {
 
             barChart.setDrawGridBackground(false)
             barChart.isClickable = false
+            barChart.animateY(1000)
 
             //X Axis
-            val labels = mutableListOf<String>()
+            var labels = mutableListOf<String>()
 
             val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
             val xAxis = barChart.xAxis
@@ -125,6 +127,15 @@ class EnseignantMesResultats() : AppCompatActivity() {
             rightAxis.spaceTop = 15f
             rightAxis.axisMinimum = 0f
 
+            /*
+            val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
+            val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
+
+            val gradientColors: MutableList<GradientColor> = ArrayList()
+            gradientColors.add(GradientColor(startColor1,enColor1))
+
+            barDataSet.gradientColors = gradientColors
+             */
 
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(barDataSet)
