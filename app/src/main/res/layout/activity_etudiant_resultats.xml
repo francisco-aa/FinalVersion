@@ -8,6 +8,11 @@
     android:statusBarColor="@color/black"
     tools:context=".eleve.EtudiantResultats">
 
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/viewKonfetti"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageView
         android:id="@+id/button_back"
         android:layout_width="35dp"
@@ -92,7 +97,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="B"
+            android:text=""
             android:textColor="@color/black"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -114,7 +119,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="B"
+            android:text=""
             android:textColor="@color/black"
             android:textStyle="bold"/>
     </androidx.cardview.widget.CardView>
