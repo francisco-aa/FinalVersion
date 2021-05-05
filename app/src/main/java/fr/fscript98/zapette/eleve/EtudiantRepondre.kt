@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.eleve
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
@@ -36,7 +37,15 @@ class EtudiantRepondre : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_etudiant_repondre)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_etudiant_repondre)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_etudiant_repondre_land)
+            }
+        }
 
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)

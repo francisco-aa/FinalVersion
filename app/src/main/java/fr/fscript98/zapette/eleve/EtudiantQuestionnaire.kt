@@ -4,6 +4,7 @@ import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
 import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -26,7 +27,15 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_etudiant_questionnaire)
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_etudiant_questionnaire)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_etudiant_questionnaire_land)
+            }
+        }
+
         val intent = Intent(this , MainActivity::class.java)
         val intent2 = Intent(this , EtudiantRepondre::class.java)
         val intent3 = Intent(this , EtudiantResultats::class.java)

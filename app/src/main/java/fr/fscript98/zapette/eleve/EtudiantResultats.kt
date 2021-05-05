@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.eleve
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
@@ -28,7 +29,15 @@ class EtudiantResultats : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_etudiant_resultats)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_etudiant_resultats)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_etudiant_resultats_land)
+            }
+        }
 
         val rep1 = findViewById<TextView>(R.id.rep1) //Reponse etudiant
         val rep1_card = findViewById<CardView>(R.id.rep1_card)

@@ -10,7 +10,6 @@
     >
 
 
-
     <TextView
         android:id="@+id/resultats"
         style="@style/TitleTextStyle"

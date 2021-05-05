@@ -3,6 +3,7 @@ package fr.fscript98.zapette
 import fr.fscript98.zapette.autre.BddRepository
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
@@ -23,7 +24,16 @@ class MainActivity : AppCompatActivity() {
 
         //private var BackPressedTimer = 0L
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_main)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_main_land)
+            }
+        }
+
         val repo = BddRepository()
         repo.updateData {
             val buttonTeacher = findViewById<Button>(R.id.buttonTeacher)

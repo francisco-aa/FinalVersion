@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.enseignant
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Layout
 import android.widget.Button
@@ -27,12 +28,21 @@ import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.position
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
-class EnseignantMesResultats() : AppCompatActivity() {
+class EnseignantResultats() : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_enseignant_resultats)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_enseignant_resultats)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_enseignant_resultats_land)
+            }
+        }
+
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
         val transaction = supportFragmentManager.beginTransaction()

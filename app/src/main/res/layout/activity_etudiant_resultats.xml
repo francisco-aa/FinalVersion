@@ -21,7 +21,8 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/resultats"
@@ -37,93 +38,97 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/votre_reponse"
-        android:layout_width="@dimen/margin_titre_ver"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:fontFamily="sans-serif"
-        android:text="Votre réponse"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/bonne_reponse"
-        android:layout_width="@dimen/margin_titre_ver"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="496dp"
-        android:fontFamily="sans-serif"
-        android:text="Bonne réponse"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/accueil"
+    <LinearLayout
+        android:id="@+id/linearLayout23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:background="@drawable/background_button"
-        android:text="Accueil"
-        android:textSize="20dp"
-        android:textAllCaps="false"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/rep1_card"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="45dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/votre_reponse"
-        app:layout_constraintStart_toStartOf="@+id/votre_reponse"
-        app:layout_constraintTop_toBottomOf="@+id/votre_reponse">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultats">
 
         <TextView
-            android:id="@+id/rep1"
-            style="@style/TextStyle"
+            android:id="@+id/votre_reponse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Votre réponse"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            tools:ignore="HardcodedText" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rep1_card"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+            android:layout_marginTop="45dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/rep2_card"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/votre_reponse"
-        app:layout_constraintStart_toStartOf="@+id/votre_reponse"
-        app:layout_constraintTop_toBottomOf="@id/bonne_reponse"
-        android:layout_marginTop="45dp">
+            <TextView
+                android:id="@+id/rep1"
+                style="@style/TextStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/rep2"
-            style="@style/TextStyle"
+            android:id="@+id/bonne_reponse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_60"
+            android:fontFamily="sans-serif"
+            android:text="Bonne réponse"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            tools:ignore="HardcodedText" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rep2_card"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:gravity="center"
-            android:text=""
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_marginTop="45dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
 
+            <TextView
+                android:id="@+id/rep2"
+                style="@style/TextStyle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/accueil"
+            android:layout_width="221dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="@dimen/margin_60"
+            android:background="@drawable/background_button"
+            android:text="Accueil"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText"/>
+
+    </LinearLayout>
 
 
 

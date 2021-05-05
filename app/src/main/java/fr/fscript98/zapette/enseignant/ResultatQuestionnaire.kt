@@ -6,6 +6,7 @@ import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -43,9 +44,18 @@ class ResultatQuestionnaire : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_resultat_questionnaire)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_resultat_questionnaire_land)
+            }
+        }
+
         val repo1 = BddRepository()
         repo1.updateData {
-            setContentView(R.layout.activity_resultat_questionnaire)
             val textViewTotal = findViewById<TextView>(R.id.nbTotal)
             val textView = findViewById<TextView>(R.id.textView2)
 
@@ -201,6 +211,33 @@ class ResultatQuestionnaire : AppCompatActivity() {
                         iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
                     }
 
+                    if (bonnereponse == "A"){
+                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "B"){
+                        bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "C"){
+                        cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "D"){
+                        dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "E"){
+                        eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "F"){
+                        fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "G"){
+                        gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "H"){
+                        hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
+                    if (bonnereponse == "I"){
+                        iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    }
                     val answersList = arrayListOf<TextView>()
                     answersList.add(aGood)
                     answersList.add(bGood)
