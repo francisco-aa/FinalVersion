@@ -14,7 +14,6 @@ class QrCode : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qr_code)
-        val etudiant= Intent(this, EtudiantRepondre::class.java)
         val imageCode2 = findViewById<ImageView>(R.id.imageQrCodeEleve2)
         val qrCode = QRCodeWriter()
         val barcodeEncoder = BarcodeEncoder()
@@ -29,7 +28,7 @@ class QrCode : AppCompatActivity() {
         imageCode2.setImageBitmap(bitMap2)
 
         imageCode2.setOnClickListener{
-            startActivity(etudiant)
+
             finish()
         }
     }

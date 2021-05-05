@@ -1,5 +1,6 @@
 package fr.fscript98.zapette.autre
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,13 +8,29 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.enseignant.EnseignantMesResultats
-import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModelList
+import fr.fscript98.zapette.enseignant.TeacherBoard
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.mesView
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
 class QuestionAdapter ( private val context: EnseignantMesResultats,
                         private val questionList: List<QuestionModel>,
                         private val layoutId: Int ) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
-    class ViewHolder(view: View) :RecyclerView.ViewHolder(view){
+
+
+    class ViewHolder(view: View ) :RecyclerView.ViewHolder(view){
+
+        init{
+
+            view.setOnClickListener{
+
+                TeacherBoard.Singleton.position=adapterPosition
+                for (vue in mesView){
+                    vue.setBackgroundColor(Color.parseColor("#183152"))
+                }
+                view.setBackgroundColor(Color.parseColor("#375D81"))
+            }
+        }
         val questionnaire = view.findViewById<TextView>(R.id.questionnaire)
         val participation = view.findViewById<TextView>(R.id.participation)
         var titre = view.findViewById<TextView>(R.id.titre)
@@ -25,12 +42,14 @@ class QuestionAdapter ( private val context: EnseignantMesResultats,
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(layoutId, parent ,false)
-        return ViewHolder(view)
+        mesView.add(view)
+        return ViewHolder(view )
     }
 
     override fun onBindViewHolder(holder: ViewHolder , position: Int) {
         val currentQuestion=questionList[position]
         holder.titre.text=currentQuestion.titre
+
         if (currentQuestion.bonneReponse=="A")
             holder.nombreReponses.text= currentQuestion.A.toString()
         if (currentQuestion.bonneReponse=="B")
@@ -53,4 +72,5 @@ class QuestionAdapter ( private val context: EnseignantMesResultats,
 
     }
     override fun getItemCount(): Int = questionModelList.size;
+
 }

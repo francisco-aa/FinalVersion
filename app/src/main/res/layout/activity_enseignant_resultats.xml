@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
+        android:id="@+id/barChartResultats"
         android:layout_width="375dp"
         android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_container"
@@ -38,8 +38,8 @@
         android:text="A"
         android:textSize="12sp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/barChart"
-        app:layout_constraintTop_toBottomOf="@+id/barChart" />
+        app:layout_constraintStart_toStartOf="@+id/barChartResultats"
+        app:layout_constraintTop_toBottomOf="@+id/barChartResultats" />
 
     <TextView
         android:id="@+id/B"
@@ -139,10 +139,40 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/afficher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/background_button"
+        android:text="afficher"
+        android:textAllCaps="false"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/background_button"
+        android:text="Clear All"
+        android:textAllCaps="false"
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/afficher" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

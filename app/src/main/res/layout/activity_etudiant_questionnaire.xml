@@ -28,7 +28,6 @@
         android:layout_marginTop="@dimen/default_margin"
         android:fontFamily="@font/kanit"
         android:text="REJOINDRE UN QUESTIONNAIRE"
-        app:layout_constraintHorizontal_bias="0.52"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
