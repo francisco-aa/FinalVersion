@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.enseignant.EnseignantMesResultats
+import fr.fscript98.zapette.enseignant.EnseignantResultats
 import fr.fscript98.zapette.enseignant.TeacherBoard
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.mesView
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
-class QuestionAdapter ( private val context: EnseignantMesResultats,
-                        private val questionList: List<QuestionModel>,
-                        private val layoutId: Int ) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
+class QuestionAdapter (private val context: EnseignantResultats ,
+                       private val questionList: List<QuestionModel> ,
+                       private val layoutId: Int ) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View ) :RecyclerView.ViewHolder(view){

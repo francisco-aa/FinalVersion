@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="fr.fscript98.zapette">
+    package="fr.fscript98.zapette"
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -13,29 +14,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Zapette">
-        <activity android:name=".autre.APropos"></activity>
-        <activity android:name=".enseignant.EnseignantMesResultats"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".eleve.EtudiantResultats" />
+        android:theme="@style/Theme.Zapette"
+        >
+        <activity android:name=".enseignant.EnseignantResultats"/>
+        <activity android:name=".eleve.EtudiantResultats"/>
         <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
         <activity android:name=".eleve.QrCode" />
         <activity android:name=".enseignant.QrCodeEnseignant" />
-        <activity
-            android:name=".enseignant.ResultatQuestionnaire"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".eleve.EtudiantRepondre"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".eleve.EtudiantQuestionnaire"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".enseignant.TeacherBoard"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait">
+        <activity android:name=".enseignant.ResultatQuestionnaire" />
+        <activity android:name=".eleve.EtudiantRepondre"/>
+        <activity android:name=".eleve.EtudiantQuestionnaire"/>
+        <activity android:name=".enseignant.TeacherBoard" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

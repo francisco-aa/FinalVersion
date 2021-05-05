@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.eleve
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
@@ -36,7 +37,15 @@ class EtudiantRepondre : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_etudiant_repondre)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_etudiant_repondre)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_etudiant_repondre_land)
+            }
+        }
 
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)
@@ -73,7 +82,10 @@ class EtudiantRepondre : AppCompatActivity() {
                         rep_etudiant =
                             sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
                     else
-                        sharedPreference.saveData(ref , "") //On a jamais participé à cette question, donc champ vide
+                        sharedPreference.saveData(
+                            ref ,
+                            ""
+                        ) //On a jamais participé à cette question, donc champ vide
 
                     listener = //Placement d'un listener actif sur la question dans la bdd
                         refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
@@ -87,10 +99,9 @@ class EtudiantRepondre : AppCompatActivity() {
                                     }
                                 }
 
-                                override fun onCancelled(error: DatabaseError) {
-
-                                }
-                            })
+                                override fun onCancelled(error: DatabaseError) {}
+                            }
+                        )
                 }
             }
         }
@@ -192,7 +203,7 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         i.setOnClickListener {
-            //if (rep_etudiant != "I") fonction("I")
+            if (rep_etudiant != "I") fonction("I")
             sharedPreference.showSR()
             for (button in buttonList) {
                 button.setBackgroundColor(Color.WHITE)
@@ -202,7 +213,6 @@ class EtudiantRepondre : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             shouldRun = false
-            sharedPreference.killSR()
             FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
                 .child("questionTerminee")
                 .removeEventListener(listener)

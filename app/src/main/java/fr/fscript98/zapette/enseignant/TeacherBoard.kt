@@ -2,24 +2,19 @@ package fr.fscript98.zapette.enseignant
 
 import fr.fscript98.zapette.autre.BddRepository.Singleton.chemin
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
-import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import android.content.Intent
-import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 
-import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
@@ -39,7 +34,16 @@ class TeacherBoard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_teacher_board)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_teacher_board)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_teacher_board_land)
+            }
+        }
+
         val sharedPreference = SharedPreference(this)
         val databaseRef = FirebaseDatabase.getInstance().getReference("questionnaire")
         val editText = findViewById<EditText>(R.id.saisirTitre)
@@ -75,6 +79,7 @@ class TeacherBoard : AppCompatActivity() {
             finish()
 
 
+
         }
         val buttonBack = findViewById<ImageView>(R.id.button_backEspaceEnseignant)
         val intantBack = Intent(this , MainActivity::class.java)
@@ -84,7 +89,7 @@ class TeacherBoard : AppCompatActivity() {
             finish()
         }
 
-        val intentResultats = Intent(this , EnseignantMesResultats::class.java)
+        val intentResultats = Intent(this , EnseignantResultats::class.java)
         val resultatEnseignant = findViewById<Button>(R.id.mesResultats)
         resultatEnseignant.setOnClickListener {
 

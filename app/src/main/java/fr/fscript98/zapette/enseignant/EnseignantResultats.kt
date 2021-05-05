@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.enseignant
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Layout
 import android.widget.Button
@@ -27,12 +28,21 @@ import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.position
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
-class EnseignantMesResultats() : AppCompatActivity() {
+class EnseignantResultats() : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_enseignant_resultats)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_enseignant_resultats)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_enseignant_resultats_land)
+            }
+        }
+
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
         val transaction = supportFragmentManager.beginTransaction()
@@ -56,13 +66,12 @@ class EnseignantMesResultats() : AppCompatActivity() {
             finish()
         }
 
-
         val afficher = findViewById<Button>(R.id.afficher)
         afficher.setOnClickListener{
+
             val barChart = findViewById<BarChart>(R.id.barChartResultats)
             val table = ArrayList<BarEntry>()
 
-            Toast.makeText(applicationContext, questionModelList[position].A.toString(), LENGTH_SHORT).show()
 
             table.add(BarEntry(1f , questionModelList[position].A.toFloat()))
             table.add(BarEntry(3f , questionModelList[position].B.toFloat()))
@@ -74,9 +83,9 @@ class EnseignantMesResultats() : AppCompatActivity() {
             table.add(BarEntry(15f , questionModelList[position].H.toFloat()))
             table.add(BarEntry(17f ,questionModelList[position].I.toFloat()))
 
-            val barDataSet = BarDataSet(table , "")
+            var barDataSet = BarDataSet(table , "")
 
-            val barData = BarData(barDataSet)
+            var barData = BarData(barDataSet)
 
             barChart.setFitBars(true)
             barChart.data = barData
@@ -90,9 +99,10 @@ class EnseignantMesResultats() : AppCompatActivity() {
 
             barChart.setDrawGridBackground(false)
             barChart.isClickable = false
+            barChart.animateY(1000)
 
             //X Axis
-            val labels = mutableListOf<String>()
+            var labels = mutableListOf<String>()
 
             val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
             val xAxis = barChart.xAxis
@@ -127,6 +137,15 @@ class EnseignantMesResultats() : AppCompatActivity() {
             rightAxis.spaceTop = 15f
             rightAxis.axisMinimum = 0f
 
+            /*
+            val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
+            val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
+
+            val gradientColors: MutableList<GradientColor> = ArrayList()
+            gradientColors.add(GradientColor(startColor1,enColor1))
+
+            barDataSet.gradientColors = gradientColors
+             */
 
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(barDataSet)

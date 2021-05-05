@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".enseignant.EnseignantResultats"
     android:background="@color/darkblue2"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     >
 
     <ImageView
@@ -22,13 +22,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout30"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChartResultats"
@@ -43,8 +42,8 @@
             android:id="@+id/linearLayout31"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -168,61 +167,62 @@
 
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout32"
-            android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout32"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout30"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/afficher"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent">
+            android:background="@drawable/background_button"
+            android:text="afficher"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
-            <Button
-                android:id="@+id/afficher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_button"
-                android:text="afficher"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_50"
+            android:background="@drawable/background_button"
+            android:text="Clear Select"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
-            <Button
-                android:id="@+id/clear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_50"
-                android:background="@drawable/background_button"
-                android:text="Clear Select"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
-            <Button
-                android:id="@+id/clearAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_button"
-                android:text="Clear All"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/clearAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_button"
+            android:text="Clear All"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
