@@ -16,11 +16,11 @@
         android:layout_marginTop="@dimen/default_margin"
         android:text="@string/title_connexion_page"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -82,6 +82,41 @@
             app:layout_constraintEnd_toEndOf="@+id/buttonTeacher"
             app:layout_constraintStart_toStartOf="@+id/buttonTeacher"
             app:layout_constraintTop_toBottomOf="@+id/buttonTeacher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAPropos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/aPropos"
+            android:layout_width="38dp"
+            android:layout_height="37dp"
+            android:src="@drawable/ic_apropos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:tint="@color/lightblue3" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:text="A Propos"
+            android:textColor="@color/lightblue3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"></TextView>
+
     </LinearLayout>
 
 

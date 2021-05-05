@@ -9,8 +9,6 @@
     android:orientation="vertical"
     >
 
-
-
     <TextView
         android:id="@+id/resultats"
         style="@style/TitleTextStyle"
@@ -58,11 +56,10 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
                 android:text="A"
-                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/barChart"
                 app:layout_constraintTop_toBottomOf="@+id/barChart" />
 
@@ -71,7 +68,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:text="B"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -84,7 +80,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:text="C"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -97,7 +92,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
                 android:text="D"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -110,7 +104,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:text="E"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -123,7 +116,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
                 android:text="F"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -135,7 +127,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
                 android:text="G"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -148,7 +139,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
                 android:text="H"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -161,7 +151,6 @@
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
                 android:text="I"
                 android:textStyle="bold"
                 android:textColor="@color/white"

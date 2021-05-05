@@ -2,22 +2,18 @@ package fr.fscript98.zapette
 
 import fr.fscript98.zapette.autre.BddRepository
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import fr.fscript98.zapette.autre.QuestionModel
+import fr.fscript98.zapette.autre.APropos
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire
-import fr.fscript98.zapette.enseignant.ResultatQuestionnaire
 import fr.fscript98.zapette.enseignant.TeacherBoard
 
 class MainActivity : AppCompatActivity() {
     //private var BackPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         //private var BackPressedTimer = 0L
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             buttonStudent.setOnClickListener {
                 val intent = Intent(this , EtudiantQuestionnaire::class.java)
                 startActivity(intent)
+            }
+
+            val aPropos = findViewById<ImageView>(R.id.aPropos)
+            aPropos.setOnClickListener{
+                val intentAPropos = Intent(this, APropos::class.java)
+                startActivity(intentAPropos)
             }
         }
     }

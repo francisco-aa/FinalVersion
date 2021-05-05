@@ -55,10 +55,13 @@ class EnseignantMesResultats() : AppCompatActivity() {
 
             finish()
         }
-        val barChart = findViewById<BarChart>(R.id.barChartResultats)
-        val table = ArrayList<BarEntry>()
+
+
         val afficher = findViewById<Button>(R.id.afficher)
         afficher.setOnClickListener{
+            val barChart = findViewById<BarChart>(R.id.barChartResultats)
+            val table = ArrayList<BarEntry>()
+
             Toast.makeText(applicationContext, questionModelList[position].A.toString(), LENGTH_SHORT).show()
 
             table.add(BarEntry(1f , questionModelList[position].A.toFloat()))
@@ -77,7 +80,6 @@ class EnseignantMesResultats() : AppCompatActivity() {
 
             barChart.setFitBars(true)
             barChart.data = barData
-            //barChart.animateY(1000)
             barChart.setDrawBarShadow(false)
             barChart.setDrawValueAboveBar(true)
             barChart.description.isEnabled = false

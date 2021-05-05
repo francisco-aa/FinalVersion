@@ -20,13 +20,9 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.model.GradientColor
-import com.google.gson.Gson
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
-import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
@@ -34,8 +30,6 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
-import java.lang.reflect.Type
-import com.google.gson.reflect.TypeToken as TypeToken
 
 class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
@@ -49,8 +43,6 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
         var barChart = findViewById<BarChart>(R.id.barChart)
         var table = ArrayList<BarEntry>()
-
-
 
         if (myRandomInt == questionModel.motdepasse) {
             val nbResA = questionModel.A
@@ -129,6 +121,8 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             rightAxis.spaceTop = 15f
             rightAxis.axisMinimum = 0f
 
+            /*===============================================================*/
+            /* Changer coleur des barres */
             /*
             val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
             val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
@@ -138,6 +132,8 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
             barDataSet.gradientColors = gradientColors
              */
+            /*===============================================================*/
+
 
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(barDataSet)
@@ -153,15 +149,15 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         }
 
 
-        val aGood = findViewById<TextView>(R.id.Ares)
-        val bGood = findViewById<TextView>(R.id.Bres)
-        val cGood = findViewById<TextView>(R.id.Cres)
-        val dGood = findViewById<TextView>(R.id.Dres)
-        val eGood = findViewById<TextView>(R.id.Eres)
-        val fGood = findViewById<TextView>(R.id.Fres)
-        val gGood = findViewById<TextView>(R.id.Gres)
-        val hGood = findViewById<TextView>(R.id.Hres)
-        val iGood = findViewById<TextView>(R.id.Ires)
+        val aGood = findViewById<TextView>(R.id.A)
+        val bGood = findViewById<TextView>(R.id.B)
+        val cGood = findViewById<TextView>(R.id.C)
+        val dGood = findViewById<TextView>(R.id.D)
+        val eGood = findViewById<TextView>(R.id.E)
+        val fGood = findViewById<TextView>(R.id.F)
+        val gGood = findViewById<TextView>(R.id.G)
+        val hGood = findViewById<TextView>(R.id.H)
+        val iGood = findViewById<TextView>(R.id.I)
 
         if (bonnereponse == "A") {
             aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
