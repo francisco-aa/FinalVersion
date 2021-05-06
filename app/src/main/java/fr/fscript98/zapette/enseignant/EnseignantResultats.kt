@@ -51,13 +51,21 @@ class EnseignantResultats() : AppCompatActivity() {
         transaction.commit()
         val intentBack = Intent(this , TeacherBoard::class.java)
         val clear = findViewById<Button>(R.id.clear)
-
-
+        val clearAll = findViewById<Button>(R.id.clearAll)
+        val intentReload = Intent(this , this::class.java)
+        clearAll.setOnClickListener{
+            sharedPreference.killSR()
+            startActivity(intentReload)
+        }
         clear.setOnClickListener {
             finish()
-            val intentReload = Intent(this , this::class.java)
-            startActivity(intentReload)
             sharedPreference.killSR()
+            questionModelList.remove(questionModelList[position])
+            sharedPreference.saveDataG()
+            questionModelList= sharedPreference.loadDataG()!!
+
+            startActivity(intentReload)
+
         }
 
         val back = findViewById<ImageView>(R.id.backMesResultats)
@@ -73,7 +81,7 @@ class EnseignantResultats() : AppCompatActivity() {
             val table = ArrayList<BarEntry>()
 
 
-            table.add(BarEntry(1f , questionModelList[position].A.toFloat()))
+            table.add(BarEntry(1f , questionModelList[position].A.toFloat(),"a"))
             table.add(BarEntry(3f , questionModelList[position].B.toFloat()))
             table.add(BarEntry(5f , questionModelList[position].C.toFloat()))
             table.add(BarEntry(7f , questionModelList[position].D.toFloat()))

@@ -17,6 +17,7 @@
         android:theme="@style/Theme.Zapette"
         >
         <activity android:name=".enseignant.EnseignantResultats"/>
+        <activity android:name=".autre.APropos"/>
         <activity android:name=".eleve.EtudiantResultats"/>
         <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
         <activity android:name=".eleve.QrCode" />
