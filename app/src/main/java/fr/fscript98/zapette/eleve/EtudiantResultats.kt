@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
-import java.lang.Thread.sleep
 
 import android.view.animation.AlphaAnimation as AlphaAnimation1
 

@@ -5,16 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import fr.fscript98.zapette.autre.APropos
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire
 import fr.fscript98.zapette.enseignant.TeacherBoard
 
 class MainActivity : AppCompatActivity() {
-    //private var BackPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //private var BackPressedTimer = 0L
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val repo = BddRepository()
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            val aPropos = findViewById<ImageView>(R.id.aPropos)
+            val aPropos = findViewById<LinearLayout>(R.id.linearLayoutAPropos)
             aPropos.setOnClickListener{
                 val intentAPropos = Intent(this, APropos::class.java)
                 startActivity(intentAPropos)
@@ -39,14 +38,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    /*override fun onBackPressed() {
-    if (BackPressedTime+2000 > System.currentTimeMillis()) {
+    override fun onBackPressed() {
         super.onBackPressed()
-    }else {
-        Toast.makeText(applicationContext , "Appuyez deux fois pour quitter." , Toast.LENGTH_SHORT).show()
+        finish()
     }
-    BackPressedTime = System.currentTimeMillis()
-}*/
-
 }

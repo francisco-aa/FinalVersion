@@ -87,7 +87,7 @@ class EtudiantRepondre : AppCompatActivity() {
                             ""
                         ) //On a jamais participé à cette question, donc champ vide
 
-                    listener = //Placement d'un listener actif sur la question dans la bdd
+                    listener = //Placement d'un listener actif sur questionTerminee dans la bdd
                         refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
                             object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -116,7 +116,7 @@ class EtudiantRepondre : AppCompatActivity() {
                     val questionModel = child.getValue(QuestionModel::class.java)
                     if (questionModel != null) {
                         if (motDePasseBdd == questionModel.motdepasse.toString()) {
-                            if (rep_etudiant != "") {
+                            if (rep_etudiant != "") { //L'étudiant a déjà répondu, donc il faut décrémenter sa dernière réponse
                                 val numb1 = child.child(rep_etudiant).value.toString().toInt()
                                 refQuestionnaire.child(child.ref.key.toString())
                                     .child(rep_etudiant).setValue(numb1 - 1)
@@ -125,19 +125,19 @@ class EtudiantRepondre : AppCompatActivity() {
                             refQuestionnaire.child(child.ref.key.toString())
                                 .child(buttonClique).setValue(numb + 1)
 
-                            sharedPreference.saveData(ref , buttonClique)
-                            rep_etudiant = sharedPreference.loadData(ref)
-                            reponseFournie = buttonClique
+                            sharedPreference.saveData(ref , buttonClique) //Sauvegarde de la dernière réponse dans le SR
+                            rep_etudiant = sharedPreference.loadData(ref) //Sauvegarde en local
+                            reponseFournie = buttonClique //Utile pour l'activité suivante
                         }
                     }
                 }
             }
         }
 
-
+        //Gestion des boutons A -> I
         a.setOnClickListener {
-            if (rep_etudiant != "A") fonction("A")
-            for (button in buttonList) {
+            if (rep_etudiant != "A") fonction("A") //Aucun effet si l'étudiant a déjà appuyé sur le bouton
+            for (button in buttonList) { //Changement des couleurs
                 button.setBackgroundColor(Color.WHITE)
             }
             a.setBackgroundColor(Color.parseColor("#FFBB86FC"))
@@ -212,14 +212,12 @@ class EtudiantRepondre : AppCompatActivity() {
         }
 
         buttonBack.setOnClickListener {
-            shouldRun = false
-            FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
+            shouldRun = false //Evite tout démarrage non voulu de l'activité EtudiantResultats
+            FirebaseDatabase.getInstance().getReference("questionnaire").child(ref) //destruction du listener sur questionTerminee
                 .child("questionTerminee")
                 .removeEventListener(listener)
-            //derniereRep = ""
             finish()
         }
-
 
         val qrCode = QRCodeWriter()
         val qrCodePage = Intent(this , QrCode::class.java)
@@ -241,8 +239,8 @@ class EtudiantRepondre : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        shouldRun = false //empeche le déclenchement du listener questionTerminne dans le futur
-        FirebaseDatabase.getInstance().getReference("questionnaire").child(ref)
+        shouldRun = false //Evite tout démarrage non voulu de l'activité EtudiantResultats
+        FirebaseDatabase.getInstance().getReference("questionnaire").child(ref) //destruction du listener sur questionTerminee
             .child("questionTerminee")
             .removeEventListener(listener)
         finish()

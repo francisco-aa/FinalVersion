@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zapette"
         >
+        <activity android:name=".autre.APropos"/>
         <activity android:name=".enseignant.EnseignantResultats"/>
         <activity android:name=".eleve.EtudiantResultats"/>
         <activity android:name=".enseignant.ResultatQuestionnaireFinal" />
