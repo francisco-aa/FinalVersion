@@ -14,7 +14,7 @@
         style="@style/TitleAppTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ZAPETTE"
+        android:text="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,11 +27,11 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="À PROPOS"
+        android:text="@string/page_a_propos"
         app:layout_constraintEnd_toEndOf="@+id/zapette"
         app:layout_constraintStart_toStartOf="@+id/zapette"
         app:layout_constraintTop_toBottomOf="@+id/zapette"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
     </TextView>
 
     <ImageView
@@ -54,74 +54,100 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/zapette">
 
         <TextView
             android:id="@+id/developpement"
             style="@style/TextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Développement et Conception"
+            android:text="@string/developpement"
             android:textColor="@color/lightblue2"
             android:textStyle="bold">
         </TextView>
 
         <TextView
             android:id="@+id/nomGeorges"
-            style="@style/TextStyle"
+            style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Georges DA COSTA"
-            android:textSize="15dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:text="@string/georges"
+            >
         </TextView>
 
         <TextView
             android:id="@+id/nomFrancisco"
-            style="@style/TextStyle"
+            style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Francisco AGUDO ANTONIO"
-            android:textSize="15dp">
+            android:text="@string/francisco"
+            >
         </TextView>
 
         <TextView
             android:id="@+id/nomAndrew"
-            style="@style/TextStyle"
+            style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Andrew ALMOUSLEH"
-            android:textSize="15dp">
+            android:text="@string/andrew"
+            >
         </TextView>
 
         <TextView
             android:id="@+id/nomGaetan"
-            style="@style/TextStyle"
+            style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gaëtan ALOZY"
-            android:textSize="15dp">
+            android:text="@string/gaetan"
+            >
         </TextView>
 
         <TextView
             android:id="@+id/nomAboubaker"
-            style="@style/TextStyle"
+            style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aboubaker HASHIM MIRGHANI"
-            android:textSize="15dp">
+            android:text="@string/aboubaker"
+            >
         </TextView>
 
         <TextView
             android:id="@+id/nomJulien"
-            style="@style/TextStyle"
+            style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Julien TERRIE"
-            android:textSize="15dp">
+            android:text="@string/julien"
+            >
         </TextView>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayoutLogos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_50"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logout32"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </ImageView>
+
+            <ImageView
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logodepinfo">
+            </ImageView>
+
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

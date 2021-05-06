@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import fr.fscript98.zapette.autre.APropos
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            val aPropos = findViewById<ImageView>(R.id.aPropos)
+            val aPropos = findViewById<LinearLayout>(R.id.linearLayoutAPropos)
             aPropos.setOnClickListener{
                 val intentAPropos = Intent(this, APropos::class.java)
                 startActivity(intentAPropos)

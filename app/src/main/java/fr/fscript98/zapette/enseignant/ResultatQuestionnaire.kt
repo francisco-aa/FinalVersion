@@ -42,28 +42,23 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-            setContentView(R.layout.activity_resultat_questionnaire)
-        }
-        else{
-            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-                setContentView(R.layout.activity_resultat_questionnaire_land)
-            }
-        }
 
         val repo1 = BddRepository()
         repo1.updateData {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+                setContentView(R.layout.activity_resultat_questionnaire)
+            }
+            else{
+                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    setContentView(R.layout.activity_resultat_questionnaire_land)
+                }
+            }
+
             val textViewTotal = findViewById<TextView>(R.id.nbTotal)
             val textView = findViewById<TextView>(R.id.textView2)
 
-            val barChart = findViewById<BarChart>(R.id.barChart)
-            val table = ArrayList<BarEntry>()
-
             for (codeBDD in questionListBdd) {
-
                 if (myRandomInt == codeBDD.motdepasse) {
                     val nbA = codeBDD.A
                     val nbB = codeBDD.B
@@ -75,6 +70,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val nbH = codeBDD.H
                     val nbI = codeBDD.I
                     val nbTotal = nbA + nbB + nbC + nbD + nbE + nbF + nbG + nbH + nbI
+
+                    val barChart = findViewById<BarChart>(R.id.barChart)
+                    val table = ArrayList<BarEntry>()
 
                     table.add(BarEntry(1f , nbA.toFloat()))
                     table.add(BarEntry(3f , nbB.toFloat()))
@@ -163,167 +161,140 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                     textViewTotal.text = ("$nbTotal")
                     questionModel = codeBDD
-                    if (questionModelList.contains(questionModel)){
+                }
 
-                    }else{
+                val aGood = findViewById<TextView>(R.id.A)
+                val bGood = findViewById<TextView>(R.id.B)
+                val cGood = findViewById<TextView>(R.id.C)
+                val dGood = findViewById<TextView>(R.id.D)
+                val eGood = findViewById<TextView>(R.id.E)
+                val fGood = findViewById<TextView>(R.id.F)
+                val gGood = findViewById<TextView>(R.id.G)
+                val hGood = findViewById<TextView>(R.id.H)
+                val iGood = findViewById<TextView>(R.id.I)
 
-                    }
+                if (bonnereponse == "A") {
+                    aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "B") {
+                    bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "C") {
+                    cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "D") {
+                    dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "E") {
+                    eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "F") {
+                    fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "G") {
+                    gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "H") {
+                    hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
+                if (bonnereponse == "I") {
+                    iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                }
 
 
-                    val aGood = findViewById<TextView>(R.id.A)
-                    val bGood = findViewById<TextView>(R.id.B)
-                    val cGood = findViewById<TextView>(R.id.C)
-                    val dGood = findViewById<TextView>(R.id.D)
-                    val eGood = findViewById<TextView>(R.id.E)
-                    val fGood = findViewById<TextView>(R.id.F)
-                    val gGood = findViewById<TextView>(R.id.G)
-                    val hGood = findViewById<TextView>(R.id.H)
-                    val iGood = findViewById<TextView>(R.id.I)
-                    if (bonnereponse=="A"){
-                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    // faire la suite
-                    if (bonnereponse == "A"){
-                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "B"){
-                        bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "C"){
-                        cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "D"){
-                        dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "E"){
-                        eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "F"){
-                        fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "G"){
-                        gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "H"){
-                        hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "I"){
-                        iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
+                val answersList = arrayListOf<TextView>()
+                answersList.add(aGood)
+                answersList.add(bGood)
+                answersList.add(cGood)
+                answersList.add(dGood)
+                answersList.add(eGood)
+                answersList.add(fGood)
+                answersList.add(gGood)
+                answersList.add(hGood)
+                answersList.add(iGood)
 
-                    if (bonnereponse == "A"){
-                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                aGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
-                    if (bonnereponse == "B"){
-                        bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "C"){
-                        cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "D"){
-                        dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "E"){
-                        eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "F"){
-                        fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "G"){
-                        gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "H"){
-                        hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    if (bonnereponse == "I"){
-                        iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    }
-                    val answersList = arrayListOf<TextView>()
-                    answersList.add(aGood)
-                    answersList.add(bGood)
-                    answersList.add(cGood)
-                    answersList.add(dGood)
-                    answersList.add(eGood)
-                    answersList.add(fGood)
-                    answersList.add(gGood)
-                    answersList.add(hGood)
-                    answersList.add(iGood)
+                    aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    bonnereponse = "A"
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                }
 
-                    aGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "A"
-                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                bGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    bonnereponse = "B"
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                }
 
-                    bGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "B"
-                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                cGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    bonnereponse = "C"
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                }
 
-                    cGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "C"
-                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                dGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    bonnereponse = "D"
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                }
 
-                    dGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "D"
-                        ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                eGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    bonnereponse = "E"
+                    eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
 
-                    eGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "E"
-                    }
+                }
 
-                    fGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "F"
+                fGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    bonnereponse = "F"
+                    fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                }
 
-                    gGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "G"
+                gGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    bonnereponse = "G"
+                    gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+                }
 
-                    hGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "H"
+                hGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    bonnereponse = "H"
+                    hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
 
-                    iGood.setOnClickListener {
-                        for (answer in answersList) {
-                            answer.setTextColor(Color.WHITE)
-                        }
-                        iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                        bonnereponse = "I"
+                }
+
+                iGood.setOnClickListener {
+                    for (answer in answersList) {
+                        answer.setTextColor(Color.WHITE)
                     }
+                    bonnereponse = "I"
+                    iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
+
                 }
             }
             val qrCode = QRCodeWriter()

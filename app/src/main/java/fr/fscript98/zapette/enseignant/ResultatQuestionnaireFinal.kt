@@ -38,11 +38,10 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_resultat_questionnaire_final)
-        }
-        else{
-            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        } else {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 setContentView(R.layout.activity_resultat_questionnaire_final_land)
             }
         }
@@ -51,8 +50,8 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         val txtViewTotal = findViewById<TextView>(R.id.nbTotalFin)
         var save = "false"
 
-        var barChart = findViewById<BarChart>(R.id.barChart)
-        var table = ArrayList<BarEntry>()
+        val barChart = findViewById<BarChart>(R.id.barChart)
+        val table = ArrayList<BarEntry>()
 
         if (myRandomInt == questionModel.motdepasse) {
             val nbResA = questionModel.A
@@ -208,25 +207,23 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         val sauvegarder = findViewById<Button>(R.id.btn_sauvegarder)
         sauvegarder.setOnClickListener {
 
-            if (questionModelList.contains(questionModel)){
-                save="false"
+            if (questionModelList.contains(questionModel)) {
+                save = "false"
 
-            }else{
-                save="true"
+            } else {
+                save = "true"
                 questionModelList.clear()
-                questionModelList= sharedPreference.loadDataG()!!
+                questionModelList = sharedPreference.loadDataG()!!
                 questionModelList.add(questionModel)
 
             }
-            if (save=="true") {
+            if (save == "true") {
                 sharedPreference.saveDataG()
                 sharedPreference.showSR()
             }
             //Toast.makeText(applicationContext,questionModel.titre.toString(), LENGTH_SHORT).show()
         }
     }
-
-
 
 
 }
