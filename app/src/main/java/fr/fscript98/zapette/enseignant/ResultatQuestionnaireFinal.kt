@@ -9,8 +9,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
@@ -21,9 +20,12 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+
 import fr.fscript98.zapette.R
+
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
+
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
@@ -31,6 +33,7 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
+
 
 class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
@@ -53,6 +56,8 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
         var barChart = findViewById<BarChart>(R.id.barChart)
         var table = ArrayList<BarEntry>()
+
+
 
         if (myRandomInt == questionModel.motdepasse) {
             val nbResA = questionModel.A

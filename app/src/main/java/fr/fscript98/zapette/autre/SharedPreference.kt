@@ -4,12 +4,11 @@ package fr.fscript98.zapette.autre
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import fr.fscript98.zapette.enseignant.ResultatQuestionnaire
-import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
+
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
