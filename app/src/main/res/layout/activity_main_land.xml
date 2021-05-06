@@ -23,63 +23,90 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice">
 
-        <ImageView
-            android:id="@+id/iconRoleChoice"
-            android:layout_width="208dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_rolechoice"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/whoAmI"
-            style="@style/TextStyle"
+        <LinearLayout
+            android:id="@+id/linearLayoutrole1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
-            android:text="@string/role_choice"
-            android:textStyle="bold"
+            android:orientation="vertical"
+            android:layout_marginRight="@dimen/margin_250"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice">
 
-        <Button
-            android:id="@+id/buttonTeacher"
-            android:layout_width="221dp"
-            android:layout_height="34dp"
-            android:layout_marginBottom="@dimen/margin_role_button"
-            android:background="@drawable/background_button"
-            android:text="@string/button_teacher"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
-            app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
-            app:layout_constraintTop_toBottomOf="@+id/whoAmI" />
+            <ImageView
+                android:id="@+id/iconRoleChoice"
+                android:layout_width="208dp"
+                android:layout_height="248dp"
+                android:src="@drawable/ic_rolechoice"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
-        <Button
-            android:id="@+id/buttonStudent"
-            android:layout_width="221dp"
-            android:layout_height="34dp"
-            android:background="@drawable/background_button"
-            android:text="@string/button_student"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/buttonTeacher"
-            app:layout_constraintStart_toStartOf="@+id/buttonTeacher"
-            app:layout_constraintTop_toBottomOf="@+id/buttonTeacher" />
+            <TextView
+                android:id="@+id/whoAmI"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:text="@string/role_choice"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutrole2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TitleRoleChoice">
+
+            <Button
+                android:id="@+id/buttonTeacher"
+                android:layout_width="221dp"
+                android:layout_height="34dp"
+                android:layout_marginBottom="@dimen/margin_50"
+                android:background="@drawable/background_button"
+                android:text="@string/button_teacher"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/iconRoleChoice"
+                app:layout_constraintStart_toStartOf="@+id/iconRoleChoice"
+                app:layout_constraintTop_toBottomOf="@+id/whoAmI" />
+
+            <Button
+                android:id="@+id/buttonStudent"
+                android:layout_width="221dp"
+                android:layout_height="34dp"
+                android:background="@drawable/background_button"
+                android:text="@string/button_student"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/buttonTeacher"
+                app:layout_constraintStart_toStartOf="@+id/buttonTeacher"
+                app:layout_constraintTop_toBottomOf="@+id/buttonTeacher" />
+        </LinearLayout>
     </LinearLayout>
 
 
