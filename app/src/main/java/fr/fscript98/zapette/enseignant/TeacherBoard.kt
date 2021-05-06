@@ -33,16 +33,14 @@ class TeacherBoard : AppCompatActivity() {
     }
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_teacher_board)
-        }
-        else{
-            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        } else {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 setContentView(R.layout.activity_teacher_board_land)
             }
         }
@@ -56,7 +54,7 @@ class TeacherBoard : AppCompatActivity() {
             var titreSaisi = editText.text.toString()
             if (titreSaisi == "") {
 
-                titreSaisi = "Aucun"
+                titreSaisi = "Aucun titre saisi"
             }
             myRandomInt = Random.nextInt(10000 , 100000)
             question = "question"
@@ -80,18 +78,12 @@ class TeacherBoard : AppCompatActivity() {
             val intentButtonRunQuiz = Intent(this , ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
             finish()
-
-
         }
 
-        editText.setOnClickListener {
-            editText.setText("")
-        }
+
         val buttonBack = findViewById<ImageView>(R.id.button_backEspaceEnseignant)
         val intantBack = Intent(this , MainActivity::class.java)
         buttonBack.setOnClickListener {
-
-
             finish()
         }
 
