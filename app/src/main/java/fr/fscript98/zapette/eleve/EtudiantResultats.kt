@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.eleve
 
 import android.content.Intent
+import android.content.Intent.*
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
@@ -20,7 +21,6 @@ import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
-import java.lang.Thread.sleep
 
 import android.view.animation.AlphaAnimation as AlphaAnimation1
 
@@ -56,6 +56,8 @@ class EtudiantResultats : AppCompatActivity() {
         val accueil = findViewById<Button>(R.id.accueil)
         accueil.setOnClickListener {
             val intent = Intent(this , MainActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
         }

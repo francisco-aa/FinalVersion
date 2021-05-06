@@ -12,7 +12,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
-import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.Capture
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.fromQuestionnaire
@@ -36,7 +35,6 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
             }
         }
 
-        val intent = Intent(this , MainActivity::class.java)
         val intent2 = Intent(this , EtudiantRepondre::class.java)
         val intent3 = Intent(this , EtudiantResultats::class.java)
         val editText = findViewById<EditText>(R.id.zone_saisie_code)
@@ -45,7 +43,6 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
 
         val backbutton = findViewById<ImageView>(R.id.button_back)
         backbutton.setOnClickListener {
-            startActivity(intent)
             finish()
         }
 
@@ -58,10 +55,8 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                     if (questionModel.questionTerminee == "true") {
                         fromQuestionnaire = true
                         startActivity(intent3)
-                        //finish
                     } else {
                         startActivity(intent2)
-                        //finish
                     }
                 }
             }
@@ -93,8 +88,6 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                         if (questionModel.motdepasse == result.contents.toInt()) {
                             motDePasseBdd = questionModel.motdepasse.toString()
                             startActivity(intent2)
-                            //finish()
-
                         }
                     }
                 }
@@ -102,6 +95,11 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                 super.onActivityResult(requestCode , resultCode , data)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }
 

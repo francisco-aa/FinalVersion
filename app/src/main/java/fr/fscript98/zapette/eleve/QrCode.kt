@@ -1,7 +1,6 @@
 package fr.fscript98.zapette.eleve
 
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -18,7 +17,7 @@ class QrCode : AppCompatActivity() {
         val qrCode = QRCodeWriter()
         val barcodeEncoder = BarcodeEncoder()
         val bitMtx = qrCode.encode(
-            "$motDePasseBdd",
+            motDePasseBdd ,
             BarcodeFormat.QR_CODE,
             5000,
             5000
@@ -28,7 +27,6 @@ class QrCode : AppCompatActivity() {
         imageCode2.setImageBitmap(bitMap2)
 
         imageCode2.setOnClickListener{
-
             finish()
         }
     }
