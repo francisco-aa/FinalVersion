@@ -4,7 +4,6 @@ import fr.fscript98.zapette.autre.BddRepository
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import fr.fscript98.zapette.autre.APropos
@@ -14,6 +13,7 @@ import fr.fscript98.zapette.enseignant.TeacherBoard
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val repo = BddRepository()
