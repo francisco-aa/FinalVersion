@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.eleve
 
 import android.content.Intent
+import android.content.Intent.*
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
@@ -55,6 +56,8 @@ class EtudiantResultats : AppCompatActivity() {
         val accueil = findViewById<Button>(R.id.accueil)
         accueil.setOnClickListener {
             val intent = Intent(this , MainActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
             finish()
         }
