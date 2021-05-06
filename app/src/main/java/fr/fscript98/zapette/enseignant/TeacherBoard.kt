@@ -10,7 +10,10 @@ import android.widget.Button
 import android.widget.EditText
 
 import android.widget.ImageView
+import android.widget.TextView
+
 import androidx.appcompat.app.AppCompatActivity
+
 import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
@@ -79,13 +82,16 @@ class TeacherBoard : AppCompatActivity() {
             finish()
 
 
+        }
 
+        editText.setOnClickListener {
+            editText.setText("")
         }
         val buttonBack = findViewById<ImageView>(R.id.button_backEspaceEnseignant)
         val intantBack = Intent(this , MainActivity::class.java)
         buttonBack.setOnClickListener {
 
-            startActivity(intantBack)
+
             finish()
         }
 

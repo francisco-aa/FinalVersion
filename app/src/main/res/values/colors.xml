@@ -8,13 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#0EAA10</color>
-
+    <color name = "darkblu3">#375D81</color>
 
     <color name="lightblue">#E1E6F1</color>
     <color name="lightblue2">#C4D7ED</color>
     <color name="lightblue3">#ABC8E2</color>
     <color name="darkblue">#375D81</color>
     <color name="darkblue2">#183152</color>
+    <color name="darkblue3">#375D81</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="light_blue_A200">#FF40C4FF</color>
