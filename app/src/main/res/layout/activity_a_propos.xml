@@ -12,13 +12,13 @@
     <TextView
         android:id="@+id/zapette"
         style="@style/TitleAppTextStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
         android:text="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/default_margin">
+        app:layout_constraintTop_toTopOf="parent">
     </TextView>
 
     <TextView
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/lightblue2"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginStart="20dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -90,8 +90,7 @@
             style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/andrew"
-            >
+            android:text="@string/andrew">
         </TextView>
 
         <TextView

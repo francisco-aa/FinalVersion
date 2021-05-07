@@ -2,6 +2,7 @@ package fr.fscript98.zapette
 
 import fr.fscript98.zapette.autre.BddRepository
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -17,9 +18,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //private var BackPressedTimer = 0L
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+
+
         val repo = BddRepository()
         repo.updateData {
+
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+                setContentView(R.layout.activity_main)
+            }
+            else{
+                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    setContentView(R.layout.activity_main_land)
+                }
+            }
+
             val buttonTeacher = findViewById<Button>(R.id.buttonTeacher)
             buttonTeacher.setOnClickListener {
 

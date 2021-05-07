@@ -11,7 +11,9 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import android.widget.Toast.LENGTH_SHORT
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -21,6 +23,8 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.google.firebase.database.ValueEventListener
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -99,6 +103,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     barChart.isDoubleTapToZoomEnabled = false
                     barChart.setScaleEnabled(false)
 
+
                     barChart.setDrawGridBackground(false)
                     barChart.isClickable = false
 
@@ -161,6 +166,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                     textViewTotal.text = ("$nbTotal")
                     questionModel = codeBDD
+
                 }
 
                 val aGood = findViewById<TextView>(R.id.A)

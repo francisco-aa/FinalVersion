@@ -61,7 +61,7 @@ class SharedPreference(val context: Context) {
     }
 
     fun showSR() {
-        val allEntries: Map<String , *> = sharedEnseignant.all
+        val allEntries: Map<String , *> = spEtudiant.all
         for ((key , value) in allEntries) {
             Log.d("map values" , key + ": " + value.toString())
         }

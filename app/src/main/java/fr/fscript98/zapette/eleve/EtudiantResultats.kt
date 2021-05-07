@@ -1,13 +1,18 @@
 package fr.fscript98.zapette.eleve
 
 import android.content.Intent
-import android.content.Intent.*
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.res.Configuration
 import android.graphics.Color
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.google.firebase.database.FirebaseDatabase
@@ -21,8 +26,9 @@ import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
-
+import kotlin.random.Random
 import android.view.animation.AlphaAnimation as AlphaAnimation1
+
 
 class EtudiantResultats : AppCompatActivity() {
 
@@ -38,7 +44,6 @@ class EtudiantResultats : AppCompatActivity() {
                 setContentView(R.layout.activity_etudiant_resultats_land)
             }
         }
-
         val rep1 = findViewById<TextView>(R.id.rep1) //Reponse etudiant
         val rep1_card = findViewById<CardView>(R.id.rep1_card)
         val rep2 = findViewById<TextView>(R.id.rep2) //Reponse correcte
@@ -95,11 +100,13 @@ class EtudiantResultats : AppCompatActivity() {
                 GlobalScope.launch(context = Dispatchers.Main) {
                     delay(2500)
                     rep1_card.setCardBackgroundColor(Color.RED)
+                    audioBullshit(false)
                 }
             else
                 GlobalScope.launch(context = Dispatchers.Main) {
                     val viewKonfetti = findViewById<KonfettiView>(R.id.viewKonfetti)
                     delay(2500)
+                    audioBullshit(true)
                     rep1_card.setCardBackgroundColor(Color.GREEN)
 
                     viewKonfetti.build()
@@ -159,5 +166,24 @@ class EtudiantResultats : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    //Attention: Cettte fonction est extrêmement importante et ne doit en aucun cas être supprimée.
+    fun audioBullshit(v: Boolean){
+        val audioA = AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).setUsage(AudioAttributes.USAGE_GAME).build()
+        val spool = SoundPool.Builder().setMaxStreams(2).setAudioAttributes(audioA).build()
+        val cetaitsur = spool.load(this, R.raw.sardoche, 1)
+        val letsgo = spool.load(this, R.raw.letsgo, 1)
+        val bruh = spool.load(this, R.raw.bruh, 1)
+        val wow = spool.load(this, R.raw.wow, 1)
+        if (v) {
+            spool.play(letsgo , 1.0F , 1.0F , 0 , 0 , 1.0F)
+            //spool.play(wow , 1.0F , 1.0F , 0 , 0 , 1.0F)
+        }
+
+        else {
+            spool.play(cetaitsur , 1.0F , 1.0F , 0 , 0 , 1.0F)
+            //spool.play(bruh , 1.0F , 1.0F , 0 , 0 , 1.0F)
+        }
     }
 }
