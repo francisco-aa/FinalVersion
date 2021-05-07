@@ -32,18 +32,21 @@ import android.view.animation.AlphaAnimation as AlphaAnimation1
 
 class EtudiantResultats : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var konfetti = true
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            konfetti = true
             setContentView(R.layout.activity_etudiant_resultats)
         }
         else{
             if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                konfetti = false //TODO Affichage confettis en landscape
                 setContentView(R.layout.activity_etudiant_resultats_land)
             }
         }
+
         val rep1 = findViewById<TextView>(R.id.rep1) //Reponse etudiant
         val rep1_card = findViewById<CardView>(R.id.rep1_card)
         val rep2 = findViewById<TextView>(R.id.rep2) //Reponse correcte
@@ -67,6 +70,7 @@ class EtudiantResultats : AppCompatActivity() {
             finish()
         }
 
+        //fonction de décision réponse juste/fausse
         fun oh(rep: Boolean) {
             GlobalScope.launch(context = Dispatchers.Main) {
                 rep1.setText(reponseEtudiant)
@@ -100,50 +104,51 @@ class EtudiantResultats : AppCompatActivity() {
                 GlobalScope.launch(context = Dispatchers.Main) {
                     delay(2500)
                     rep1_card.setCardBackgroundColor(Color.RED)
-                    audioBullshit(false)
+                    //audioBullshit(false)
                 }
             else
                 GlobalScope.launch(context = Dispatchers.Main) {
                     val viewKonfetti = findViewById<KonfettiView>(R.id.viewKonfetti)
                     delay(2500)
-                    audioBullshit(true)
+                    //audioBullshit(true)
                     rep1_card.setCardBackgroundColor(Color.GREEN)
+                    if (konfetti){
+                        viewKonfetti.build()
+                            .addColors(
+                                Color.YELLOW ,
+                                Color.GREEN ,
+                                Color.MAGENTA ,
+                                Color.CYAN ,
+                                Color.RED ,
+                                Color.BLUE
+                            )
+                            .setDirection(250.0 , 280.0)
+                            .setSpeed(16f , 12f)
+                            .setFadeOutEnabled(true)
+                            .setTimeToLive(2000L)
+                            .addShapes(Shape.Square , Shape.Circle)
+                            .addSizes(Size(8))
+                            .setPosition(1140f , null , 2200f , null)
+                            .streamFor(200 , 1000L)
 
-                    viewKonfetti.build()
-                        .addColors(
-                            Color.YELLOW ,
-                            Color.GREEN ,
-                            Color.MAGENTA ,
-                            Color.CYAN ,
-                            Color.RED ,
-                            Color.BLUE
-                        )
-                        .setDirection(250.0 , 280.0)
-                        .setSpeed(16f , 12f)
-                        .setFadeOutEnabled(true)
-                        .setTimeToLive(2000L)
-                        .addShapes(Shape.Square , Shape.Circle)
-                        .addSizes(Size(8))
-                        .setPosition(1140f , null , 2200f , null)
-                        .streamFor(200 , 1000L)
-
-                    viewKonfetti.build()
-                        .addColors(
-                            Color.YELLOW ,
-                            Color.GREEN ,
-                            Color.MAGENTA ,
-                            Color.CYAN ,
-                            Color.RED ,
-                            Color.BLUE
-                        )
-                        .setDirection(270.0 , 290.0)
-                        .setSpeed(16f , 12f)
-                        .setFadeOutEnabled(true)
-                        .setTimeToLive(2000L)
-                        .addShapes(Shape.Square , Shape.Circle)
-                        .addSizes(Size(8))
-                        .setPosition(-50f , null , 2200f , null)
-                        .streamFor(200 , 1000L)
+                        viewKonfetti.build()
+                            .addColors(
+                                Color.YELLOW ,
+                                Color.GREEN ,
+                                Color.MAGENTA ,
+                                Color.CYAN ,
+                                Color.RED ,
+                                Color.BLUE
+                            )
+                            .setDirection(270.0 , 290.0)
+                            .setSpeed(16f , 12f)
+                            .setFadeOutEnabled(true)
+                            .setTimeToLive(2000L)
+                            .addShapes(Shape.Square , Shape.Circle)
+                            .addSizes(Size(8))
+                            .setPosition(-50f , null , 2200f , null)
+                            .streamFor(200 , 1000L)
+                    }
                 }
         }
 
@@ -158,6 +163,10 @@ class EtudiantResultats : AppCompatActivity() {
                         oh(true)
                     else if (bonneReponse != "")
                         oh(false)
+                    else{
+                        rep1.setText("")
+                        rep2.setText("")
+                    }
                 }
             }
         }
@@ -168,21 +177,24 @@ class EtudiantResultats : AppCompatActivity() {
         finish()
     }
 
+
+
     //Attention: Cettte fonction est extrêmement importante et ne doit en aucun cas être supprimée.
     fun audioBullshit(v: Boolean){
         val audioA = AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).setUsage(AudioAttributes.USAGE_GAME).build()
         val spool = SoundPool.Builder().setMaxStreams(2).setAudioAttributes(audioA).build()
-        val cetaitsur = spool.load(this, R.raw.sardoche, 1)
-        val letsgo = spool.load(this, R.raw.letsgo, 1)
-        val bruh = spool.load(this, R.raw.bruh, 1)
-        val wow = spool.load(this, R.raw.wow, 1)
+        val letsgo = spool.load(this, R.raw.letsgo, 2)
+        val cetaitsur = spool.load(this, R.raw.sardoche, 2)
+        //val bruh = spool.load(this, R.raw.bruh, 1)
+        //val wow = spool.load(this, R.raw.wow, 1)
         if (v) {
-            spool.play(letsgo , 1.0F , 1.0F , 0 , 0 , 1.0F)
+            //Toast.makeText(this, v.toString(), LENGTH_SHORT).show()
+            spool.play(letsgo , 1.0F , 1.0F , 1 , 0 , 1.0F)
             //spool.play(wow , 1.0F , 1.0F , 0 , 0 , 1.0F)
         }
 
         else {
-            spool.play(cetaitsur , 1.0F , 1.0F , 0 , 0 , 1.0F)
+            spool.play(cetaitsur , 1.0F , 1.0F , 1 , 0 , 1.0F)
             //spool.play(bruh , 1.0F , 1.0F , 0 , 0 , 1.0F)
         }
     }
