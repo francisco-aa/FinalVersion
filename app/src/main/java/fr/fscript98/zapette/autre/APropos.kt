@@ -1,9 +1,11 @@
 package fr.fscript98.zapette.autre
 
 import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 

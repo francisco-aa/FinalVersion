@@ -40,8 +40,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
     object Singleton {
         lateinit var questionModel: QuestionModel
-
-        var bonnereponse=""
+        var bonnereponse = ""
     }
 
 
@@ -50,11 +49,10 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
         val repo1 = BddRepository()
         repo1.updateData {
-            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
                 setContentView(R.layout.activity_resultat_questionnaire)
-            }
-            else{
-                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            } else {
+                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     setContentView(R.layout.activity_resultat_questionnaire_land)
                 }
             }
@@ -79,14 +77,15 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val table = ArrayList<BarEntry>()
 
                     table.add(BarEntry(1f , nbA.toFloat()))
-                    table.add(BarEntry(3f , nbB.toFloat()))
-                    table.add(BarEntry(5f , nbC.toFloat()))
-                    table.add(BarEntry(7f , nbD.toFloat()))
-                    table.add(BarEntry(9f , nbE.toFloat()))
-                    table.add(BarEntry(11f , nbF.toFloat()))
-                    table.add(BarEntry(13f , nbG.toFloat()))
-                    table.add(BarEntry(15f , nbH.toFloat()))
-                    table.add(BarEntry(17f , nbI.toFloat()))
+                    table.add(BarEntry(2f , nbB.toFloat()))
+                    table.add(BarEntry(3f , nbC.toFloat()))
+                    table.add(BarEntry(4f , nbD.toFloat()))
+                    table.add(BarEntry(5f , nbE.toFloat()))
+                    table.add(BarEntry(6f , nbF.toFloat()))
+                    table.add(BarEntry(7f , nbG.toFloat()))
+                    table.add(BarEntry(8f , nbH.toFloat()))
+                    table.add(BarEntry(9f , nbI.toFloat()))
+
 
                     val barDataSet = BarDataSet(table , "")
 
@@ -108,19 +107,22 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     barChart.isClickable = false
 
                     //X Axis
-                    val labels = mutableListOf<String>()
+                    val labels =
+                        listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
 
-                    val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
+                    //val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
                     val xAxis = barChart.xAxis
                     xAxis.setLabelCount(table.size , true)
-                    xAxis.valueFormatter = xAxisFormatter
+                    //xAxis.valueFormatter = xAxisFormatter
+                    xAxis.valueFormatter = IndexAxisValueFormatter(labels)
                     xAxis.labelCount = table.size
-
+                    xAxis.setCenterAxisLabels(false)
                     xAxis.position = XAxis.XAxisPosition.BOTTOM
                     xAxis.setDrawGridLines(false)
-                    xAxis.granularity = 2f
+                    xAxis.granularity = 1f
                     xAxis.textColor = ContextCompat.getColor(this , R.color.white)
                     xAxis.axisLineColor = ContextCompat.getColor(this , R.color.white)
+                    xAxis.textSize = 12f
 
 
                     //Y Axis
@@ -159,7 +161,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                     val data = BarData(dataSets)
                     data.setValueTextColor(ContextCompat.getColor(this , R.color.white))
-                    data.barWidth = 1.5f
+                    data.barWidth = 0.75f
                     barChart.data = data
 
                     barChart.legend.isEnabled = false
@@ -303,6 +305,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                 }
             }
+
+
             val qrCode = QRCodeWriter()
             val intent = Intent(this , QrCodeEnseignant::class.java)
             val bitMtx = qrCode.encode(
@@ -326,7 +330,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
                 ref_questionnaire.child(question).child("questionTerminee").setValue("true")
-                bonnereponse=""
+                bonnereponse = ""
 
                 startActivity(intentTerminer)
                 finish()

@@ -54,169 +54,166 @@
 
             </com.github.mikephil.charting.charts.BarChart>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout18"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout15"
+            app:layout_constraintTop_toTopOf="parent">
+
             <LinearLayout
-                android:id="@+id/linearLayout16"
-                android:layout_width="match_parent"
+                android:id="@+id/linearLayout26"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/barChart"
-                app:layout_constraintStart_toStartOf="@+id/barChart"
-                app:layout_constraintTop_toBottomOf="@+id/barChart">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout19"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="156dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Choisissez la bonne reponse:"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout19"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout26">
 
                 <TextView
                     android:id="@+id/A"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
                     android:text="A"
-                    android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/barChart"
-                    app:layout_constraintTop_toBottomOf="@+id/barChart" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/B"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="B"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/A"
-                    app:layout_constraintStart_toEndOf="@+id/A" />
+                    android:layout_marginHorizontal="25dp"
+                    android:text="B" />
 
                 <TextView
                     android:id="@+id/C"
+                    style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="C"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/B"
-                    app:layout_constraintStart_toEndOf="@+id/B" />
+                    android:text="C" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout19"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
 
                 <TextView
                     android:id="@+id/D"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="D"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/C"
-                    app:layout_constraintStart_toEndOf="@+id/C" />
+                    android:text="D" />
 
                 <TextView
                     android:id="@+id/E"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="E"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_marginHorizontal="25dp"
+                    android:text="E" />
 
                 <TextView
                     android:id="@+id/F"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="F"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/E"
-                    app:layout_constraintStart_toEndOf="@+id/E" />
+                    android:text="F" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout19"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout28">
 
                 <TextView
                     android:id="@+id/G"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="G"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/F"
-                    app:layout_constraintStart_toEndOf="@+id/F" />
+                    android:text="G" />
 
                 <TextView
                     android:id="@+id/H"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:text="H"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/G"
-                    app:layout_constraintStart_toEndOf="@+id/G" />
+                    android:layout_marginHorizontal="25dp"
+                    android:text="H" />
 
                 <TextView
                     android:id="@+id/I"
                     style="@style/TextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="I"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/H"
-                    app:layout_constraintStart_toEndOf="@+id/H" />
+                    android:text="I" />
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout18"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout15"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:id="@+id/total"
-                style="@style/TextStyle"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total : "
-                android:textSize="20sp"
-                android:textStyle="bold">
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_50">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/total"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total : "
+                    android:textSize="20sp"
+                    android:textStyle="bold">
 
+                </TextView>
 
-            <TextView
-                android:id="@+id/nbTotal"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="20sp"
-                android:textStyle="bold">
+                <TextView
+                    android:id="@+id/nbTotal"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20sp"
+                    android:textStyle="bold">
 
-            </TextView>
+                </TextView>
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -225,23 +222,31 @@
             android:id="@+id/linearLayout18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
 
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="10dp">
 
 
-            <ImageView
-                android:id="@+id/imageQrCode"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                tools:layout_editor_absoluteX="576dp"
-                tools:layout_editor_absoluteY="29dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-            </ImageView>
+                <ImageView
+                    android:id="@+id/imageQrCode"
+                    android:layout_width="155dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center">
+                </ImageView>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/textView2"

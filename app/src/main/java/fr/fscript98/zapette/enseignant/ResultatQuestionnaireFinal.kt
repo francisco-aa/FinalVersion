@@ -25,6 +25,7 @@ import fr.fscript98.zapette.R
 
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
+import fr.fscript98.zapette.autre.QuestionModel
 
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
@@ -57,7 +58,6 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         val table = ArrayList<BarEntry>()
 
 
-
         if (myRandomInt == questionModel.motdepasse) {
             val nbResA = questionModel.A
             val nbResB = questionModel.B
@@ -71,15 +71,18 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             val nbResTotal =
                 nbResA + nbResB + nbResC + nbResD + nbResE + nbResF + nbResG + nbResH + nbResI
 
+            val bonneReponse = findViewById<TextView>(R.id.goodAnswer)
+            bonneReponse.text =  questionModel.bonneReponse
+
             table.add(BarEntry(1f , nbResA.toFloat()))
-            table.add(BarEntry(3f , nbResB.toFloat()))
-            table.add(BarEntry(5f , nbResC.toFloat()))
-            table.add(BarEntry(7f , nbResD.toFloat()))
-            table.add(BarEntry(9f , nbResE.toFloat()))
-            table.add(BarEntry(11f , nbResF.toFloat()))
-            table.add(BarEntry(13f , nbResG.toFloat()))
-            table.add(BarEntry(15f , nbResH.toFloat()))
-            table.add(BarEntry(17f , nbResI.toFloat()))
+            table.add(BarEntry(2f , nbResB.toFloat()))
+            table.add(BarEntry(3f , nbResC.toFloat()))
+            table.add(BarEntry(4f , nbResD.toFloat()))
+            table.add(BarEntry(5f , nbResE.toFloat()))
+            table.add(BarEntry(6f , nbResF.toFloat()))
+            table.add(BarEntry(7f , nbResG.toFloat()))
+            table.add(BarEntry(8f , nbResH.toFloat()))
+            table.add(BarEntry(9f , nbResI.toFloat()))
 
             var barDataSet = BarDataSet(table , "")
 
@@ -100,19 +103,21 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             barChart.animateY(1000)
 
             //X Axis
-            var labels = mutableListOf<String>()
+            val labels = listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
 
-            val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
+            //val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
             val xAxis = barChart.xAxis
             xAxis.setLabelCount(table.size , true)
-            xAxis.valueFormatter = xAxisFormatter
+            //xAxis.valueFormatter = xAxisFormatter
+            xAxis.valueFormatter = IndexAxisValueFormatter(labels)
             xAxis.labelCount = table.size
-
+            xAxis.setCenterAxisLabels(false)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setDrawGridLines(false)
-            xAxis.granularity = 2f
+            xAxis.granularity = 1f
             xAxis.textColor = ContextCompat.getColor(this , R.color.white)
             xAxis.axisLineColor = ContextCompat.getColor(this , R.color.white)
+            xAxis.textSize = 12f
 
 
             //Y Axis
@@ -154,7 +159,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
             val data = BarData(dataSets)
             data.setValueTextColor(ContextCompat.getColor(this , R.color.white))
-            data.barWidth = 1.5f
+            data.barWidth = 0.75f
             barChart.data = data
 
             barChart.legend.isEnabled = false
@@ -163,43 +168,6 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         }
 
 
-        val aGood = findViewById<TextView>(R.id.A)
-        val bGood = findViewById<TextView>(R.id.B)
-        val cGood = findViewById<TextView>(R.id.C)
-        val dGood = findViewById<TextView>(R.id.D)
-        val eGood = findViewById<TextView>(R.id.E)
-        val fGood = findViewById<TextView>(R.id.F)
-        val gGood = findViewById<TextView>(R.id.G)
-        val hGood = findViewById<TextView>(R.id.H)
-        val iGood = findViewById<TextView>(R.id.I)
-
-        if (bonnereponse == "A") {
-            aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "B") {
-            bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "C") {
-            cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "D") {
-            dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "E") {
-            eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "F") {
-            fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "G") {
-            gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "H") {
-            hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
-        if (bonnereponse == "I") {
-            iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-        }
 
         val quitter = findViewById<Button>(R.id.btn_quit)
         val intentQuitter = Intent(this , TeacherBoard::class.java)

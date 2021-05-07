@@ -11,14 +11,15 @@
 
     <TextView
         android:id="@+id/zapette"
+        android:gravity="center_horizontal"
         style="@style/TitleAppTextStyle"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
         android:text="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/default_margin">
     </TextView>
 
     <TextView
@@ -38,12 +39,13 @@
         android:id="@+id/home"
         android:layout_width="49dp"
         android:layout_height="51dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:src="@drawable/ic_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/lightblue2"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -90,7 +92,8 @@
             style="@style/NomPrenom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/andrew">
+            android:text="@string/andrew"
+            >
         </TextView>
 
         <TextView
@@ -133,19 +136,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/logoUT3"
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logout32"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:src="@drawable/logout32">
             </ImageView>
 
             <ImageView
                 android:layout_width="228dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/logodepinfo">
+                android:src="@drawable/logodepartinfo">
             </ImageView>
-
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
