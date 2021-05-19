@@ -15,10 +15,14 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
+import fr.fscript98.zapette.autre.SharedPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -170,12 +174,49 @@ class EtudiantResultats : AppCompatActivity() {
                 }
             }
         }
+        val sharedPreference = SharedPreference(this)
+        var rep_etudiant = ""
+        val intentRelance= Intent(this,EtudiantRepondre::class.java)
+        refQuestionnaire.get().addOnSuccessListener {
+            for (question in it.children) {
+                if (question.child("motdepasse").value.toString() == motDePasseBdd) {
+                    var ref = question.key.toString()
+                    if (sharedPreference.isIn(ref))
+                        rep_etudiant =
+                            sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
+                    else
+                        sharedPreference.saveData(
+                            ref ,
+                            ""
+                        ) //On a jamais participé à cette question, donc champ vide
+
+                    var listener = //Placement d'un listener actif sur questionTerminee dans la bdd
+                        refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
+                            object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.value.toString() == "false") {
+                                        if (EtudiantRepondre.Singleton.shouldRun) startActivity(
+                                            intentRelance) //question terminée= false, revenir a l'activité précédente
+                                        refQuestionnaire.child(ref).child("questionTerminee")
+                                            .removeEventListener(this) //Détruit le listener
+                                        finish()
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {}
+                            }
+                        )
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
     }
+
+
 
 
 

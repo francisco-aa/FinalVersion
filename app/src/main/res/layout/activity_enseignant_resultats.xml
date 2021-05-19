@@ -166,23 +166,24 @@
                 app:layout_constraintStart_toEndOf="@+id/H"
                 tools:ignore="HardcodedText" />
 
+
         </LinearLayout>
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginBottom="5dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
         <LinearLayout
             android:id="@+id/linearLayout32"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="horizontal"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -192,8 +193,10 @@
                 android:id="@+id/afficher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:background="@drawable/background_button"
                 android:text="afficher"
+                android:layout_marginRight="80dp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
@@ -202,22 +205,13 @@
                 android:id="@+id/clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_50"
                 android:background="@drawable/background_button"
-                android:text="Clear Select"
+                android:text="Supprimer"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
-            <Button
-                android:id="@+id/clearAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_button"
-                android:text="Clear All"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+
 
         </LinearLayout>
 

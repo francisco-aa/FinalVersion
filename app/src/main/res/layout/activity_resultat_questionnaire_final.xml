@@ -114,19 +114,31 @@
                 android:background="@drawable/background_button"
                 android:text="Sauvegarder"
                 android:textAllCaps="false"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
-                android:visibility="gone"/>
+                />
 
+            <Button
+                android:id="@+id/btn_Relancer"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button"
+                android:text="Relancer"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"/>
             <Button
                 android:id="@+id/btn_quit"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_button"
                 android:text="Quitter"
+                android:layout_marginLeft="40dp"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -24,6 +24,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 
 import fr.fscript98.zapette.R
+import fr.fscript98.zapette.autre.BddRepository
 
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
@@ -36,6 +37,7 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
+import kotlin.random.Random
 
 
 class ResultatQuestionnaireFinal() : AppCompatActivity() {
@@ -204,6 +206,31 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
                 save="true"
             }
             //Toast.makeText(applicationContext,questionModel.titre.toString(), LENGTH_SHORT).show()
+        }
+        val buttonRelancer = findViewById<Button>(R.id.btn_Relancer)
+        val intentRelancer= Intent(this,ResultatQuestionnaire::class.java)
+        buttonRelancer.setOnClickListener{
+            finish()
+
+            question = "question"
+            BddRepository.Singleton.chemin = (myRandomInt).toString()
+            question += BddRepository.Singleton.chemin
+
+            ref_questionnaire.child(question).child("A").setValue(0)
+            ref_questionnaire.child(question).child("B").setValue(0)
+            ref_questionnaire.child(question).child("C").setValue(0)
+            ref_questionnaire.child(question).child("D").setValue(0)
+            ref_questionnaire.child(question).child("E").setValue(0)
+            ref_questionnaire.child(question).child("F").setValue(0)
+            ref_questionnaire.child(question).child("G").setValue(0)
+            ref_questionnaire.child(question).child("H").setValue(0)
+            ref_questionnaire.child(question).child("I").setValue(0)
+
+            ref_questionnaire.child(question).child("motdepasse").setValue(myRandomInt)
+            ref_questionnaire.child(question).child("questionTerminee").setValue("false")
+            ref_questionnaire.child(question).child("bonneReponse").setValue("")
+            ref_questionnaire.child(question).child("titre").setValue("Aucun titre")
+            startActivity(intentRelancer)
         }
     }
 
