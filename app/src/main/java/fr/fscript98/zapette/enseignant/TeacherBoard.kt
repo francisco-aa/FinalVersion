@@ -19,6 +19,7 @@ import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 
 import fr.fscript98.zapette.autre.QuestionModel
+//import fr.fscript98.zapette.autre.ReadCSV
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import kotlin.random.Random
@@ -93,8 +94,14 @@ class TeacherBoard : AppCompatActivity() {
             startActivity(intentResultats)
 
         }
-
-
+/*
+        val import = findViewById<Button>(R.id.buttonImport)
+        import.setOnClickListener{
+            val read = ReadCSV("")
+            read.lireODT()
+        }
+        
+ */
     }
 }
 

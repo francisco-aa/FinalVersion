@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,7 @@ class EtudiantRepondre : AppCompatActivity() {
     lateinit var listener: ValueEventListener
     val database = FirebaseDatabase.getInstance()
     val refQuestionnaire = database.getReference("questionnaire")
+    var nombreReponses = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -70,43 +72,9 @@ class EtudiantRepondre : AppCompatActivity() {
 
         val intent = Intent(applicationContext , EtudiantResultats::class.java)
         val sharedPreference = SharedPreference(this)
+
         //Nettoyer le shared preferences
         sharedPreference.deleteDataIfNotExists()
-
-        //Parcours BDD
-        refQuestionnaire.get().addOnSuccessListener {
-            for (question in it.children) {
-                if (question.child("motdepasse").value.toString() == motDePasseBdd) {
-                    ref = question.key.toString()
-                    if (sharedPreference.isIn(ref))
-                        rep_etudiant =
-                            sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
-                    else
-                        sharedPreference.saveData(
-                            ref ,
-                            ""
-                        ) //On a jamais participé à cette question, donc champ vide
-
-                    listener = //Placement d'un listener actif sur questionTerminee dans la bdd
-                        refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
-                            object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value.toString() == "true") {
-                                        if (shouldRun) startActivity(intent) //question terminée, démarrage de l'activité suivante
-                                        refQuestionnaire.child(ref).child("questionTerminee")
-                                            .removeEventListener(this) //Détruit le listener
-                                        finish()
-                                    }
-                                }
-
-                                override fun onCancelled(error: DatabaseError) {}
-                            }
-                        )
-                }
-            }
-        }
-
-        shouldRun = true
 
         //Incrémente buttonClique (la réponse selectionnée) dans la BDD
         //décrémente derniereRep (la réponse d'avant) dans la bdd
@@ -133,6 +101,47 @@ class EtudiantRepondre : AppCompatActivity() {
                 }
             }
         }
+
+        fun setVisibility(nombreReponses: Int){
+            for (i in 0..nombreReponses){
+                buttonList[i].setVisibility(View.VISIBLE)
+            }
+        }
+
+        //Parcours BDD
+        refQuestionnaire.get().addOnSuccessListener {
+            for (question in it.children) {
+                if (question.child("motdepasse").value.toString() == motDePasseBdd) {
+                    ref = question.key.toString()
+                    //nombreReponses = question.child("nombreReponses").value.toString().toInt()
+                    //setVisibility(nombreReponses)
+                    if (sharedPreference.isIn(ref)) //La question affichée est-elle présente dans le SP de l'étudiant?
+                        rep_etudiant = sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée dans le SR pour la question
+                    else
+                        sharedPreference.saveData(ref , "") //On a jamais participé à cette question, donc champ vide
+
+                    listener = //Placement d'un listener actif sur questionTerminee dans la bdd (pour savoir quand changer d'activité)
+                        refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
+                            object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.value.toString() == "true") {
+                                        if (shouldRun){
+                                            startActivity(intent) //question terminée, démarrage de l'activité suivante
+                                        }
+                                        refQuestionnaire.child(ref).child("questionTerminee")
+                                            .removeEventListener(this) //Détruit le listener
+                                        finish()
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {}
+                            }
+                        )
+                }
+            }
+        }
+
+        shouldRun = true
 
         //Gestion des boutons A -> I
         a.setOnClickListener {

@@ -334,11 +334,16 @@ class ResultatQuestionnaire : AppCompatActivity() {
             val terminer = findViewById<Button>(R.id.Terminer)
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
-                ref_questionnaire.child(question).child("questionTerminee").setValue("true")
-                bonnereponse = ""
+                if(bonnereponse != ""){
+                    ref_questionnaire.child(question).child("questionTerminee").setValue("true")
+                    bonnereponse = ""
 
-                startActivity(intentTerminer)
-                finish()
+                    startActivity(intentTerminer)
+                    finish()
+                }
+                else{
+                    Toast.makeText(this, "Veuillez sélectionner une bonne réponse avant de valider", LENGTH_SHORT).show()
+                }
             }
         }
 

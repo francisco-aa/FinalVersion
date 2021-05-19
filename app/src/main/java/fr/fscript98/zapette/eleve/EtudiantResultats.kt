@@ -163,7 +163,10 @@ class EtudiantResultats : AppCompatActivity() {
                     reponseEtudiant =
                         sharedPreferences.getString(question.key.toString() , "").toString()
 
-                    if (bonneReponse == reponseEtudiant && bonneReponse != "")
+                    if (reponseEtudiant != "" && bonneReponse == ""){
+                        oh(true)
+                    }
+                    else if (bonneReponse == reponseEtudiant && bonneReponse != "")
                         oh(true)
                     else if (bonneReponse != "")
                         oh(false)
@@ -195,8 +198,11 @@ class EtudiantResultats : AppCompatActivity() {
                             object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     if (snapshot.value.toString() == "false") {
-                                        if (EtudiantRepondre.Singleton.shouldRun) startActivity(
-                                            intentRelance) //question terminée= false, revenir a l'activité précédente
+                                        if (EtudiantRepondre.Singleton.shouldRun){
+                                            startActivity(intentRelance) //question terminée= false, revenir a l'activité précédente
+                                            sharedPreference.editor.remove(ref)
+                                            sharedPreference.editor.apply() //Suppression de la réponse enregistrée car la question change
+                                        }
                                         refQuestionnaire.child(ref).child("questionTerminee")
                                             .removeEventListener(this) //Détruit le listener
                                         finish()
