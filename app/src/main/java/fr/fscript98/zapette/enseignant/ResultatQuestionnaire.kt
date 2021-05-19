@@ -33,7 +33,7 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
-import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
+
 
 
 class ResultatQuestionnaire : AppCompatActivity() {
@@ -92,6 +92,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val barData = BarData(barDataSet)
 
                     barChart.setFitBars(true)
+                    barChart.data = barData
+
                     barChart.data = barData
                     //barChart.animateY(1000)
                     barChart.setDrawBarShadow(false)
@@ -172,6 +174,8 @@ class ResultatQuestionnaire : AppCompatActivity() {
                 }
 
                 val aGood = findViewById<TextView>(R.id.A)
+                aGood.width=resources.displayMetrics.widthPixels/10
+
                 val bGood = findViewById<TextView>(R.id.B)
                 val cGood = findViewById<TextView>(R.id.C)
                 val dGood = findViewById<TextView>(R.id.D)
@@ -180,6 +184,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                 val gGood = findViewById<TextView>(R.id.G)
                 val hGood = findViewById<TextView>(R.id.H)
                 val iGood = findViewById<TextView>(R.id.I)
+                iGood.width=resources.displayMetrics.widthPixels/10
 
                 if (bonnereponse == "A") {
                     aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))

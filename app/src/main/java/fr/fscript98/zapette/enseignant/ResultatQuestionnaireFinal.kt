@@ -9,6 +9,8 @@ import android.graphics.Color
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.BarChart
@@ -56,6 +58,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
         val barChart = findViewById<BarChart>(R.id.barChart)
         val table = ArrayList<BarEntry>()
+
 
 
         if (myRandomInt == questionModel.motdepasse) {
@@ -180,19 +183,25 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         val sauvegarder = findViewById<Button>(R.id.btn_sauvegarder)
         sauvegarder.setOnClickListener {
 
-            if (questionModelList.contains(questionModel)) {
-                save = "false"
+            if (save=="true") {
+                save = "true"
+                Toast.makeText(applicationContext," Déjà sauvegardé",LENGTH_SHORT).show()
 
             } else {
-                save = "true"
+                save = "false"
                 questionModelList.clear()
                 questionModelList = sharedPreference.loadDataG()!!
                 questionModelList.add(questionModel)
 
+
+
             }
-            if (save == "true") {
+            if (save == "false") {
                 sharedPreference.saveDataG()
+                Toast.makeText(applicationContext,"Sauvegardé",LENGTH_SHORT).show()
+                questionModelList = sharedPreference.loadDataG()!!
                 sharedPreference.showSR()
+                save="true"
             }
             //Toast.makeText(applicationContext,questionModel.titre.toString(), LENGTH_SHORT).show()
         }

@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_margin"
         app:layout_constraintHorizontal_bias="0.6"
+        android:textColor="@color/white"
         android:text="@string/title_teacher_page"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,14 +49,14 @@
             android:layout_marginBottom="40dp"
             android:inputType="text"
             android:hint="Titre(facultatif)"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/darkblue"
             android:textColor="@color/white"
-            android:textSize="21dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/buttonRunQuiz"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"/>
+            />
 
         <Button
             android:id="@+id/buttonRunQuiz"
@@ -80,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonRunQuiz"
-            android:visibility="gone"/>
+           />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
