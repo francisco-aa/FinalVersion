@@ -164,7 +164,7 @@ class EtudiantResultats : AppCompatActivity() {
                         sharedPreferences.getString(question.key.toString() , "").toString()
 
                     if (reponseEtudiant != "" && bonneReponse == ""){
-                        oh(true)
+                        oh(false)
                     }
                     else if (bonneReponse == reponseEtudiant && bonneReponse != "")
                         oh(true)
@@ -177,6 +177,7 @@ class EtudiantResultats : AppCompatActivity() {
                 }
             }
         }
+
         val sharedPreference = SharedPreference(this)
         var rep_etudiant = ""
         val intentRelance= Intent(this,EtudiantRepondre::class.java)
