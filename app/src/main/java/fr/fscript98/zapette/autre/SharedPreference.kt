@@ -35,6 +35,12 @@ class SharedPreference(val context: Context) {
         return false
     }
 
+    fun SrToArray(ref: String): Array<String> {
+        val str = spEtudiant.getString(ref, "")
+        val array: Array<String> = str!!.toCharArray().map { it.toString() }.toTypedArray()
+        return array
+    }
+
     fun deleteDataIfNotExists() {
         val allEntries: Map<String , *> = spEtudiant.all
         var destroy = true
