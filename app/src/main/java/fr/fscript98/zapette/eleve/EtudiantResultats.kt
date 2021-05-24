@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
+import java.lang.Thread.sleep
 import kotlin.random.Random
 import android.view.animation.AlphaAnimation as AlphaAnimation1
 
@@ -128,9 +129,6 @@ class EtudiantResultats : AppCompatActivity() {
             tabReponses = tabReponses.sorted()
             tabBonneReponses = tabBonneReponses.sorted()
 
-            Log.d("tabReponseSorted" , tabReponses.toString())
-            Log.d("tabBonnrReponseSorted" , tabBonneReponses.toString())
-
             for (i in 0..tabReponses.size - 1) {
                 mapCardViewEtudiant[i]!!.second!!.setCardBackgroundColor(Color.RED)
                 for (j in 0..tabBonneReponses.size - 1) {
@@ -141,42 +139,47 @@ class EtudiantResultats : AppCompatActivity() {
             }
 
             //Cacher les cardview vides
-            for (i in tabReponses.size..8) {
+            for (i in 0..8) {
                 mapCardViewEtudiant[i]!!.second!!.visibility = View.GONE
             }
-            for (i in tabBonneReponses.size..8) {
+            for (i in 0..8) {
                 mapCardViewProf[i]!!.second!!.visibility = View.GONE
             }
 
-            //Affichage des réponses
 
-            val anim = AlphaAnimation1(0.0f , 1.0f)
-            anim.duration = 1000
-            anim.repeatCount = 0
-            anim.startOffset = 1000
 
-            for (i in 0..tabReponses.size - 1) {
-                mapCardViewEtudiant[i]!!.first!!.setText(tabReponses[i])
-                mapCardViewEtudiant[i]!!.second!!.startAnimation(anim)
+            GlobalScope.launch(context = Dispatchers.Main) {
+                for (i in 0..tabReponses.size - 1) {
+                    val anim = AlphaAnimation1(0.0f , 1.0f)
+                    anim.duration = 700
+                    anim.repeatCount = 0
+                    anim.startOffset = 0
+                    mapCardViewEtudiant[i]!!.first!!.setText(tabReponses[i])
+                    mapCardViewEtudiant[i]!!.first!!.startAnimation(anim)
+                    mapCardViewEtudiant[i]!!.second!!.startAnimation(anim)
+                    mapCardViewEtudiant[i]!!.second!!.visibility = View.VISIBLE
+                    delay(700L)
+                }
+            }
+            GlobalScope.launch(context = Dispatchers.Main) {
+                for (i in 0..tabBonneReponses.size - 1) {
+                    val anim = AlphaAnimation1(0.0f , 1.0f)
+                    anim.duration = 1000
+                    anim.repeatCount = 0
+                    anim.startOffset = 0
+                    mapCardViewProf[i]!!.first!!.setText(tabBonneReponses[i])
+                    mapCardViewProf[i]!!.first!!.startAnimation(anim)
+                    mapCardViewProf[i]!!.second!!.startAnimation(anim)
+                    mapCardViewProf[i]!!.second!!.visibility = View.VISIBLE
+                    delay(700L)
+                }
             }
 
-
-            //Affichage des réponses
-            val anim2 = AlphaAnimation1(0.0f , 1.0f)
-            anim2.duration = 1000
-            anim2.repeatCount = 0
-            anim2.startOffset = 0
-
-            for (i in 0..tabBonneReponses.size - 1) {
-                mapCardViewProf[i]!!.first!!.setText(tabBonneReponses[i])
-                mapCardViewProf[i]!!.second!!.startAnimation(anim2)
-            }
-
-            if (tabReponses.equals(tabBonneReponses)){
+            if (tabReponses.equals(tabBonneReponses)) {
                 GlobalScope.launch(context = Dispatchers.Main)
                 {
                     val viewKonfetti = findViewById<KonfettiView>(R.id.viewKonfetti)
-                    delay(2500)
+                    delay(1000)
                     //audioBullshit(true)
                     if (konfetti) {
                         viewKonfetti.build()
@@ -217,92 +220,6 @@ class EtudiantResultats : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        /*
-        rep1.startAnimation(anim)
-
-        val anim2 = AlphaAnimation1(0.0f , 1.0f)
-        anim2.duration = 1000
-        anim2.repeatCount = 0
-        anim2.startOffset = 0
-        rep1_card.startAnimation(anim2)
-
-        val anim3 = AlphaAnimation1(0.0f , 1.0f)
-        anim3.duration = 1000
-        anim3.repeatCount = 0
-        anim3.startOffset = 1500
-        rep2.startAnimation(anim3)
-
-        val anim4 = AlphaAnimation1(0.0f , 1.0f)
-        anim4.duration = 1000
-        anim4.repeatCount = 0
-        anim4.startOffset = 1500
-        rep2_card.startAnimation(anim4)
-    }
-
-    if (!rep)
-    GlobalScope.launch(context = Dispatchers.Main)
-    {
-        delay(2500)
-        rep1_card.setCardBackgroundColor(Color.RED)
-        //audioBullshit(false)
-    }
-    else
-    GlobalScope.launch(context = Dispatchers.Main)
-    {
-        val viewKonfetti = findViewById<KonfettiView>(R.id.viewKonfetti)
-        delay(2500)
-        //audioBullshit(true)
-        rep1_card.setCardBackgroundColor(Color.GREEN)
-        if (konfetti) {
-            viewKonfetti.build()
-                .addColors(
-                    Color.YELLOW ,
-                    Color.GREEN ,
-                    Color.MAGENTA ,
-                    Color.CYAN ,
-                    Color.RED ,
-                    Color.BLUE
-                )
-                .setDirection(250.0 , 280.0)
-                .setSpeed(16f , 12f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
-                .addShapes(Shape.Square , Shape.Circle)
-                .addSizes(Size(8))
-                .setPosition(1140f , null , 2200f , null)
-                .streamFor(200 , 1000L)
-
-            viewKonfetti.build()
-                .addColors(
-                    Color.YELLOW ,
-                    Color.GREEN ,
-                    Color.MAGENTA ,
-                    Color.CYAN ,
-                    Color.RED ,
-                    Color.BLUE
-                )
-                .setDirection(270.0 , 290.0)
-                .setSpeed(16f , 12f)
-                .setFadeOutEnabled(true)
-                .setTimeToLive(2000L)
-                .addShapes(Shape.Square , Shape.Circle)
-                .addSizes(Size(8))
-                .setPosition(-50f , null , 2200f , null)
-                .streamFor(200 , 1000L)
-        }
-    }
-}
-
-         */
-
-
-        fun decision(tabReponses: List<String> , tabBonneReponses: List<String>): Int {
-            if (tabReponses == tabBonneReponses) {
-                return 0
-            }
-            return 1
         }
 
         //parcours BDD
@@ -359,58 +276,10 @@ class EtudiantResultats : AppCompatActivity() {
         }
     }
 
-/*
-refQuestionnaire.get().addOnSuccessListener {
-    for (question in it.children) {
-        if (motDePasseBdd == question.child("motdepasse").value.toString()) {
-            bonneReponse = question.child("bonneReponse").value.toString()
-            //reponseEtudiant = sharedPreferences.getString(question.key.toString() , "").toString()
-            tabReponses = sharedPreference.SpToArray()
-            tabBonnesReponses =
-
-            if (reponseEtudiant != "" && bonneReponse == ""){
-                oh(false)
-            }
-            else if (bonneReponse == reponseEtudiant && bonneReponse != "")
-                oh(true)
-            else if (bonneReponse != "")
-                oh(false)
-            else{
-                rep1.setText("")
-                rep2.setText("")
-            }
-        }
-    }
-}
-
-var rep_etudiant = ""
-
-refQuestionnaire.get().addOnSuccessListener {
-    for (question in it.children) {
-        if (question.child("motdepasse").value.toString() == motDePasseBdd) {
-            var ref = question.key.toString()
-            if (sharedPreference.isIn(ref))
-                rep_etudiant =
-                    sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée pour la question
-            else
-                sharedPreference.saveData(
-                    ref ,
-                    ""
-                ) //On a jamais participé à cette question, donc champ vide
-
-
-        }
-    }
-}
-
- */
-
-
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
     }
-
 
     //Attention: Cettte fonction est extrêmement importante et ne doit en aucun cas être supprimée.
     fun audioBullshit(v: Boolean) {
