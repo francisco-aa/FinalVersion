@@ -15,10 +15,12 @@ import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 class SharedPreference(val context: Context) {
     val spEtudiantName = "shared_prefs"
     val sharedEnseignantName = "shared_enseignant"
-    val spEtudiant : SharedPreferences = context.getSharedPreferences(spEtudiantName, Context.MODE_PRIVATE)
-    val sharedEnseignant : SharedPreferences = context.getSharedPreferences(sharedEnseignantName, Context.MODE_PRIVATE)
-    val editor : SharedPreferences.Editor = spEtudiant.edit()
-    val editorEnseignant : SharedPreferences.Editor=sharedEnseignant.edit()
+    val spEtudiant: SharedPreferences =
+        context.getSharedPreferences(spEtudiantName , Context.MODE_PRIVATE)
+    val sharedEnseignant: SharedPreferences =
+        context.getSharedPreferences(sharedEnseignantName , Context.MODE_PRIVATE)
+    val editor: SharedPreferences.Editor = spEtudiant.edit()
+    val editorEnseignant: SharedPreferences.Editor = sharedEnseignant.edit()
     val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
 
     fun saveData(key: String , value: String) {
@@ -30,15 +32,15 @@ class SharedPreference(val context: Context) {
         return spEtudiant.getString(key , "").toString()
     }
 
-    fun isIn(ref: String) : Boolean{
+    fun isIn(ref: String): Boolean {
         if (spEtudiant.contains(ref)) return true
         return false
     }
 
-    fun SrToArray(ref: String): Array<String> {
-        val str = spEtudiant.getString(ref, "")
-        val array: Array<String> = str!!.toCharArray().map { it.toString() }.toTypedArray()
-        return array
+    fun SpToArray(ref: String): MutableList<String> {
+        val str = spEtudiant.getString(ref , "")
+        val list: MutableList<String> = str!!.toCharArray().map { it.toString() }.toMutableList()
+        return list
     }
 
     fun deleteDataIfNotExists() {
@@ -61,7 +63,6 @@ class SharedPreference(val context: Context) {
     }
 
     fun killSR() {
-
         editorEnseignant.clear()
         editorEnseignant.apply()
     }
@@ -72,22 +73,24 @@ class SharedPreference(val context: Context) {
             Log.d("map values" , key + ": " + value.toString())
         }
     }
-    fun saveDataG(){
-        val gson : Gson = Gson()
-        val json : String = gson.toJson(questionModelList)
-        editorEnseignant.putString("enseignant",json)
+
+    fun saveDataG() {
+        val gson: Gson = Gson()
+        val json: String = gson.toJson(questionModelList)
+        editorEnseignant.putString("enseignant" , json)
         editorEnseignant.apply()
     }
-     fun loadDataG(): ArrayList<QuestionModel>? {
+
+    fun loadDataG(): ArrayList<QuestionModel>? {
 
         val gson: Gson = Gson()
-        val json: String = sharedEnseignant.getString("enseignant", null).toString()
+        val json: String = sharedEnseignant.getString("enseignant" , null).toString()
         val type = object : TypeToken<ArrayList<QuestionModel>>() {}.type
-         var questionModelList = gson.fromJson<ArrayList<QuestionModel>>(json , type)
+        var questionModelList = gson.fromJson<ArrayList<QuestionModel>>(json , type)
         if (questionModelList == null) {
             questionModelList = ArrayList<QuestionModel>()
         }
-         return questionModelList
+        return questionModelList
     }
 
 }

@@ -21,7 +21,6 @@
         tools:ignore="ContentDescription" />
 
 
-
     <TextView
         android:id="@+id/repondre_au_questionnaire"
         android:layout_width="@dimen/margin_titre_ver"
@@ -304,6 +303,6 @@
         </LinearLayout>
 
     </LinearLayout>
-    
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
