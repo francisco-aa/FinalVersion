@@ -12,6 +12,7 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import fr.fscript98.zapette.MainActivity.singleton.plustard
 import fr.fscript98.zapette.autre.APropos
 import fr.fscript98.zapette.autre.BddRepository
 import fr.fscript98.zapette.autre.ConnectivityCallback
@@ -19,6 +20,9 @@ import fr.fscript98.zapette.eleve.EtudiantQuestionnaire
 import fr.fscript98.zapette.enseignant.TeacherBoard
 
 class MainActivity : AppCompatActivity() {
+    object singleton {
+        var plustard=0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                     buttonTeacher.setOnClickListener {
                         if (ContextCompat.checkSelfPermission(this ,"PERMISSION_GRANTED") == PERMISSION_GRANTED) {}
                         val intentButtonTeacher = Intent(this , TeacherBoard::class.java)
+                        plustard=0
                         startActivity(intentButtonTeacher)
                     }
 
