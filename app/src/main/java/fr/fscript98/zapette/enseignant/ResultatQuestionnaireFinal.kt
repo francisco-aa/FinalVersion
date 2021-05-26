@@ -36,6 +36,7 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 
 
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionListAttente
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 import kotlin.random.Random
 
@@ -178,6 +179,20 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         val intentQuitter = Intent(this , TeacherBoard::class.java)
         quitter.setOnClickListener {
             ref_questionnaire.child(question).removeValue()
+            if (save=="true") {
+                save = "true"
+            }
+            else{
+                if (questionListAttente.size<30){
+                    questionListAttente.add(questionModel)
+                    sharedPreference.saveDataE()
+                    save="true"
+                }
+                else{
+                    questionListAttente.removeAt(0)
+                    questionListAttente.add(questionModel)
+                }
+            }
             startActivity((intentQuitter))
             finish()
         }
@@ -215,7 +230,20 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             question = "question"
             BddRepository.Singleton.chemin = (myRandomInt).toString()
             question += BddRepository.Singleton.chemin
-
+            if (save=="true") {
+                save = "true"
+            }
+            else{
+                if (questionListAttente.size<30){
+                    questionListAttente.add(questionModel)
+                    sharedPreference.saveDataE()
+                    save="true"
+                }
+                else{
+                    questionListAttente.removeAt(0)
+                    questionListAttente.add(questionModel)
+                }
+            }
             ref_questionnaire.child(question).child("A").setValue(0)
             ref_questionnaire.child(question).child("B").setValue(0)
             ref_questionnaire.child(question).child("C").setValue(0)
@@ -229,7 +257,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             ref_questionnaire.child(question).child("motdepasse").setValue(myRandomInt)
             ref_questionnaire.child(question).child("questionTerminee").setValue("false")
             ref_questionnaire.child(question).child("bonneReponse").setValue("")
-            ref_questionnaire.child(question).child("titre").setValue("Aucun titre")
+            ref_questionnaire.child(question).child("titre").setValue("Question Relancer")
             startActivity(intentRelancer)
         }
     }

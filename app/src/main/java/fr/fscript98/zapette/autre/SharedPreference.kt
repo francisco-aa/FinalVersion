@@ -8,11 +8,12 @@ import android.util.Log
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionListAttente
 
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
-class SharedPreference(val context: Context) {
+class SharedPreference(context:Context) {
     val spEtudiantName = "shared_prefs"
     val sharedEnseignantName = "shared_enseignant"
     val spEtudiant: SharedPreferences =
@@ -91,6 +92,25 @@ class SharedPreference(val context: Context) {
             questionModelList = ArrayList<QuestionModel>()
         }
         return questionModelList
+    }
+
+    fun saveDataE() {
+        val gson: Gson = Gson()
+        val json: String = gson.toJson(questionListAttente)
+        editorEnseignant.putString("enseignantAttente" , json)
+        editorEnseignant.apply()
+    }
+
+    fun loadDataE(): ArrayList<QuestionModel>? {
+
+        val gson: Gson = Gson()
+        val json: String = sharedEnseignant.getString("enseignantAttente" , null).toString()
+        val type = object : TypeToken<ArrayList<QuestionModel>>() {}.type
+        var questionListAttente = gson.fromJson<ArrayList<QuestionModel>>(json , type)
+        if (questionListAttente == null) {
+            questionListAttente = ArrayList<QuestionModel>()
+        }
+        return questionListAttente
     }
 
 }

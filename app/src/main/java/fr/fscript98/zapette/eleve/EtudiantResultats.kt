@@ -3,19 +3,15 @@ package fr.fscript98.zapette.eleve
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.google.firebase.database.DataSnapshot
@@ -35,8 +31,6 @@ import kotlinx.coroutines.launch
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
-import java.lang.Thread.sleep
-import kotlin.random.Random
 import android.view.animation.AlphaAnimation as AlphaAnimation1
 
 

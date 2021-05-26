@@ -195,11 +195,14 @@
                 android:layout_height="wrap_content"
 
                 android:background="@drawable/background_button"
-                android:text="afficher"
-                android:layout_marginRight="80dp"
+                android:text="Afficher"
+                android:layout_marginRight="40dp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
+
+
+
 
             <Button
                 android:id="@+id/clear"
@@ -210,9 +213,6 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
-
-
-
         </LinearLayout>
 
 

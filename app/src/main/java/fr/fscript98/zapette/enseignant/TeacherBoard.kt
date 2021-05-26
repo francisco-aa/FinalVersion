@@ -10,18 +10,23 @@ import android.widget.Button
 import android.widget.EditText
 
 import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 
 import androidx.appcompat.app.AppCompatActivity
 
 import com.google.firebase.database.FirebaseDatabase
 import fr.fscript98.zapette.MainActivity
+import fr.fscript98.zapette.MainActivity.singleton.plustard
+
 import fr.fscript98.zapette.R
+import fr.fscript98.zapette.autre.MyDialog
 
 import fr.fscript98.zapette.autre.QuestionModel
-//import fr.fscript98.zapette.autre.ReadCSV
+
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionListAttente
 import kotlin.random.Random
 
 class TeacherBoard : AppCompatActivity() {
@@ -30,6 +35,7 @@ class TeacherBoard : AppCompatActivity() {
         var myRandomInt = 1
         var position = -1
         var questionModelList = arrayListOf<QuestionModel>()
+        var questionListAttente = arrayListOf<QuestionModel>()
         val mesView = arrayListOf<View>()
     }
 
@@ -90,9 +96,24 @@ class TeacherBoard : AppCompatActivity() {
         val intentResultats = Intent(this , EnseignantResultats::class.java)
         val resultatEnseignant = findViewById<Button>(R.id.mesResultats)
         resultatEnseignant.setOnClickListener {
+            if (plustard == 0) {
+                questionListAttente = sharedPreference.loadDataE()!!
+                if (questionListAttente.size >= 1) {
+                    MyDialog(this).show(supportFragmentManager , "mydialog")
 
-            sharedPreference.showSR()
-            startActivity(intentResultats)
+                }
+                else{
+                    startActivity(intentResultats)
+                }
+            }
+            else {
+                plustard += 1
+
+                if (plustard==4){
+                    plustard=0
+                }
+                startActivity(intentResultats)
+            }
 
         }
 /*
