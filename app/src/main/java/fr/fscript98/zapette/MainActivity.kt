@@ -10,21 +10,26 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import fr.fscript98.zapette.MainActivity.singleton.plustard
 import fr.fscript98.zapette.autre.*
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire
 import fr.fscript98.zapette.enseignant.TeacherBoard
 
 
 class MainActivity : AppCompatActivity() {
+    object singleton {
+        var plustard = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         //Verification de la connection
-        val intentConnectionPerdue = Intent(this, ConnectionPerdue::class.java)
+        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
         val internetConnection = InternetConnection(this)
-        internetConnection.observe(this, androidx.lifecycle.Observer { isConnected ->
-            if (!isConnected){
+        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected) {
                 startActivity(intentConnectionPerdue)
             }
         })
@@ -49,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
                 }
                 val intentButtonTeacher = Intent(this , TeacherBoard::class.java)
+                plustard =0
                 startActivity(intentButtonTeacher)
             }
 
