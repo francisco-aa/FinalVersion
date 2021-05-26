@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.Capture
+import fr.fscript98.zapette.autre.ConnectionPerdue
+import fr.fscript98.zapette.autre.InternetConnection
 import fr.fscript98.zapette.eleve.EtudiantQuestionnaire.Singleton.fromQuestionnaire
 
 open class EtudiantQuestionnaire : AppCompatActivity() {
@@ -34,6 +36,15 @@ open class EtudiantQuestionnaire : AppCompatActivity() {
                 setContentView(R.layout.activity_etudiant_questionnaire_land)
             }
         }
+
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this, ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this, androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected){
+                startActivity(intentConnectionPerdue)
+            }
+        })
 
         val intent2 = Intent(this , EtudiantRepondre::class.java)
         val intent3 = Intent(this , EtudiantResultats::class.java)

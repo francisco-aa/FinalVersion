@@ -15,6 +15,8 @@ import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
+import fr.fscript98.zapette.autre.ConnectionPerdue
+import fr.fscript98.zapette.autre.InternetConnection
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.bitMap
 import fr.fscript98.zapette.eleve.EtudiantRepondre.Singleton.shouldRun
@@ -48,6 +50,15 @@ class EtudiantRepondre : AppCompatActivity() {
                 setContentView(R.layout.activity_etudiant_repondre_land)
             }
         }
+
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this, ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this, androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected){
+                startActivity(intentConnectionPerdue)
+            }
+        })
 
         val a = findViewById<Button>(R.id.buttonA)
         val b = findViewById<Button>(R.id.buttonB)

@@ -25,6 +25,8 @@ import com.google.firebase.database.ValueEventListener
 import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.BddRepository.Singleton.motDePasseBdd
+import fr.fscript98.zapette.autre.ConnectionPerdue
+import fr.fscript98.zapette.autre.InternetConnection
 import fr.fscript98.zapette.autre.SharedPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -53,6 +55,15 @@ class EtudiantResultats : AppCompatActivity() {
                 setContentView(R.layout.activity_etudiant_resultats_land)
             }
         }
+
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this, ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this, androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected){
+                startActivity(intentConnectionPerdue)
+            }
+        })
 
         var bonneReponse = ""
         //var reponseEtudiant = ""
