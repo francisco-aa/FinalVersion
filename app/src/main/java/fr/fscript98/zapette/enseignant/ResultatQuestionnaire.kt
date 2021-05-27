@@ -7,13 +7,10 @@ import fr.fscript98.zapette.autre.BddRepository.Singleton.questionListBdd
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
 import android.content.Intent
 import android.content.res.Configuration
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import android.widget.Toast.LENGTH_SHORT
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -21,10 +18,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.google.firebase.database.ValueEventListener
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.qrcode.QRCodeWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -34,18 +28,16 @@ import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
 
-
-
 class ResultatQuestionnaire : AppCompatActivity() {
 
     object Singleton {
         lateinit var questionModel: QuestionModel
-        var bonnereponse = ""
+        var bonnereponse = mutableListOf<String>()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         val repo1 = BddRepository()
         repo1.updateData {
@@ -56,6 +48,16 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     setContentView(R.layout.activity_resultat_questionnaire_land)
                 }
             }
+
+            val aGood = findViewById<Button>(R.id.A)
+            val bGood = findViewById<Button>(R.id.B)
+            val cGood = findViewById<Button>(R.id.C)
+            val dGood = findViewById<Button>(R.id.D)
+            val eGood = findViewById<Button>(R.id.E)
+            val fGood = findViewById<Button>(R.id.F)
+            val gGood = findViewById<Button>(R.id.G)
+            val hGood = findViewById<Button>(R.id.H)
+            val iGood = findViewById<Button>(R.id.I)
 
             val textViewTotal = findViewById<TextView>(R.id.nbTotal)
             val textView = findViewById<TextView>(R.id.textView2)
@@ -73,6 +75,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     val nbI = codeBDD.I
                     val nbTotal = nbA + nbB + nbC + nbD + nbE + nbF + nbG + nbH + nbI
 
+
                     val barChart = findViewById<BarChart>(R.id.barChart)
                     val table = ArrayList<BarEntry>()
 
@@ -86,14 +89,15 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     table.add(BarEntry(8f , nbH.toFloat()))
                     table.add(BarEntry(9f , nbI.toFloat()))
 
+                    //X Axis
+                    val labels =
+                        listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
 
                     val barDataSet = BarDataSet(table , "")
 
                     val barData = BarData(barDataSet)
 
                     barChart.setFitBars(true)
-                    barChart.data = barData
-
                     barChart.data = barData
                     //barChart.animateY(1000)
                     barChart.setDrawBarShadow(false)
@@ -108,9 +112,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     barChart.setDrawGridBackground(false)
                     barChart.isClickable = false
 
-                    //X Axis
-                    val labels =
-                        listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
 
                     //val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
                     val xAxis = barChart.xAxis
@@ -147,17 +148,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     rightAxis.spaceTop = 15f
                     rightAxis.axisMinimum = 0f
 
-
-                    /*
-                    val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
-                    val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
-
-                    val gradientColors: MutableList<GradientColor> = ArrayList()
-                    gradientColors.add(GradientColor(startColor1,enColor1))
-
-                    barDataSet.gradientColors = gradientColors
-                     */
-
                     val dataSets = ArrayList<IBarDataSet>()
                     dataSets.add(barDataSet)
 
@@ -170,147 +160,269 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
                     textViewTotal.text = ("$nbTotal")
                     questionModel = codeBDD
-
                 }
 
-                val aGood = findViewById<TextView>(R.id.A)
-                aGood.width=resources.displayMetrics.widthPixels/10
-
-                val bGood = findViewById<TextView>(R.id.B)
-                val cGood = findViewById<TextView>(R.id.C)
-                val dGood = findViewById<TextView>(R.id.D)
-                val eGood = findViewById<TextView>(R.id.E)
-                val fGood = findViewById<TextView>(R.id.F)
-                val gGood = findViewById<TextView>(R.id.G)
-                val hGood = findViewById<TextView>(R.id.H)
-                val iGood = findViewById<TextView>(R.id.I)
-                iGood.width=resources.displayMetrics.widthPixels/10
-
-                if (bonnereponse == "A") {
-                    aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("A" in bonnereponse) {
+                    aGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "B") {
-                    bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("B" in bonnereponse) {
+                    bGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "C") {
-                    cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("C" in bonnereponse) {
+                    cGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "D") {
-                    dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("D" in bonnereponse) {
+                    dGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "E") {
-                    eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("E" in bonnereponse) {
+                    eGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "F") {
-                    fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("F" in bonnereponse) {
+                    fGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "G") {
-                    gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("G" in bonnereponse) {
+                    gGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "H") {
-                    hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("H" in bonnereponse) {
+                    hGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
-                if (bonnereponse == "I") {
-                    iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
+                if ("I" in bonnereponse) {
+                    iGood.setBackgroundColor(ContextCompat.getColor(this , R.color.teal_200))
                 }
 
 
-                val answersList = arrayListOf<TextView>()
-                answersList.add(aGood)
-                answersList.add(bGood)
-                answersList.add(cGood)
-                answersList.add(dGood)
-                answersList.add(eGood)
-                answersList.add(fGood)
-                answersList.add(gGood)
-                answersList.add(hGood)
-                answersList.add(iGood)
+                fun ButtonIsClicked(buttonClique: String): Boolean {
+                    for (button in bonnereponse) {
+                        if (button == buttonClique)
+                            return true
+                    }
+                    return false
+                }
+
+                fun ArrayToString(array: MutableList<String>): String {
+                    var str = ""
+                    for (char in array) {
+                        str += char
+                    }
+                    return str
+                }
 
                 aGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("A")) {
+                        aGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("A")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        aGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("A")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    aGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    bonnereponse = "A"
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 }
 
                 bGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("B")) {
+                        bGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("B")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        bGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("B")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    bGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    bonnereponse = "B"
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 }
 
                 cGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("C")) {
+                        cGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("C")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        cGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("C")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    cGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    bonnereponse = "C"
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 }
 
                 dGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("D")) {
+                        dGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("D")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        dGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("D")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    dGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    bonnereponse = "D"
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 }
 
                 eGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("E")) {
+                        eGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("E")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        eGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("E")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    bonnereponse = "E"
-                    eGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
-
                 }
 
                 fGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("F")) {
+                        fGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("F")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        fGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("F")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    bonnereponse = "F"
-                    fGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 }
 
                 gGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("G")) {
+                        gGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("G")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        gGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("G")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    bonnereponse = "G"
-                    gGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
                 }
 
                 hGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("H")) {
+                        hGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("H")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        hGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("H")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    bonnereponse = "H"
-                    hGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
-
                 }
 
                 iGood.setOnClickListener {
-                    for (answer in answersList) {
-                        answer.setTextColor(Color.WHITE)
+                    if (ButtonIsClicked("I")) {
+                        iGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.light_blue_A400
+                            )
+                        )
+                        bonnereponse.remove("I")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
+                    } else {
+                        iGood.setBackgroundColor(
+                            ContextCompat.getColor(
+                                this ,
+                                R.color.teal_200
+                            )
+                        )
+                        bonnereponse.add("I")
+                        ref_questionnaire.child(question).child("bonneReponse")
+                            .setValue(ArrayToString(bonnereponse))
                     }
-                    bonnereponse = "I"
-                    iGood.setTextColor(ContextCompat.getColor(this , R.color.teal_200))
-                    ref_questionnaire.child(question).child("bonneReponse").setValue(bonnereponse)
-
                 }
             }
-
 
             val qrCode = QRCodeWriter()
             val intent = Intent(this , QrCodeEnseignant::class.java)
@@ -329,27 +441,19 @@ class ResultatQuestionnaire : AppCompatActivity() {
                 startActivity(intent)
             }
             textView.text = ("$myRandomInt")
-            //Récupérer les nombres de votes par reponse
 
             val terminer = findViewById<Button>(R.id.Terminer)
             val intentTerminer = Intent(this , ResultatQuestionnaireFinal::class.java)
             terminer.setOnClickListener {
-                if(bonnereponse != ""){
-                    ref_questionnaire.child(question).child("questionTerminee").setValue("true")
-                    bonnereponse = ""
-
-                    startActivity(intentTerminer)
-                    finish()
-                }
-                else{
-                    Toast.makeText(this, "Veuillez sélectionner une bonne réponse avant de valider", LENGTH_SHORT).show()
-                }
+                ref_questionnaire.child(question).child("questionTerminee").setValue("true")
+                startActivity(intentTerminer)
+                finish()
             }
         }
-
-
+        bonnereponse.clear()
     }
 }
+
 
 
 

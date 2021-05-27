@@ -59,6 +59,11 @@
     <string name="answerB_button_name_quiz_page">B</string>
     <string name="answerC_button_name_quiz_page">C</string>
     <string name="answerD_button_name_quiz_page">D</string>
+    <string name="answerE_button_name_quiz_page">E</string>
+    <string name="answerF_button_name_quiz_page">F</string>
+    <string name="answerG_button_name_quiz_page">G</string>
+    <string name="answerH_button_name_quiz_page">H</string>
+    <string name="answerI_button_name_quiz_page">I</string>
     <string name="text_need_help">Besoin d\'aide</string>
     <string name="button_confirme_answer">Valider réponse</string>
 
@@ -82,6 +87,5 @@
     <string name="gaetan">Gaëtan ALOZY</string>
     <string name="julien">Julien TERRIE</string>
     <string name="developpement">Développement et Conception</string>
-
 
 </resources>

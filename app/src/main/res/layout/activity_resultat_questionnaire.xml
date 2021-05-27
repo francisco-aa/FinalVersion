@@ -42,227 +42,73 @@
                 app:layout_constraintStart_toStartOf="parent" />
         </RelativeLayout>
 
-        <!--
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/barChart">
-
-        <TextView
-            android:id="@+id/A"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="A"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/B"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="B"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/C"
-            app:layout_constraintStart_toEndOf="@+id/A"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/C"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="C"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/E"
-            app:layout_constraintStart_toEndOf="@+id/A"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/D"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/E"
-            app:layout_constraintStart_toEndOf="@+id/C"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/E"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="E"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/F"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="F"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/G"
-            app:layout_constraintStart_toEndOf="@+id/E"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/G"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="G"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/I"
-            app:layout_constraintStart_toEndOf="@+id/E"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/H"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="H"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/I"
-            app:layout_constraintStart_toEndOf="@+id/G"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/I"
-            style="@style/TextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="I"
-            android:textColor="@color/white"
-
-
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-        -->
-
-
         <LinearLayout
             android:id="@+id/linearLayout9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent">
 
-            <TextView
-                android:id="@+id/total"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total : "
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/Terminer"
-                app:layout_constraintEnd_toEndOf="@+id/Terminer"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintStart_toStartOf="@+id/Terminer"
-                app:layout_constraintTop_toBottomOf="@+id/E"/>
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent">
 
-            <TextView
-                android:id="@+id/nbTotal"
-                style="@style/TextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/total"
-                app:layout_constraintEnd_toEndOf="@+id/Terminer"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/total"
-                app:layout_constraintTop_toTopOf="@+id/total">
+                <TextView
+                    android:id="@+id/total"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total : "
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/Terminer"
+                    app:layout_constraintEnd_toEndOf="@+id/Terminer"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="@+id/Terminer"
+                    app:layout_constraintTop_toBottomOf="@+id/E" />
 
-            </TextView>
+                <TextView
+                    android:id="@+id/nbTotal"
+                    style="@style/TextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/total"
+                    app:layout_constraintEnd_toEndOf="@+id/Terminer"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/total"
+                    app:layout_constraintTop_toTopOf="@+id/total"/>
 
+            </LinearLayout>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/Terminer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:background="@drawable/background_button"
-            android:text="Terminer"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/barChart"
-            app:layout_constraintStart_toStartOf="@+id/barChart"
-            app:layout_constraintTop_toTopOf="parent">
-        </Button>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:gravity="center_horizontal"
-            >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/linearLayout19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_50"
+                android:gravity="center_horizontal"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:gravity="center_horizontal"
-                android:layout_marginRight="@dimen/margin_50">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="120dp"
@@ -271,14 +117,14 @@
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="20dp">
 
                     <ImageView
                         android:id="@+id/imageQrCode"
                         android:layout_width="155dp"
                         android:layout_height="150dp"
-                        android:layout_gravity="center">
-                    </ImageView>
+                        android:layout_gravity="center"/>
                 </androidx.cardview.widget.CardView>
 
 
@@ -299,8 +145,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:gravity="center_horizontal"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -312,15 +158,16 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout19"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         style="@style/TextStyle"
-                        android:layout_width="156dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="Choisissez la bonne reponse:"
-                        android:textSize="18dp"/>
+                        android:text="Bonnes(s) réponse(s):"
+                        android:textSize="18dp" />
 
                 </LinearLayout>
 
@@ -333,29 +180,54 @@
                     app:layout_constraintStart_toEndOf="@+id/linearLayout19"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout26">
 
-                    <TextView
-                        android:id="@+id/A"
-                        style="@style/TextStyle"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewA"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="A"
-                        android:textSize="20sp"
-                        android:textStyle="bold"/>
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
 
-                    <TextView
-                        android:id="@+id/B"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="25dp"
-                        android:text="B"/>
+                        <Button
+                            android:id="@+id/A"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerA_button_name_quiz_page" />
 
-                    <TextView
-                        android:id="@+id/C"
-                        style="@style/TextStyle"
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="C"/>
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginHorizontal="12dp">
+
+                        <Button
+                            android:id="@+id/B"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerB_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+                        <Button
+                            android:id="@+id/C"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerC_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
@@ -363,32 +235,58 @@
                     android:id="@+id/linearLayout28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout19"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
 
-                    <TextView
-                        android:id="@+id/D"
-                        style="@style/TextStyle"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewD"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="D"/>
-                    <TextView
-                        android:id="@+id/E"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="25dp"
-                        android:text="E"/>
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        >
+                        <Button
+                            android:id="@+id/D"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerD_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/F"
-                        style="@style/TextStyle"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewE"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="F"/>
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginHorizontal="12dp">
+                        <Button
+                            android:id="@+id/E"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerE_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+                        <Button
+                            android:id="@+id/F"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerF_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -399,33 +297,70 @@
                     app:layout_constraintStart_toEndOf="@+id/linearLayout19"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout28">
 
-                    <TextView
-                        android:id="@+id/G"
-                        style="@style/TextStyle"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewG"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="G"/>
-                    <TextView
-                        android:id="@+id/H"
-                        style="@style/TextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="25dp"
-                        android:text="H"/>
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+                        <Button
+                            android:id="@+id/G"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerG_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/I"
-                        style="@style/TextStyle"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewH"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="I"/>
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginHorizontal="12dp">
+                        <Button
+                            android:id="@+id/H"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerH_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardViewI"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+                        <Button
+                            android:id="@+id/I"
+                            style="@style/TextStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@color/light_blue_A400"
+                            android:text="@string/answerI_button_name_quiz_page" />
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-
         </LinearLayout>
+
+        <Button
+            android:id="@+id/Terminer"
+            android:layout_width="167dp"
+            android:layout_height="34dp"
+            android:layout_marginVertical="3dp"
+            android:background="@drawable/background_button"
+            android:text="Terminer"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/barChart"
+            app:layout_constraintStart_toStartOf="@+id/barChart"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 
