@@ -21,11 +21,8 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.autre.EnseignantFragment
-import fr.fscript98.zapette.autre.MyDialog
-import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.position
-import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.positionSupp
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
@@ -83,15 +80,8 @@ class EnseignantResultats() : AppCompatActivity() {
                 transaction1.addToBackStack(null)
                 transaction1.commit()
                 sharedPreference.killSR()
-                val questionSupp= arrayListOf<QuestionModel>()
-                for (i in positionSupp){
-                    questionSupp.add(questionModelList[i])
 
-                }
-                for (question in questionSupp){
-                    questionModelList.remove(question)
-                }
-
+                questionModelList.remove(questionModelList[position])
                 sharedPreference.saveDataG()
                 questionModelList = sharedPreference.loadDataG()!!
 
@@ -131,50 +121,48 @@ class EnseignantResultats() : AppCompatActivity() {
                     val barChart = findViewById<BarChart>(R.id.barChartResultats)
                     val table = ArrayList<BarEntry>()
 
-                    table.add(BarEntry(1f , questionModelList[position].A.toFloat() ))
-                    table.add(BarEntry(3f , questionModelList[position].B.toFloat()))
-                    table.add(BarEntry(5f , questionModelList[position].C.toFloat()))
-                    table.add(BarEntry(7f , questionModelList[position].D.toFloat()))
-                    table.add(BarEntry(9f , questionModelList[position].E.toFloat()))
-                    table.add(BarEntry(11f , questionModelList[position].F.toFloat()))
-                    table.add(BarEntry(13f , questionModelList[position].G.toFloat()))
-                    table.add(BarEntry(15f , questionModelList[position].H.toFloat()))
-                    table.add(BarEntry(17f , questionModelList[position].I.toFloat()))
+                    table.add(BarEntry(1f , questionModelList[position].A.toFloat()))
+                    table.add(BarEntry(2f , questionModelList[position].B.toFloat()))
+                    table.add(BarEntry(3f , questionModelList[position].C.toFloat()))
+                    table.add(BarEntry(4f , questionModelList[position].D.toFloat()))
+                    table.add(BarEntry(5f , questionModelList[position].E.toFloat()))
+                    table.add(BarEntry(6f , questionModelList[position].F.toFloat()))
+                    table.add(BarEntry(7f , questionModelList[position].G.toFloat()))
+                    table.add(BarEntry(8f , questionModelList[position].H.toFloat()))
+                    table.add(BarEntry(9f , questionModelList[position].I.toFloat()))
 
-                    var barDataSet = BarDataSet(table ,"")
+                    val barDataSet = BarDataSet(table ,"")
 
-                    var barData = BarData(barDataSet)
+                    val barData = BarData(barDataSet)
 
                     barChart.setFitBars(true)
-
                     barChart.data = barData
                     barChart.setDrawBarShadow(false)
                     barChart.setDrawValueAboveBar(true)
                     barChart.description.isEnabled = false
-
                     barChart.setPinchZoom(false)
                     barChart.isDoubleTapToZoomEnabled = false
                     barChart.setScaleEnabled(false)
-
                     barChart.setDrawGridBackground(false)
                     barChart.isClickable = false
                     barChart.animateY(1000)
 
                     //X Axis
-                    var labels = mutableListOf<String>()
+                    val labels = listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
 
-                    val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
-                    var xAxis = barChart.xAxis
+                    //val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
+                    val xAxis = barChart.xAxis
                     xAxis.setLabelCount(table.size , true)
-                    xAxis.valueFormatter = xAxisFormatter
+                    //xAxis.valueFormatter = xAxisFormatter
+                    xAxis.valueFormatter = IndexAxisValueFormatter(labels)
                     xAxis.labelCount = table.size
-
-
+                    xAxis.setCenterAxisLabels(false)
                     xAxis.position = XAxis.XAxisPosition.BOTTOM
                     xAxis.setDrawGridLines(false)
-                    xAxis.granularity = 2f
+                    xAxis.granularity = 1f
                     xAxis.textColor = ContextCompat.getColor(this , R.color.white)
                     xAxis.axisLineColor = ContextCompat.getColor(this , R.color.white)
+                    xAxis.textSize = 12f
 
 
                     //Y Axis
@@ -196,16 +184,6 @@ class EnseignantResultats() : AppCompatActivity() {
                     rightAxis.setLabelCount(0 , false)
                     rightAxis.spaceTop = 15f
                     rightAxis.axisMinimum = 0f
-
-                    /*
-            val startColor1 = ContextCompat.getColor(this,R.color.lightblue3)
-            val enColor1 = ContextCompat.getColor(this,R.color.lightblue3)
-
-            val gradientColors: MutableList<GradientColor> = ArrayList()
-            gradientColors.add(GradientColor(startColor1,enColor1))
-
-            barDataSet.gradientColors = gradientColors
-             */
 
                     val dataSets = ArrayList<IBarDataSet>()
                     dataSets.add(barDataSet)

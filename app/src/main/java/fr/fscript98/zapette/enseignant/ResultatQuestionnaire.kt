@@ -103,9 +103,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     //X Axis
                     val labels =
                         listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
-
                     val barDataSet = BarDataSet(table , "")
-
                     val barData = BarData(barDataSet)
 
                     barChart.setFitBars(true)
@@ -114,12 +112,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     barChart.setDrawBarShadow(false)
                     barChart.setDrawValueAboveBar(true)
                     barChart.description.isEnabled = false
-
                     barChart.setPinchZoom(false)
                     barChart.isDoubleTapToZoomEnabled = false
                     barChart.setScaleEnabled(false)
-
-
                     barChart.setDrawGridBackground(false)
                     barChart.isClickable = false
 
@@ -148,7 +143,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     leftAxis.spaceTop = 0f
                     leftAxis.axisMinimum = 0f
                     leftAxis.textColor = ContextCompat.getColor(this , R.color.white)
-                    //leftAxis.setDrawAxisLine(false)
                     leftAxis.zeroLineColor = ContextCompat.getColor(this , R.color.white)
 
                     val rightAxis = barChart.axisRight
