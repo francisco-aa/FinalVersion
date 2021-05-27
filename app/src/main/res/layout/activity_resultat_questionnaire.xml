@@ -90,6 +90,16 @@
                     app:layout_constraintStart_toEndOf="@+id/total"
                     app:layout_constraintTop_toTopOf="@+id/total"/>
 
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextStyle"
+                    android:inputType="number"
+                    android:ems="1"
+                    android:layout_marginLeft="100dp"
+                    android:text="9" />
+
             </LinearLayout>
         </LinearLayout>
 

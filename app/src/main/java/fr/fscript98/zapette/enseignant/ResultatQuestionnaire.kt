@@ -9,8 +9,12 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextWatcher
+import android.view.View
 import android.widget.*
+import android.widget.Toast.LENGTH_SHORT
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -40,39 +44,57 @@ class ResultatQuestionnaire : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_resultat_questionnaire)
+        } else {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setContentView(R.layout.activity_resultat_questionnaire_land)
+            }
+        }
+
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected) {
+                startActivity(intentConnectionPerdue)
+            }
+        })
+
+        val aGood = findViewById<Button>(R.id.A)
+        val bGood = findViewById<Button>(R.id.B)
+        val cGood = findViewById<Button>(R.id.C)
+        val dGood = findViewById<Button>(R.id.D)
+        val eGood = findViewById<Button>(R.id.E)
+        val fGood = findViewById<Button>(R.id.F)
+        val gGood = findViewById<Button>(R.id.G)
+        val hGood = findViewById<Button>(R.id.H)
+        val iGood = findViewById<Button>(R.id.I)
+
+        val textViewTotal = findViewById<TextView>(R.id.nbTotal)
+        val textView = findViewById<TextView>(R.id.textView2)
+
+        val editText = findViewById<EditText>(R.id.editText)
+        var editTextValue : String
+        editText.doAfterTextChanged {
+            editTextValue = editText.text.toString()
+            if (editTextValue != ""){
+                ref_questionnaire.child(question).child("nbReponses")
+                    .setValue(editTextValue)
+                if (editTextValue == "2"){
+                    cGood.visibility = View.GONE
+                    dGood.visibility = View.GONE
+                    eGood.visibility = View.GONE
+                    fGood.visibility = View.GONE
+                    gGood.visibility = View.GONE
+                    hGood.visibility = View.GONE
+                    iGood.visibility = View.GONE
+                }
+            }
+        }
 
         val repo1 = BddRepository()
         repo1.updateData {
-            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setContentView(R.layout.activity_resultat_questionnaire)
-            } else {
-                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setContentView(R.layout.activity_resultat_questionnaire_land)
-                }
-            }
-
-            //Verification de la connection
-            val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
-            val internetConnection = InternetConnection(this)
-            internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
-                if (!isConnected) {
-                    startActivity(intentConnectionPerdue)
-                }
-            })
-
-            val aGood = findViewById<Button>(R.id.A)
-            val bGood = findViewById<Button>(R.id.B)
-            val cGood = findViewById<Button>(R.id.C)
-            val dGood = findViewById<Button>(R.id.D)
-            val eGood = findViewById<Button>(R.id.E)
-            val fGood = findViewById<Button>(R.id.F)
-            val gGood = findViewById<Button>(R.id.G)
-            val hGood = findViewById<Button>(R.id.H)
-            val iGood = findViewById<Button>(R.id.I)
-
-            val textViewTotal = findViewById<TextView>(R.id.nbTotal)
-            val textView = findViewById<TextView>(R.id.textView2)
-
             for (codeBDD in questionListBdd) {
                 if (myRandomInt == codeBDD.motdepasse) {
                     val nbA = codeBDD.A
