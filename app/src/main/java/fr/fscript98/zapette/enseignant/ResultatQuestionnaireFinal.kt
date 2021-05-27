@@ -24,13 +24,11 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.autre.BddRepository
+import fr.fscript98.zapette.autre.*
 
 import fr.fscript98.zapette.autre.BddRepository.Singleton.question
 import fr.fscript98.zapette.autre.BddRepository.Singleton.ref_questionnaire
-import fr.fscript98.zapette.autre.QuestionModel
 
-import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionModel
 
@@ -54,6 +52,15 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
                 setContentView(R.layout.activity_resultat_questionnaire_final_land)
             }
         }
+
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected) {
+                startActivity(intentConnectionPerdue)
+            }
+        })
 
         val sharedPreference = SharedPreference(this)
         val txtViewTotal = findViewById<TextView>(R.id.nbTotalFin)

@@ -67,42 +67,42 @@ class EtudiantResultats : AppCompatActivity() {
         val sharedPreference = SharedPreference(this)
         val refQuestionnaire = FirebaseDatabase.getInstance().getReference("questionnaire")
 
-        val etudiant_rep1 = findViewById<TextView>(R.id.etudiant_rep1) //Reponse etudiant
+        val etudiant_rep1 = findViewById<TextView>(R.id.etudiant_rep1)
         val etudiant_rep1_card = findViewById<CardView>(R.id.etudiant_rep1_card)
-        val etudiant_rep2 = findViewById<TextView>(R.id.etudiant_rep2) //Reponse correcte
+        val etudiant_rep2 = findViewById<TextView>(R.id.etudiant_rep2)
         val etudiant_rep2_card = findViewById<CardView>(R.id.etudiant_rep2_card)
-        val etudiant_rep3 = findViewById<TextView>(R.id.etudiant_rep3) //Reponse correcte
+        val etudiant_rep3 = findViewById<TextView>(R.id.etudiant_rep3)
         val etudiant_rep3_card = findViewById<CardView>(R.id.etudiant_rep3_card)
-        val etudiant_rep4 = findViewById<TextView>(R.id.etudiant_rep4) //Reponse etudiant
+        val etudiant_rep4 = findViewById<TextView>(R.id.etudiant_rep4)
         val etudiant_rep4_card = findViewById<CardView>(R.id.etudiant_rep4_card)
-        val etudiant_rep5 = findViewById<TextView>(R.id.etudiant_rep5) //Reponse correcte
+        val etudiant_rep5 = findViewById<TextView>(R.id.etudiant_rep5)
         val etudiant_rep5_card = findViewById<CardView>(R.id.etudiant_rep5_card)
-        val etudiant_rep6 = findViewById<TextView>(R.id.etudiant_rep6) //Reponse correcte
+        val etudiant_rep6 = findViewById<TextView>(R.id.etudiant_rep6)
         val etudiant_rep6_card = findViewById<CardView>(R.id.etudiant_rep6_card)
-        val etudiant_rep7 = findViewById<TextView>(R.id.etudiant_rep7) //Reponse etudiant
+        val etudiant_rep7 = findViewById<TextView>(R.id.etudiant_rep7)
         val etudiant_rep7_card = findViewById<CardView>(R.id.etudiant_rep7_card)
-        val etudiant_rep8 = findViewById<TextView>(R.id.etudiant_rep8) //Reponse correcte
+        val etudiant_rep8 = findViewById<TextView>(R.id.etudiant_rep8)
         val etudiant_rep8_card = findViewById<CardView>(R.id.etudiant_rep8_card)
-        val etudiant_rep9 = findViewById<TextView>(R.id.etudiant_rep9) //Reponse correcte
+        val etudiant_rep9 = findViewById<TextView>(R.id.etudiant_rep9)
         val etudiant_rep9_card = findViewById<CardView>(R.id.etudiant_rep9_card)
 
-        val prof_rep1 = findViewById<TextView>(R.id.prof_rep1) //Reponse correcte
+        val prof_rep1 = findViewById<TextView>(R.id.prof_rep1)
         val prof_rep1_card = findViewById<CardView>(R.id.prof_rep1_card)
-        val prof_rep2 = findViewById<TextView>(R.id.prof_rep2) //Reponse correcte
+        val prof_rep2 = findViewById<TextView>(R.id.prof_rep2)
         val prof_rep2_card = findViewById<CardView>(R.id.prof_rep2_card)
-        val prof_rep3 = findViewById<TextView>(R.id.prof_rep3) //Reponse correcte
+        val prof_rep3 = findViewById<TextView>(R.id.prof_rep3)
         val prof_rep3_card = findViewById<CardView>(R.id.prof_rep3_card)
-        val prof_rep4 = findViewById<TextView>(R.id.prof_rep4) //Reponse correcte
+        val prof_rep4 = findViewById<TextView>(R.id.prof_rep4)
         val prof_rep4_card = findViewById<CardView>(R.id.prof_rep4_card)
-        val prof_rep5 = findViewById<TextView>(R.id.prof_rep5) //Reponse correcte
+        val prof_rep5 = findViewById<TextView>(R.id.prof_rep5)
         val prof_rep5_card = findViewById<CardView>(R.id.prof_rep5_card)
-        val prof_rep6 = findViewById<TextView>(R.id.prof_rep6) //Reponse correcte
+        val prof_rep6 = findViewById<TextView>(R.id.prof_rep6)
         val prof_rep6_card = findViewById<CardView>(R.id.prof_rep6_card)
-        val prof_rep7 = findViewById<TextView>(R.id.prof_rep7) //Reponse correcte
+        val prof_rep7 = findViewById<TextView>(R.id.prof_rep7)
         val prof_rep7_card = findViewById<CardView>(R.id.prof_rep7_card)
-        val prof_rep8 = findViewById<TextView>(R.id.prof_rep8) //Reponse correcte
+        val prof_rep8 = findViewById<TextView>(R.id.prof_rep8)
         val prof_rep8_card = findViewById<CardView>(R.id.prof_rep8_card)
-        val prof_rep9 = findViewById<TextView>(R.id.prof_rep9) //Reponse correcte
+        val prof_rep9 = findViewById<TextView>(R.id.prof_rep9)
         val prof_rep9_card = findViewById<CardView>(R.id.prof_rep9_card)
 
         val mapCardViewEtudiant = mapOf(
@@ -234,7 +234,7 @@ class EtudiantResultats : AppCompatActivity() {
                     refQuestionString = question.key.toString()
                     bonneReponse = question.child("bonneReponse").value.toString()
                     tabBonneReponses =
-                        bonneReponse!!.toCharArray().map { it.toString() }.toMutableList()
+                        bonneReponse.toCharArray().map { it.toString() }.toMutableList()
                     tabReponses = sharedPreference.SpToArray(refQuestionString)
 
                     affichage()

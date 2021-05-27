@@ -6,8 +6,6 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import fr.fscript98.zapette.MainActivity.singleton.plustard
@@ -25,6 +23,14 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_main)
+        } else {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setContentView(R.layout.activity_main_land)
+            }
+        }
+
         //Verification de la connection
         val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
         val internetConnection = InternetConnection(this)
@@ -36,14 +42,6 @@ class MainActivity : AppCompatActivity() {
 
         val repo = BddRepository()
         repo.updateData {
-
-            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                setContentView(R.layout.activity_main)
-            } else {
-                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    setContentView(R.layout.activity_main_land)
-                }
-            }
 
             val buttonTeacher = findViewById<Button>(R.id.buttonTeacher)
             buttonTeacher.setOnClickListener {

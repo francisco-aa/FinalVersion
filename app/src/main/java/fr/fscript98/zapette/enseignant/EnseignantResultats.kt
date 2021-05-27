@@ -20,9 +20,7 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.autre.EnseignantFragment
-import fr.fscript98.zapette.autre.MyDialog
-import fr.fscript98.zapette.autre.SharedPreference
+import fr.fscript98.zapette.autre.*
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.position
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
@@ -50,9 +48,14 @@ class EnseignantResultats() : AppCompatActivity() {
             }
         }
 
-
-
-
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected) {
+                startActivity(intentConnectionPerdue)
+            }
+        })
 
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
