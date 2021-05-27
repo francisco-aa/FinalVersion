@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 ) {
                 }
                 val intentButtonTeacher = Intent(this , TeacherBoard::class.java)
-                plustard =0
+
                 startActivity(intentButtonTeacher)
             }
 

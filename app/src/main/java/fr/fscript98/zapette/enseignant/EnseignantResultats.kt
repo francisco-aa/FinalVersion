@@ -20,8 +20,12 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.autre.*
+import fr.fscript98.zapette.autre.EnseignantFragment
+import fr.fscript98.zapette.autre.MyDialog
+import fr.fscript98.zapette.autre.QuestionModel
+import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.position
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.positionSupp
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
@@ -48,14 +52,9 @@ class EnseignantResultats() : AppCompatActivity() {
             }
         }
 
-        //Verification de la connection
-        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
-        val internetConnection = InternetConnection(this)
-        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
-            if (!isConnected) {
-                startActivity(intentConnectionPerdue)
-            }
-        })
+
+
+
 
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
@@ -84,8 +83,15 @@ class EnseignantResultats() : AppCompatActivity() {
                 transaction1.addToBackStack(null)
                 transaction1.commit()
                 sharedPreference.killSR()
+                val questionSupp= arrayListOf<QuestionModel>()
+                for (i in positionSupp){
+                    questionSupp.add(questionModelList[i])
 
-                questionModelList.remove(questionModelList[position])
+                }
+                for (question in questionSupp){
+                    questionModelList.remove(question)
+                }
+
                 sharedPreference.saveDataG()
                 questionModelList = sharedPreference.loadDataG()!!
 

@@ -190,7 +190,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
                 save = "true"
             }
             else{
-                if (questionListAttente.size<30){
+                if (questionListAttente.size==30){
                     questionListAttente.add(questionModel)
                     sharedPreference.saveDataE()
                     save="true"

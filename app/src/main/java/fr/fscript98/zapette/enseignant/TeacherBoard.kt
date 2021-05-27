@@ -20,8 +20,11 @@ import fr.fscript98.zapette.MainActivity
 import fr.fscript98.zapette.MainActivity.singleton.plustard
 
 import fr.fscript98.zapette.R
-import fr.fscript98.zapette.autre.*
+import fr.fscript98.zapette.autre.MyDialog
 
+import fr.fscript98.zapette.autre.QuestionModel
+
+import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionListAttente
 import kotlin.random.Random
@@ -34,6 +37,7 @@ class TeacherBoard : AppCompatActivity() {
         var questionModelList = arrayListOf<QuestionModel>()
         var questionListAttente = arrayListOf<QuestionModel>()
         val mesView = arrayListOf<View>()
+        val positionSupp=arrayListOf<Int>()
     }
 
 
@@ -48,15 +52,6 @@ class TeacherBoard : AppCompatActivity() {
                 setContentView(R.layout.activity_teacher_board_land)
             }
         }
-
-        //Verification de la connection
-        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
-        val internetConnection = InternetConnection(this)
-        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
-            if (!isConnected) {
-                startActivity(intentConnectionPerdue)
-            }
-        })
 
         val sharedPreference = SharedPreference(this)
         val databaseRef = FirebaseDatabase.getInstance().getReference("questionnaire")

@@ -12,26 +12,28 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.fscript98.zapette.R
 import fr.fscript98.zapette.enseignant.EnseignantResultats
 import fr.fscript98.zapette.enseignant.TeacherBoard
-import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.mesView
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionModelList
 
 
-class QuestionAdapter (private val context: EnseignantResultats ,
-                       private val questionList: List<QuestionModel> ,
-                       private val layoutId: Int ) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
+class QuestionAdapter(private val context: EnseignantResultats ,
+                      private val questionList: ArrayList<QuestionModel> ,
+                      private val layoutId: Int ) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
 
     class ViewHolder(view: View ) :RecyclerView.ViewHolder(view){
 
         init{
             view.setOnClickListener{
+                TeacherBoard.Singleton.position =adapterPosition
+                if (!TeacherBoard.Singleton.positionSupp.contains(adapterPosition)) {
+                    TeacherBoard.Singleton.positionSupp.add(adapterPosition)
+                        view.findViewById<ConstraintLayout>(R.id.constraintResultat)
+                            .setBackgroundColor(Color.parseColor("#375D81"))
+                }else {
 
-                TeacherBoard.Singleton.position=adapterPosition
-                for (vue in mesView){
-                    vue.findViewById<ConstraintLayout>(R.id.constraintResultat).setBackgroundColor(Color.parseColor("#1D3D67"))
-
+                    TeacherBoard.Singleton.positionSupp.remove(adapterPosition)
+                    view.findViewById<ConstraintLayout>(R.id.constraintResultat).setBackgroundColor(Color.parseColor("#1D3D67"))
                 }
-                view.findViewById<ConstraintLayout>(R.id.constraintResultat).setBackgroundColor(Color.parseColor("#375D81"))
             }
         }
 
@@ -47,7 +49,7 @@ class QuestionAdapter (private val context: EnseignantResultats ,
 
     override fun onCreateViewHolder(parent: ViewGroup , viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(layoutId, parent ,false)
-        mesView.add(view)
+
         return ViewHolder(view )
     }
 
