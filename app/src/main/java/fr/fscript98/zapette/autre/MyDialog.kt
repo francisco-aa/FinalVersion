@@ -27,7 +27,7 @@ class MyDialog (context: Context): DialogFragment() {
             val alertBuilder = AlertDialog.Builder(it)
 
             alertBuilder.setTitle("Sauvegarder")
-            alertBuilder.setMessage("Vous avez : "+ questionListAttente.size +" résultats de questionnaire en attente de sauvegarde. " +
+            alertBuilder.setMessage("Vous avez : "+ questionListAttente.size +" résultats de questionnaire en attente de sauvegarde.\n " +
                     "Voulez-vous sauvegarder ?")
 
 

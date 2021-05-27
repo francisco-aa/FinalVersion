@@ -22,6 +22,7 @@ class EnseignantFragment(
 
 
         val verticalRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
+
         verticalRecyclerView.adapter= QuestionAdapter(context,
             questionModelList ,
             R.layout.item_resultats)
