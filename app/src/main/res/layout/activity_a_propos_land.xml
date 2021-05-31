@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".autre.APropos"
+    android:background="@color/darkblue2"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/zapette"
+        android:gravity="center_horizontal"
+        style="@style/TitleAppTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/aPropos"
+        style="@style/TextStyle"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/page_a_propos"
+        app:layout_constraintEnd_toEndOf="@+id/zapette"
+        app:layout_constraintStart_toStartOf="@+id/zapette"
+        app:layout_constraintTop_toBottomOf="@+id/zapette"
+        android:layout_marginTop="10dp">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="49dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/lightblue2"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutApropos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aPropos">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/developpement"
+                style="@style/TextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/developpement"
+                android:textColor="@color/lightblue2"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nomGeorges"
+                style="@style/NomPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/georges" />
+
+            <TextView
+                android:id="@+id/nomFrancisco"
+                style="@style/NomPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/francisco" />
+
+            <TextView
+                android:id="@+id/nomAndrew"
+                style="@style/NomPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/andrew" />
+
+            <TextView
+                android:id="@+id/nomGaetan"
+                style="@style/NomPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gaetan" />
+
+            <TextView
+                android:id="@+id/nomAboubaker"
+                style="@style/NomPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aboubaker" />
+
+            <TextView
+                android:id="@+id/nomJulien"
+                style="@style/NomPrenom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/julien" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutLogos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/logoUT3"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logout32" />
+
+            <ImageView
+                android:layout_width="228dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/logodepartinfo" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

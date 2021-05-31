@@ -76,9 +76,8 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/linearEtudiant1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"/>
 
-    </TextView>
 
     <LinearLayout
         android:id="@+id/linearEtudiant1"

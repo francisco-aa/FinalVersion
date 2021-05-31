@@ -1,6 +1,7 @@
 package fr.fscript98.zapette.autre
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +13,15 @@ import fr.fscript98.zapette.R
 class APropos : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_a_propos)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            setContentView(R.layout.activity_a_propos)
+        }
+        else{
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+                setContentView(R.layout.activity_a_propos_land)
+            }
+        }
 
         val home =  findViewById<ImageView>(R.id.home)
         home.setOnClickListener{

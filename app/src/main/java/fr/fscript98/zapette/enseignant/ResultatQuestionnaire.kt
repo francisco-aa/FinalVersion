@@ -9,13 +9,9 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.View
 import android.widget.*
-import android.widget.Toast.LENGTH_SHORT
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
-import androidx.core.widget.doAfterTextChanged
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -34,6 +30,7 @@ import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.questionM
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
+
 
 class ResultatQuestionnaire : AppCompatActivity() {
 
@@ -108,14 +105,14 @@ class ResultatQuestionnaire : AppCompatActivity() {
         spinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>? , view: View? , position: Int , id: Long) {
-                val selectedValue = spinner.getItemAtPosition(position).toString()
-                val iterator = selectedValue.toInt()
+                var selectedValue = spinner.getItemAtPosition(position).toString()
+                val nbRep = selectedValue.toInt()
                 ref_questionnaire.child(question).child("nbReponses")
                     .setValue(selectedValue)
-                for (i in 0 until iterator) {
+                for (i in 0 until nbRep) {
                     mapButton[i]!!.first.visibility = View.VISIBLE
                 }
-                for (j in iterator..8) {
+                for (j in nbRep..8) {
                     mapButton[j]!!.first.visibility = View.GONE
                     mapButton[j]!!.first.setBackgroundColor(
                         ContextCompat.getColor(applicationContext , R.color.light_blue_A400)
@@ -123,9 +120,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     bonnereponse.remove(mapButton[j]!!.second)
                 }
 
-                ref_questionnaire.child(question).child("bonneReponse")
-                    .setValue(ArrayToString(bonnereponse))
+                ref_questionnaire.child(question).child("bonneReponse").setValue(ArrayToString(bonnereponse))
             }
+
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -135,6 +132,13 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
         val repo1 = BddRepository()
         repo1.updateData {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                setContentView(R.layout.activity_resultat_questionnaire)
+            } else {
+                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    setContentView(R.layout.activity_resultat_questionnaire_land)
+                }
+            }
             for (codeBDD in questionListBdd) {
                 if (myRandomInt == codeBDD.motdepasse) {
                     val nbA = codeBDD.A
@@ -165,6 +169,9 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     //X Axis
                     val labels =
                         listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
+
+
+
 
                     val barDataSet = BarDataSet(table , "")
 
@@ -504,6 +511,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             imageCode.setImageBitmap(bitmap)
             imageCode.setOnClickListener {
                 startActivity(intent)
+                finish()
             }
             textView.text = ("$myRandomInt")
 

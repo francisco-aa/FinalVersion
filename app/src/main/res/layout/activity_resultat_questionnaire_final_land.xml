@@ -19,13 +19,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp">
-    </TextView>
+        android:layout_marginTop="10dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout10"
-        android:layout_width="720dp"
-        android:layout_height="332dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -152,6 +151,18 @@
                 app:layout_constraintTop_toBottomOf="parent"
                />
 
+            <Button
+                android:id="@+id/btn_Relancer"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_button"
+                android:text="Relancer"
+                android:textAllCaps="false"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"/>
             <Button
                 android:id="@+id/btn_quit"
                 android:layout_width="100dp"

@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginRight="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,12 +55,11 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                style="@style/TextStyle"
+                android:hint="Titre(facultatif)"
                 android:inputType="text"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="36dp"
+                android:textColorHint="@color/white"
                 android:textStyle="bold"
-
                 app:layout_constraintBottom_toTopOf="@+id/buttonRunQuiz"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
