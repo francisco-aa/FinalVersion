@@ -25,7 +25,6 @@ class EtudiantRepondre : AppCompatActivity() {
 
     object Singleton {
         lateinit var bitMap: Bitmap //QR code
-        var reponseFournie = ""     //Transmis à EtudiantResultat
         var shouldRun = true        //
     }
 
@@ -163,7 +162,6 @@ class EtudiantRepondre : AppCompatActivity() {
             }
         }
 
-
         val tabToRemove = mutableListOf<String>()
         fun setVisibility(nombreReponses: Int){
             for ((i, pair) in buttonMap){
@@ -177,13 +175,6 @@ class EtudiantRepondre : AppCompatActivity() {
                         pair.first.setBackgroundColor(Color.parseColor("WHITE"))
                         tabToRemove.add(pair.second)
                     }
-                for (string in tab_rep_etudiant){
-                    //On compare les réponses du sharedPref avec les bouttons et on met à jour les couleur
-                    if (pair.second == string){
-                        //pair.first.setBackgroundColor(Color.parseColor("#FFBB86FC"))
-                        //sharedPreference.showSR()
-                    }
-                }
             }
             tabToRemove.forEach {
                 tab_rep_etudiant.remove(it)

@@ -100,6 +100,10 @@
                     android:layout_marginLeft="100dp"
                     android:text="9" />
 
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
 
