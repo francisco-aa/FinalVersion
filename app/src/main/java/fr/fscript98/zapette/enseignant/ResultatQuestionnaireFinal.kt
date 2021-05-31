@@ -186,17 +186,18 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
         val intentQuitter = Intent(this , TeacherBoard::class.java)
         quitter.setOnClickListener {
             ref_questionnaire.child(question).removeValue()
+
             if (save=="true") {
                 save = "true"
             }
             else{
-                if (questionListAttente.size==30){
+                if (questionListAttente.size!=30){
                     questionListAttente.add(questionModel)
                     sharedPreference.saveDataE()
                     save="true"
                 }
                 else{
-                    questionListAttente.removeAt(0)
+                    questionListAttente.remove(questionListAttente[0])
                     questionListAttente.add(questionModel)
                 }
             }
@@ -264,6 +265,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             ref_questionnaire.child(question).child("motdepasse").setValue(myRandomInt)
             ref_questionnaire.child(question).child("questionTerminee").setValue("false")
             ref_questionnaire.child(question).child("bonneReponse").setValue("")
+            ref_questionnaire.child(question).child("nbReponses").setValue("0")
             ref_questionnaire.child(question).child("titre").setValue("Question Relancer")
             startActivity(intentRelancer)
         }
