@@ -24,7 +24,6 @@ class QrCodeEnseignant : AppCompatActivity() {
             BarcodeFormat.QR_CODE ,
             5000,
             5000
-
         )
         val bitMap2 = barcodeEncoder.createBitmap(bitMtx)
         imageCode3.setImageBitmap(bitMap2)

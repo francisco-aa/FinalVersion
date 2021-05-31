@@ -27,6 +27,7 @@ import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.autre.SharedPreference
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.questionListAttente
+import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.titreQuestion
 import kotlin.random.Random
 
 class TeacherBoard : AppCompatActivity() {
@@ -36,10 +37,9 @@ class TeacherBoard : AppCompatActivity() {
         var position = -1
         var questionModelList = arrayListOf<QuestionModel>()
         var questionListAttente = arrayListOf<QuestionModel>()
-        val mesView = arrayListOf<View>()
         val positionSupp=arrayListOf<Int>()
+        var titreQuestion = ""
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -59,10 +59,9 @@ class TeacherBoard : AppCompatActivity() {
 
         val buttonRunQuiz = findViewById<Button>(R.id.buttonRunQuiz)
         buttonRunQuiz.setOnClickListener {
-            var titreSaisi = editText.text.toString()
-            if (titreSaisi == "") {
-
-                titreSaisi = "Aucun titre saisi"
+            titreQuestion = editText.text.toString()
+            if (titreQuestion == "") {
+                titreQuestion = "Aucun titre saisi"
             }
             myRandomInt = Random.nextInt(10000 , 100000)
             question = "question"
@@ -82,8 +81,7 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("motdepasse").setValue(myRandomInt)
             databaseRef.child(question).child("questionTerminee").setValue("false")
             databaseRef.child(question).child("bonneReponse").setValue("")
-            databaseRef.child(question).child("titre").setValue(titreSaisi)
-            databaseRef.child(question).child("nbReponses").setValue("9")
+            databaseRef.child(question).child("titre").setValue(titreQuestion)
            // databaseRef.child(question).child("nbVotants").setValue(0)
 
             val intentButtonRunQuiz = Intent(this , ResultatQuestionnaire::class.java)
@@ -103,7 +101,6 @@ class TeacherBoard : AppCompatActivity() {
                 questionListAttente = sharedPreference.loadDataE()!!
                 if (questionListAttente.size >= 1) {
                     MyDialog(this).show(supportFragmentManager , "mydialog")
-
                 }
                 else{
                     startActivity(intentResultats)
@@ -111,7 +108,6 @@ class TeacherBoard : AppCompatActivity() {
             }
             else {
                 plustard += 1
-
                 if (plustard==4){
                     plustard=0
                 }
@@ -119,14 +115,6 @@ class TeacherBoard : AppCompatActivity() {
             }
 
         }
-/*
-        val import = findViewById<Button>(R.id.buttonImport)
-        import.setOnClickListener{
-            val read = ReadCSV("")
-            read.lireODT()
-        }
-        
- */
     }
 }
 
