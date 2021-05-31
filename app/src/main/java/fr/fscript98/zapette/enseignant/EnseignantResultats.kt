@@ -34,35 +34,18 @@ class EnseignantResultats() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-            setContentView(R.layout.activity_enseignant_resultats)
-            val transaction1 = supportFragmentManager.beginTransaction()
-            transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
-            transaction1.addToBackStack(null)
-            transaction1.commit()
-        }
-        else{
-            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-                setContentView(R.layout.activity_enseignant_resultats_land)
-                val transaction1 = supportFragmentManager.beginTransaction()
-                transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
-                transaction1.addToBackStack(null)
-                transaction1.commit()
-            }
-        }
-
-
-
-
-
+        setContentView(R.layout.activity_enseignant_resultats)
+        val transaction1 = supportFragmentManager.beginTransaction()
+        transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
+        transaction1.addToBackStack(null)
+        transaction1.commit()
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
         position=-1
-        val intentBack = Intent(this , TeacherBoard::class.java)
+        val afficher = findViewById<Button>(R.id.afficher)
+        var nbClear=0
+        val back = findViewById<ImageView>(R.id.backMesResultats)
         val clear = findViewById<Button>(R.id.clear)
-       //val clearAll = findViewById<Button>(R.id.clearAll)
-        val intentReload = Intent(this , this::class.java)
         /*clearAll.setOnClickListener{
             if (questionModelList.isNotEmpty()) {
 
@@ -75,14 +58,9 @@ class EnseignantResultats() : AppCompatActivity() {
 
             }
         }*/
-        var nbClear=0
         clear.setOnClickListener {
             if (position!=-1) {
-                val transaction1 = supportFragmentManager.beginTransaction()
-                transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
-                transaction1.addToBackStack(null)
-                transaction1.commit()
-                sharedPreference.killSR()
+
                 val questionSupp= arrayListOf<QuestionModel>()
                 for (i in positionSupp){
                     questionSupp.add(questionModelList[i])
@@ -101,13 +79,19 @@ class EnseignantResultats() : AppCompatActivity() {
                 if (nbClear==2 || nbClear==6){
                     Toast.makeText(applicationContext,"Pression longue pour tout supprimer", LENGTH_SHORT).show()
                 }
+                val transaction1 = supportFragmentManager.beginTransaction()
+                transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
+                transaction1.addToBackStack(null)
+                transaction1.commit()
+                sharedPreference.killSR()
             }
+
 
         }
         clear.setOnLongClickListener{
             if (questionModelList.isNotEmpty()) {
                 questionModelList.clear()
-                sharedPreference.killSR()
+                sharedPreference.saveDataG()    
                 val transaction1 = supportFragmentManager.beginTransaction()
                 transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
                 transaction1.addToBackStack(null)
@@ -116,14 +100,11 @@ class EnseignantResultats() : AppCompatActivity() {
 
             true
         }
-
-        val back = findViewById<ImageView>(R.id.backMesResultats)
         back.setOnClickListener {
-
             finish()
         }
 
-        val afficher = findViewById<Button>(R.id.afficher)
+
         afficher.setOnClickListener{
             if (position!=-1) {
                 if (questionModelList.isNotEmpty()) {
