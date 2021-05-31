@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout14"
         android:layout_width="match_parent"
-        android:layout_height="339dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,11 +77,12 @@
 
                 <TextView
                     style="@style/TextStyle"
-                    android:layout_width="156dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Choisissez la bonne reponse:"
+                    android:text="Bonnes(s) réponse(s):"
                     android:textSize="18dp" />
+
 
             </LinearLayout>
 
@@ -94,29 +95,54 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout19"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout26">
 
-                <TextView
-                    android:id="@+id/A"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="A"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
 
-                <TextView
-                    android:id="@+id/B"
-                    style="@style/TextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
-                    android:text="B" />
+                    <Button
+                        android:id="@+id/A"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerA_button_name_quiz_page" />
 
-                <TextView
-                    android:id="@+id/C"
-                    style="@style/TextStyle"
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_marginHorizontal="12dp">
+
+                    <Button
+                        android:id="@+id/B"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerB_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+                    <Button
+                        android:id="@+id/C"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerC_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -124,32 +150,58 @@
                 android:id="@+id/linearLayout28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout19"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
 
-                <TextView
-                    android:id="@+id/D"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="D" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    >
+                    <Button
+                        android:id="@+id/D"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerD_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/E"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
-                    android:text="E" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_marginHorizontal="12dp">
+                    <Button
+                        android:id="@+id/E"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerE_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/F"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="F" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+                    <Button
+                        android:id="@+id/F"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerF_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -161,27 +213,51 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout19"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout28">
 
-                <TextView
-                    android:id="@+id/G"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="G" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+                    <Button
+                        android:id="@+id/G"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerG_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/H"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
-                    android:text="H" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_marginHorizontal="12dp">
+                    <Button
+                        android:id="@+id/H"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerH_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/I"
-                    style="@style/TextStyle"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I" />
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+                    <Button
+                        android:id="@+id/I"
+                        style="@style/TextStyle"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@color/light_blue_A400"
+                        android:text="@string/answerI_button_name_quiz_page" />
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
@@ -228,7 +304,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginRight="10dp">
+            >
 
 
             <androidx.cardview.widget.CardView

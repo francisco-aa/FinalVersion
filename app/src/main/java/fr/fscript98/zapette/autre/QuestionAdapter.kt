@@ -38,10 +38,8 @@ class QuestionAdapter(private val context: EnseignantResultats ,
         }
 
         val questionnaire = view.findViewById<TextView>(R.id.questionnaire)
-        val participation = view.findViewById<TextView>(R.id.participation)
         var titre = view.findViewById<TextView>(R.id.titre)
         var nombrePartcipation = view.findViewById<TextView>(R.id.nombreParticipation)
-        val bonnesReponses = view.findViewById<TextView>(R.id.bonnesReponse)
         var nombreReponses = view.findViewById<TextView>(R.id.nombreResultats)
         var lettreReponse = view.findViewById<TextView>(R.id.lettreResultats)
 
@@ -56,6 +54,9 @@ class QuestionAdapter(private val context: EnseignantResultats ,
     override fun onBindViewHolder(holder: ViewHolder , position: Int) {
         val currentQuestion=questionList[position]
         holder.titre.text=currentQuestion.titre
+
+        val tabReponsesFinal = currentQuestion.bonneReponse.toCharArray().map { it.toString() }.toMutableList()
+        var bonnesReponsesFinal = ""
 
         if (currentQuestion.bonneReponse=="A")
             holder.nombreReponses.text= currentQuestion.A.toString()
@@ -76,7 +77,17 @@ class QuestionAdapter(private val context: EnseignantResultats ,
             holder.nombreReponses.text= currentQuestion.H.toString()
         if (currentQuestion.bonneReponse=="I")
             holder.nombreReponses.text= currentQuestion.I.toString()
-        holder.lettreReponse.text=currentQuestion.bonneReponse
+
+        if (tabReponsesFinal.size > 1){
+            for (char in tabReponsesFinal) {
+                bonnesReponsesFinal += "$char  "
+            }
+            holder.lettreReponse.text = bonnesReponsesFinal
+        }
+        else{
+            holder.lettreReponse.text=currentQuestion.bonneReponse
+        }
+
         holder.nombrePartcipation.text=(currentQuestion.A+currentQuestion.B+currentQuestion.C+currentQuestion.D+currentQuestion.E+currentQuestion.F+currentQuestion.G+currentQuestion.H+currentQuestion.I).toString()
 
     }

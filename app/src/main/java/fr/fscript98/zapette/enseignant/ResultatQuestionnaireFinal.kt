@@ -85,7 +85,19 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
                 nbResA + nbResB + nbResC + nbResD + nbResE + nbResF + nbResG + nbResH + nbResI
 
             val bonneReponse = findViewById<TextView>(R.id.goodAnswer)
-            bonneReponse.text =  questionModel.bonneReponse
+
+            val tabReponses =
+                questionModel.bonneReponse.toCharArray().map { it.toString() }.toMutableList()
+            var bonnes_reponses_final = ""
+
+            if (tabReponses.size > 1) {
+                for (char in tabReponses) {
+                    bonnes_reponses_final += "$char  "
+                }
+                bonneReponse.text = bonnes_reponses_final
+            } else {
+                bonneReponse.text = questionModel.bonneReponse
+            }
 
             table.add(BarEntry(1f , nbResA.toFloat()))
             table.add(BarEntry(2f , nbResB.toFloat()))
@@ -183,25 +195,26 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
 
 
         val quitter = findViewById<Button>(R.id.btn_quit)
-        val intentQuitter = Intent(this , TeacherBoard::class.java)
+        val intentQuitter = Intent(this,TeacherBoard::class.java)
         quitter.setOnClickListener {
-            ref_questionnaire.child(question).removeValue()
+            finish()
+
             if (save=="true") {
                 save = "true"
             }
             else{
-                if (questionListAttente.size==30){
+                if (questionListAttente.size!=30){
                     questionListAttente.add(questionModel)
                     sharedPreference.saveDataE()
                     save="true"
                 }
                 else{
-                    questionListAttente.removeAt(0)
+                    questionListAttente.remove(questionListAttente[0])
                     questionListAttente.add(questionModel)
                 }
             }
-            startActivity((intentQuitter))
-            finish()
+            //ref_questionnaire.child(question).removeValue()
+            startActivity(intentQuitter)
         }
 
         val sauvegarder = findViewById<Button>(R.id.btn_sauvegarder)
@@ -264,6 +277,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             ref_questionnaire.child(question).child("motdepasse").setValue(myRandomInt)
             ref_questionnaire.child(question).child("questionTerminee").setValue("false")
             ref_questionnaire.child(question).child("bonneReponse").setValue("")
+            ref_questionnaire.child(question).child("nbReponses").setValue("0")
             ref_questionnaire.child(question).child("titre").setValue("Question Relancer")
             startActivity(intentRelancer)
         }

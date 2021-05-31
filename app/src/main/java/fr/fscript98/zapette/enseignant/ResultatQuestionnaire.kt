@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.BarChart
@@ -30,6 +31,7 @@ import fr.fscript98.zapette.enseignant.TeacherBoard.Singleton.myRandomInt
 import fr.fscript98.zapette.autre.QuestionModel
 import fr.fscript98.zapette.enseignant.ResultatQuestionnaire.Singleton.bonnereponse
 
+
 class ResultatQuestionnaire : AppCompatActivity() {
 
     object Singleton {
@@ -39,6 +41,93 @@ class ResultatQuestionnaire : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_resultat_questionnaire)
+        } else {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                setContentView(R.layout.activity_resultat_questionnaire_land)
+            }
+        }
+
+        //Verification de la connection
+        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
+        val internetConnection = InternetConnection(this)
+        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected) {
+                startActivity(intentConnectionPerdue)
+            }
+        })
+
+        val aGood = findViewById<Button>(R.id.A)
+        val bGood = findViewById<Button>(R.id.B)
+        val cGood = findViewById<Button>(R.id.C)
+        val dGood = findViewById<Button>(R.id.D)
+        val eGood = findViewById<Button>(R.id.E)
+        val fGood = findViewById<Button>(R.id.F)
+        val gGood = findViewById<Button>(R.id.G)
+        val hGood = findViewById<Button>(R.id.H)
+        val iGood = findViewById<Button>(R.id.I)
+
+        var mapButton = mapOf(
+            (0 to (aGood to "A")) ,
+            (1 to (bGood to "B")) ,
+            (2 to (cGood to "C")) ,
+            (3 to (dGood to "D")) ,
+            (4 to (eGood to "E")) ,
+            (5 to (fGood to "F")) ,
+            (6 to (gGood to "G")) ,
+            (7 to (hGood to "H")) ,
+            (8 to (iGood to "I"))
+        )
+
+        val textViewTotal = findViewById<TextView>(R.id.nbTotal)
+        val textView = findViewById<TextView>(R.id.textView2)
+
+        fun ArrayToString(array: MutableList<String>): String {
+            var str = ""
+            for (char in array) {
+                str += char
+            }
+            return str
+        }
+
+        val spinner: Spinner = findViewById(R.id.spinner)
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.spinner,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        spinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>? , view: View? , position: Int , id: Long) {
+                var selectedValue = spinner.getItemAtPosition(position).toString()
+                val nbRep = selectedValue.toInt()
+                ref_questionnaire.child(question).child("nbReponses")
+                    .setValue(selectedValue)
+                for (i in 0 until nbRep) {
+                    mapButton[i]!!.first.visibility = View.VISIBLE
+                }
+                for (j in nbRep..8) {
+                    mapButton[j]!!.first.visibility = View.GONE
+                    mapButton[j]!!.first.setBackgroundColor(
+                        ContextCompat.getColor(applicationContext , R.color.light_blue_A400)
+                    )
+                    bonnereponse.remove(mapButton[j]!!.second)
+                }
+
+                ref_questionnaire.child(question).child("bonneReponse").setValue(ArrayToString(bonnereponse))
+            }
+
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
 
 
         val repo1 = BddRepository()
@@ -50,29 +139,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     setContentView(R.layout.activity_resultat_questionnaire_land)
                 }
             }
-
-            //Verification de la connection
-            val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
-            val internetConnection = InternetConnection(this)
-            internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
-                if (!isConnected) {
-                    startActivity(intentConnectionPerdue)
-                }
-            })
-
-            val aGood = findViewById<Button>(R.id.A)
-            val bGood = findViewById<Button>(R.id.B)
-            val cGood = findViewById<Button>(R.id.C)
-            val dGood = findViewById<Button>(R.id.D)
-            val eGood = findViewById<Button>(R.id.E)
-            val fGood = findViewById<Button>(R.id.F)
-            val gGood = findViewById<Button>(R.id.G)
-            val hGood = findViewById<Button>(R.id.H)
-            val iGood = findViewById<Button>(R.id.I)
-
-            val textViewTotal = findViewById<TextView>(R.id.nbTotal)
-            val textView = findViewById<TextView>(R.id.textView2)
-
             for (codeBDD in questionListBdd) {
                 if (myRandomInt == codeBDD.motdepasse) {
                     val nbA = codeBDD.A
@@ -103,7 +169,12 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     //X Axis
                     val labels =
                         listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
+
+
+
+
                     val barDataSet = BarDataSet(table , "")
+
                     val barData = BarData(barDataSet)
 
                     barChart.setFitBars(true)
@@ -112,9 +183,12 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     barChart.setDrawBarShadow(false)
                     barChart.setDrawValueAboveBar(true)
                     barChart.description.isEnabled = false
+
                     barChart.setPinchZoom(false)
                     barChart.isDoubleTapToZoomEnabled = false
                     barChart.setScaleEnabled(false)
+
+
                     barChart.setDrawGridBackground(false)
                     barChart.isClickable = false
 
@@ -143,6 +217,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
                     leftAxis.spaceTop = 0f
                     leftAxis.axisMinimum = 0f
                     leftAxis.textColor = ContextCompat.getColor(this , R.color.white)
+                    //leftAxis.setDrawAxisLine(false)
                     leftAxis.zeroLineColor = ContextCompat.getColor(this , R.color.white)
 
                     val rightAxis = barChart.axisRight
@@ -202,14 +277,6 @@ class ResultatQuestionnaire : AppCompatActivity() {
                             return true
                     }
                     return false
-                }
-
-                fun ArrayToString(array: MutableList<String>): String {
-                    var str = ""
-                    for (char in array) {
-                        str += char
-                    }
-                    return str
                 }
 
                 aGood.setOnClickListener {
@@ -444,6 +511,7 @@ class ResultatQuestionnaire : AppCompatActivity() {
             imageCode.setImageBitmap(bitmap)
             imageCode.setOnClickListener {
                 startActivity(intent)
+                finish()
             }
             textView.text = ("$myRandomInt")
 

@@ -32,46 +32,16 @@ class EnseignantResultats() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-            setContentView(R.layout.activity_enseignant_resultats)
-            val transaction1 = supportFragmentManager.beginTransaction()
-            transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
-            transaction1.addToBackStack(null)
-            transaction1.commit()
-        }
-        else{
-            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-                setContentView(R.layout.activity_enseignant_resultats_land)
-                val transaction1 = supportFragmentManager.beginTransaction()
-                transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
-                transaction1.addToBackStack(null)
-                transaction1.commit()
-            }
-        }
-
-
-
-
+        setContentView(R.layout.activity_enseignant_resultats)
+        val transaction1 = supportFragmentManager.beginTransaction()
+        transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
+        transaction1.addToBackStack(null)
+        transaction1.commit()
 
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
         position=-1
-        val intentBack = Intent(this , TeacherBoard::class.java)
         val clear = findViewById<Button>(R.id.clear)
-       //val clearAll = findViewById<Button>(R.id.clearAll)
-        val intentReload = Intent(this , this::class.java)
-        /*clearAll.setOnClickListener{
-            if (questionModelList.isNotEmpty()) {
-
-                questionModelList.clear()
-                sharedPreference.killSR()
-                val transaction1 = supportFragmentManager.beginTransaction()
-                transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
-                transaction1.addToBackStack(null)
-                transaction1.commit()
-
-            }
-        }*/
         var nbClear=0
         clear.setOnClickListener {
             if (position!=-1) {
@@ -109,7 +79,6 @@ class EnseignantResultats() : AppCompatActivity() {
 
         val back = findViewById<ImageView>(R.id.backMesResultats)
         back.setOnClickListener {
-
             finish()
         }
 
@@ -174,7 +143,6 @@ class EnseignantResultats() : AppCompatActivity() {
                     leftAxis.spaceTop = 0f
                     leftAxis.axisMinimum = 0f
                     leftAxis.textColor = ContextCompat.getColor(this , R.color.white)
-                    //leftAxis.setDrawAxisLine(false)
                     leftAxis.zeroLineColor = ContextCompat.getColor(this , R.color.white)
 
                     val rightAxis = barChart.axisRight
@@ -195,7 +163,6 @@ class EnseignantResultats() : AppCompatActivity() {
                     barChart.data = data
 
                     barChart.legend.isEnabled = false
-
                 }
             }
 
