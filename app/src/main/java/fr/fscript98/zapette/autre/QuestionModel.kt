@@ -14,4 +14,5 @@ class QuestionModel(
     var I: Int = 0 ,
     var bonneReponse: String="A",
     var motdepasse: Int = 12345
+    //var nbVotants: Int = 0
 )

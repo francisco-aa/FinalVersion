@@ -98,12 +98,14 @@
                     android:inputType="number"
                     android:ems="1"
                     android:layout_marginLeft="100dp"
-                    android:text="9" />
+                    android:text="9"
+                    android:visibility="gone"/>
 
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
             </LinearLayout>
         </LinearLayout>
 

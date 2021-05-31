@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/kanit"
-        android:text="Sélectionnez une réponse:"
+        android:text="Sélectionnez au moins une réponse:"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="35sp"

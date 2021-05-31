@@ -277,7 +277,7 @@ class ResultatQuestionnaireFinal() : AppCompatActivity() {
             ref_questionnaire.child(question).child("motdepasse").setValue(myRandomInt)
             ref_questionnaire.child(question).child("questionTerminee").setValue("false")
             ref_questionnaire.child(question).child("bonneReponse").setValue("")
-            ref_questionnaire.child(question).child("nbReponses").setValue("0")
+            ref_questionnaire.child(question).child("nbReponses").setValue("9")
             ref_questionnaire.child(question).child("titre").setValue("Question Relancer")
             startActivity(intentRelancer)
         }

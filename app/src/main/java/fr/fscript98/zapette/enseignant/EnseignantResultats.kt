@@ -40,11 +40,11 @@ class EnseignantResultats() : AppCompatActivity() {
 
         val sharedPreference = SharedPreference(this)
         questionModelList = sharedPreference.loadDataG()!!
-        position=-1
+        position = -1
         val clear = findViewById<Button>(R.id.clear)
-        var nbClear=0
+        var nbClear = 0
         clear.setOnClickListener {
-            if (position!=-1) {
+            if (position != -1) {
                 val transaction1 = supportFragmentManager.beginTransaction()
                 transaction1.replace(R.id.fragment_container , EnseignantFragment(this))
                 transaction1.addToBackStack(null)
@@ -55,16 +55,20 @@ class EnseignantResultats() : AppCompatActivity() {
                 sharedPreference.saveDataG()
                 questionModelList = sharedPreference.loadDataG()!!
 
-                nbClear=nbClear+1
-                position=-1
+                nbClear = nbClear + 1
+                position = -1
 
-                if (nbClear==2 || nbClear==6){
-                    Toast.makeText(applicationContext,"Pression longue pour tout supprimer", LENGTH_SHORT).show()
+                if (nbClear == 2 || nbClear == 6) {
+                    Toast.makeText(
+                        applicationContext ,
+                        "Pression longue pour tout supprimer" ,
+                        LENGTH_SHORT
+                    ).show()
                 }
             }
 
         }
-        clear.setOnLongClickListener{
+        clear.setOnLongClickListener {
             if (questionModelList.isNotEmpty()) {
                 questionModelList.clear()
                 sharedPreference.killSR()
@@ -83,8 +87,8 @@ class EnseignantResultats() : AppCompatActivity() {
         }
 
         val afficher = findViewById<Button>(R.id.afficher)
-        afficher.setOnClickListener{
-            if (position!=-1) {
+        afficher.setOnClickListener {
+            if (position != -1) {
                 if (questionModelList.isNotEmpty()) {
 
                     val barChart = findViewById<BarChart>(R.id.barChartResultats)
@@ -100,7 +104,7 @@ class EnseignantResultats() : AppCompatActivity() {
                     table.add(BarEntry(8f , questionModelList[position].H.toFloat()))
                     table.add(BarEntry(9f , questionModelList[position].I.toFloat()))
 
-                    val barDataSet = BarDataSet(table ,"")
+                    val barDataSet = BarDataSet(table , "")
 
                     val barData = BarData(barDataSet)
 
@@ -117,7 +121,8 @@ class EnseignantResultats() : AppCompatActivity() {
                     barChart.animateY(1000)
 
                     //X Axis
-                    val labels = listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
+                    val labels =
+                        listOf<String>(" " , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I")
 
                     //val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(labels)
                     val xAxis = barChart.xAxis
@@ -159,15 +164,15 @@ class EnseignantResultats() : AppCompatActivity() {
                     val data = BarData(dataSets)
                     data.setValueTextColor(ContextCompat.getColor(this , R.color.white))
 
-                    data.barWidth = 1.5f
+                    data.barWidth = 0.75f
                     barChart.data = data
 
                     barChart.legend.isEnabled = false
                 }
             }
-
         }
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
         finish()

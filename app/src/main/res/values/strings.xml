@@ -39,7 +39,7 @@
     <!-- page Mes questionnaire enseignant-->
     <string name="title_my_quiz_page">Mes questionnaires</string>
     <string name="button_modify_quiz">Modifier questionnaire</string>
-    <string name="button_begin_quiz">Lancer questionnaire</string>
+    <string name="button_begin_quiz">Lancer question</string>
 
     <!-- page Nom questionnaire-->
     <string name="title_name_quiz_page">Nom questionnaire</string>

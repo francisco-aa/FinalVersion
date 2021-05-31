@@ -256,6 +256,12 @@ class EtudiantResultats : AppCompatActivity() {
                                                 .removeEventListener(this) //Détruit le listener
                                             finish()
                                         }
+                                        if (snapshot.value.toString() == "Termine"){
+                                            refQuestionnaire.child(refQuestionString)
+                                                .child("questionTerminee")
+                                                .removeEventListener(this) //Détruit le listener
+                                            finish()
+                                        }
                                     }
 
                                     override fun onCancelled(error: DatabaseError) {}
@@ -274,9 +280,9 @@ class EtudiantResultats : AppCompatActivity() {
         val accueil = findViewById<Button>(R.id.accueil)
         accueil.setOnClickListener {
             val intent = Intent(this , MainActivity::class.java)
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+            //intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+            //intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+            //startActivity(intent)
             finish()
         }
     }
