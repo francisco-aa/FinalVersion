@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import com.google.zxing.BarcodeFormat
@@ -33,6 +35,7 @@ class EtudiantRepondre : AppCompatActivity() {
     var tab_rep_etudiant = mutableListOf<String>()
     var ref = "" //reference String de la question dans la bdd
     var nombreReponses = ""
+    var nbVote = 0
     lateinit var refQuestion: DatabaseReference
     lateinit var listenerQuestionTerminee: ValueEventListener
     lateinit var listenerNombreReponses: ValueEventListener
@@ -41,20 +44,19 @@ class EtudiantRepondre : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_etudiant_repondre)
-        }
-        else{
-            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+        } else {
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 setContentView(R.layout.activity_etudiant_repondre_land)
             }
         }
 
         //Verification de la connection
-        val intentConnectionPerdue = Intent(this, ConnectionPerdue::class.java)
+        val intentConnectionPerdue = Intent(this , ConnectionPerdue::class.java)
         val internetConnection = InternetConnection(this)
-        internetConnection.observe(this, androidx.lifecycle.Observer { isConnected ->
-            if (!isConnected){
+        internetConnection.observe(this , androidx.lifecycle.Observer { isConnected ->
+            if (!isConnected) {
                 startActivity(intentConnectionPerdue)
             }
         })
@@ -71,15 +73,16 @@ class EtudiantRepondre : AppCompatActivity() {
         val buttonBack = findViewById<ImageView>(R.id.button_back3)
 
         val buttonMap = mapOf( //map<Int, Pair<Button, String>>
-            0 to (a to "A"),
-            1 to (b to "B"),
-            2 to (c to "C"),
-            3 to (d to "D"),
-            4 to (e to "E"),
-            5 to (f to "F"),
-            6 to (g to "G"),
-            7 to (h to "H"),
-            8 to (i to "I"))
+            0 to (a to "A") ,
+            1 to (b to "B") ,
+            2 to (c to "C") ,
+            3 to (d to "D") ,
+            4 to (e to "E") ,
+            5 to (f to "F") ,
+            6 to (g to "G") ,
+            7 to (h to "H") ,
+            8 to (i to "I")
+        )
 
         val intent = Intent(applicationContext , EtudiantResultats::class.java)
         val sharedPreference = SharedPreference(this)
@@ -116,61 +119,82 @@ class EtudiantRepondre : AppCompatActivity() {
         */
 
         //Convertir un tableau de réponses en une chaine (format "ABCD") pour le SharedPreference
-        fun arrayToString(array: MutableList<String>) : String{
+        fun arrayToString(array: MutableList<String>): String {
             var str = ""
-            for (char in array){
+            for (char in array) {
                 str += char
             }
             return str
         }
 
         //verifie si le boutton a été pressé par l'étudiant
-        fun buttonIsClicked(buttonClique: String) : Boolean{
-            for (button in tab_rep_etudiant){
+        fun buttonIsClicked(buttonClique: String): Boolean {
+            for (button in tab_rep_etudiant) {
                 if (button == buttonClique) return true
             }
             return false
         }
 
-        fun vote(buttonClique: String){
-            refQuestion.get().addOnSuccessListener{
-                for (child in it.children){
-                    if (child.key.toString() == buttonClique){
+        fun vote(buttonClique: String) {
+            refQuestion.get().addOnSuccessListener {
+                for (child in it.children) {
+                    if (child.key.toString() == buttonClique) {
                         val value = child.value.toString().toInt()
-                        refQuestionnaire.child(ref).child(buttonClique).setValue(value+1)
+                        refQuestionnaire.child(ref).child(buttonClique).setValue(value + 1)
 
                         tab_rep_etudiant.add(buttonClique)
                         val stringReponses = arrayToString(tab_rep_etudiant)
-                        sharedPreference.saveData(refQuestion.key.toString(), stringReponses)
+                        sharedPreference.saveData(refQuestion.key.toString() , stringReponses)
+
+                        nbVote++
+                        if (child.key.toString() == "nbVotants"){
+                            val value = it.value.toString().toInt()
+                            if (nbVote == 1)
+                                refQuestionnaire.child(ref).child("nbVotants").setValue(value + 1)
+                            if (nbVote == 0)
+                                refQuestionnaire.child(ref).child("nbVotants").setValue(value - 1)
+                        }
                     }
                 }
             }
         }
 
-        fun devote(buttonClique: String){
-            refQuestion.get().addOnSuccessListener{
-                for (child in it.children){
-                    if (child.key.toString() == buttonClique){
+        fun devote(buttonClique: String) {
+            refQuestion.get().addOnSuccessListener {
+                for (child in it.children) {
+                    if (child.key.toString() == buttonClique) {
                         val value = child.value.toString().toInt()
-                        refQuestionnaire.child(ref).child(buttonClique).setValue(value-1)
+                        refQuestionnaire.child(ref).child(buttonClique).setValue(value - 1)
 
                         tab_rep_etudiant.remove(buttonClique)
                         val stringReponses = arrayToString(tab_rep_etudiant)
-                        sharedPreference.saveData(refQuestion.key.toString(), stringReponses)
+                        sharedPreference.saveData(refQuestion.key.toString() , stringReponses)
+
+                        nbVote--
+                        //Toast.makeText(applicationContext, nbVote, LENGTH_SHORT).show()
+                    }
+                    if (child.key.toString() == "nbVotants") {
+                        val value = child.value.toString().toInt()
+                        Toast.makeText(applicationContext, value.toString(), LENGTH_SHORT).show()
+
+                        if (nbVote == 1)
+                            refQuestionnaire.child(ref).child("nbVotants").setValue(value + 1)
+                        if (nbVote == 0)
+                            refQuestionnaire.child(ref).child("nbVotants").setValue(value - 1)
                     }
                 }
             }
         }
 
         val tabToRemove = mutableListOf<String>()
-        fun setVisibility(nombreReponses: Int){
-            for ((i, pair) in buttonMap){
+        fun setVisibility(nombreReponses: Int) {
+            for ((i , pair) in buttonMap) {
                 //Affichage des boutons en fonctions du nombre de réponses possible (saisi par le prof)
-                for (j in 0..nombreReponses-1)
+                for (j in 0..nombreReponses - 1)
                     if (i == j)
                         pair.first.visibility = View.VISIBLE
                 for (j in nombreReponses..8)
-                    if (i == j){
+                    if (i == j) {
                         pair.first.visibility = View.GONE
                         pair.first.setBackgroundColor(Color.parseColor("WHITE"))
                         tabToRemove.add(pair.second)
@@ -180,7 +204,10 @@ class EtudiantRepondre : AppCompatActivity() {
                 tab_rep_etudiant.remove(it)
             }
             val stringReponses = arrayToString(tab_rep_etudiant)
-            sharedPreference.saveData(refQuestion.key.toString(), stringReponses) //mise a jour du SharedPreference
+            sharedPreference.saveData(
+                refQuestion.key.toString() ,
+                stringReponses
+            ) //mise a jour du SharedPreference
         }
 
         //Parcours BDD
@@ -193,39 +220,50 @@ class EtudiantRepondre : AppCompatActivity() {
 
                     if (sharedPreference.isIn(ref)) { //La question affichée est-elle présente dans le SP de l'étudiant?
                         //rep_etudiant = sharedPreference.loadData(ref) //La derniere réponse locale devient la dernière réponse enregistrée dans le SR pour la question
-                        tab_rep_etudiant = sharedPreference.SpToArray(ref) //Convertir le SR (Format "ABC") en List (Format "A","B","C")
-                    }
-                    else{
-                        sharedPreference.saveData(ref , "") //On a jamais participé à cette question, donc création d'un champ vide
+                        tab_rep_etudiant =
+                            sharedPreference.SpToArray(ref) //Convertir le SR (Format "ABC") en List (Format "A","B","C")
+                    } else {
+                        sharedPreference.saveData(
+                            ref ,
+                            ""
+                        ) //On a jamais participé à cette question, donc création d'un champ vide
                     }
 
                     setVisibility(nombreReponses.toInt())
 
-                    listenerQuestionTerminee = //Placement d'un listener actif sur questionTerminee dans la bdd (pour savoir quand changer d'activité)
-                        refQuestionnaire.child(ref).child("questionTerminee").addValueEventListener(
-                            object : ValueEventListener {
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    if (snapshot.value.toString() == "true") {
-                                        if (shouldRun){
-                                            startActivity(intent) //question terminée, démarrage de l'activité suivante
+                    listenerQuestionTerminee =
+                            //Placement d'un listener actif sur questionTerminee dans la bdd (pour savoir quand changer d'activité)
+                        refQuestionnaire.child(ref).child("questionTerminee")
+                            .addValueEventListener(
+                                object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        if (snapshot.value.toString() == "true") {
+                                            if (shouldRun) {
+                                                startActivity(intent) //question terminée, démarrage de l'activité suivante
+                                            }
+                                            refQuestionnaire.child(ref)
+                                                .child("questionTerminee")
+                                                .removeEventListener(this) //Détruit le listener
+                                            refQuestionnaire.child(ref)
+                                                .child("nbReponses")
+                                                .removeEventListener(this) //Détruit le listener
+                                            finish()
                                         }
-                                        refQuestionnaire.child(ref).child("questionTerminee")
-                                            .removeEventListener(this) //Détruit le listener
-                                        finish()
                                     }
+
+                                    override fun onCancelled(error: DatabaseError) {}
                                 }
+                            )
 
-                                override fun onCancelled(error: DatabaseError) {}
-                            }
-                        )
-
-                    listenerNombreReponses = //Placement d'un listener actif sur nbReponses pour savoir quelles réponses doivent être affichées
+                    listenerNombreReponses =
+                            //Placement d'un listener actif sur nbReponses pour savoir quelles réponses doivent être affichées
                         refQuestionnaire.child(ref).child("nbReponses").addValueEventListener(
                             object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val nbReponses = snapshot.value.toString().toInt()
                                     setVisibility(nbReponses)
                                 }
+
                                 override fun onCancelled(error: DatabaseError) {}
                             }
                         )
@@ -237,99 +275,90 @@ class EtudiantRepondre : AppCompatActivity() {
 
         //Gestion des boutons A -> I
         a.setOnClickListener {
-            if (buttonIsClicked("A")){
+            if (buttonIsClicked("A")) {
                 devote("A")
                 a.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("A")
                 a.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         b.setOnClickListener {
-            if (buttonIsClicked("B")){
+            if (buttonIsClicked("B")) {
                 devote("B")
                 b.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("B")
                 b.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         c.setOnClickListener {
-            if (buttonIsClicked("C")){
+            if (buttonIsClicked("C")) {
                 devote("C")
                 c.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("C")
                 c.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         d.setOnClickListener {
-            if (buttonIsClicked("D")){
+            if (buttonIsClicked("D")) {
                 devote("D")
                 d.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("D")
                 d.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         e.setOnClickListener {
-            if (buttonIsClicked("E")){
+            if (buttonIsClicked("E")) {
                 devote("E")
                 e.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("E")
                 e.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         f.setOnClickListener {
-            if (buttonIsClicked("F")){
+            if (buttonIsClicked("F")) {
                 devote("F")
                 f.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("F")
                 f.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         g.setOnClickListener {
-            if (buttonIsClicked("G")){
+            if (buttonIsClicked("G")) {
                 devote("G")
                 g.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("G")
                 g.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         h.setOnClickListener {
-            if (buttonIsClicked("H")){
+            if (buttonIsClicked("H")) {
                 devote("H")
                 h.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("H")
                 h.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
         }
 
         i.setOnClickListener {
-            if (buttonIsClicked("I")){
+            if (buttonIsClicked("I")) {
                 devote("I")
                 i.setBackgroundColor(Color.WHITE)
-            }
-            else{
+            } else {
                 vote("I")
                 i.setBackgroundColor(Color.parseColor("#FFBB86FC"))
             }
@@ -337,10 +366,12 @@ class EtudiantRepondre : AppCompatActivity() {
 
         buttonBack.setOnClickListener {
             shouldRun = false //Evite tout démarrage non voulu de l'activité EtudiantResultats
-            FirebaseDatabase.getInstance().getReference("questionnaire").child(ref) //destruction du listener sur questionTerminee
+            FirebaseDatabase.getInstance().getReference("questionnaire")
+                .child(ref) //destruction du listener sur questionTerminee
                 .child("questionTerminee")
                 .removeEventListener(listenerQuestionTerminee)
-            FirebaseDatabase.getInstance().getReference("questionnaire").child(ref) //destruction du listener sur nbReponses
+            FirebaseDatabase.getInstance().getReference("questionnaire")
+                .child(ref) //destruction du listener sur nbReponses
                 .child("nbReponses")
                 .removeEventListener(listenerNombreReponses)
             finish()
@@ -367,12 +398,15 @@ class EtudiantRepondre : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         shouldRun = false //Evite tout démarrage non voulu de l'activité EtudiantResultats
-        FirebaseDatabase.getInstance().getReference("questionnaire").child(ref) //destruction du listener sur questionTerminee
+        FirebaseDatabase.getInstance().getReference("questionnaire")
+            .child(ref) //destruction du listener sur questionTerminee
             .child("questionTerminee")
             .removeEventListener(listenerQuestionTerminee)
-        FirebaseDatabase.getInstance().getReference("questionnaire").child(ref) //destruction du listener sur nbReponses
+        FirebaseDatabase.getInstance().getReference("questionnaire")
+            .child(ref) //destruction du listener sur nbReponses
             .child("nbReponses")
             .removeEventListener(listenerNombreReponses)
         finish()
     }
 }
+

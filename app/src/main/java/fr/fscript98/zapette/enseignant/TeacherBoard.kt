@@ -84,6 +84,8 @@ class TeacherBoard : AppCompatActivity() {
             databaseRef.child(question).child("bonneReponse").setValue("")
             databaseRef.child(question).child("titre").setValue(titreSaisi)
             databaseRef.child(question).child("nbReponses").setValue("9")
+           // databaseRef.child(question).child("nbVotants").setValue(0)
+
             val intentButtonRunQuiz = Intent(this , ResultatQuestionnaire::class.java)
             startActivity(intentButtonRunQuiz)
             finish()
